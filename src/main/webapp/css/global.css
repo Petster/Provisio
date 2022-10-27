@@ -1,1 +1,29 @@
 @charset "ISO-8859-1";
+.color-1 {
+    background-color: #574922;
+}
+.color-2 {
+    background-color: #f0dba1;
+}
+.color-3 {
+    background-color: #d6b354;
+}
+.color-3-hover:hover {
+    background-color: #d6b354;
+}
+.color-4 {
+    background-color: #5c470f;
+}
+.color-5 {
+    background-color: #a38940;
+}
+.color-5-hover:hover {
+    background-color: #a38940;
+}
+.header-border {
+    border-bottom: 5px solid #574922;
+}
+.arial {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
