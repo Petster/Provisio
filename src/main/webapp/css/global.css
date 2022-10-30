@@ -1,29 +1,28 @@
 @charset "ISO-8859-1";
 .color-1 {
-    background-color: #574922;
+    background-color: #190933;
+}
+.color-1-border {
+	border-color: #190933;
 }
 .color-2 {
-    background-color: #f0dba1;
+    background-color: #DCEED1;
+}
+.color-2-text {
+	color: #DCEED1;
 }
 .color-3 {
-    background-color: #d6b354;
-}
-.color-3-hover:hover {
-    background-color: #d6b354;
+	background-color: #E0DFD5;
 }
 .color-4 {
-    background-color: #5c470f;
+	background-color: #667761;
 }
-.color-5 {
-    background-color: #a38940;
-}
-.color-5-hover:hover {
-    background-color: #a38940;
+.color-4-text {
+	color: #667761;
 }
 .header-border {
-    border-bottom: 5px solid #574922;
+    border-bottom: 5px solid #190933;
 }
-.arial {
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 600;
+.footer-border {
+    border-top: 5px solid #190933;
 }

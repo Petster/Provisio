@@ -20,12 +20,8 @@
 	<body>
 		<main class="mx-auto flex flex-col min-h-screen sm:break-words md:break-normal">
 			<t:Header></t:Header>
-			<section class="flex flex-grow p-4">
-				<div class="flex flex-col flex-grow text-center mx-auto w-full">
-					<div class="text-white flex flex-col lg:flex-row flex-grow lg:content-center lg:justify-center backdrop-filter backdrop-blur-md bg-black bg-opacity-40 p-4 rounded-lg">
-						<jsp:doBody />
-					</div>
-				</div>
+			<section class="flex flex-grow md:justify-center md:w-4/5 md:mx-auto bg-gray-300">
+					<jsp:doBody />
 			</section>
 			<t:Footer></t:Footer>
 		</main>

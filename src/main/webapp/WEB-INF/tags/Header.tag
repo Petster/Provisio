@@ -2,7 +2,7 @@
 <%@tag description="Page Header" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
-        <div id="desktop" class="hidden h-14 color-2 py-1 px-2 md:flex flex-row justify-between items-center content-center header-border arial">
+        <div id="desktop" class="hidden h-14 color-2 py-1 px-2 md:flex flex-row justify-between items-center content-center header-border ">
             <a href="index.jsp" class="flex flex-row">
                 <img src="img/LogoBlackSquareTransparent.png" alt="Provisio Logo" class="w-48" />
             </a>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div id="mobile" class="md:hidden h-14 color-2 py-1 px-2 flex flex-row justify-between items-center content-center header-border arial">
+        <div id="mobile" class="md:hidden h-14 color-2 py-1 px-2 flex flex-row justify-between items-center content-center header-border ">
             <div id="mobileToggle" class="flex flex-row p-2 cursor-pointer">
                 <p><i id="mobileToggleIcon" class="fa-solid fa-bars fa-xl"></i></p>
             </div>
@@ -48,7 +48,7 @@
                 <p><i class="fa-solid fa-circle-user fa-xl"></i></p>
             </div>
         </div>
-        <div id="mobileDropdown" class="md:hidden absolute z-50 w-full color-2 hidden flex flex-col arial">
+        <div id="mobileDropdown" class="md:hidden absolute z-50 w-full color-2 hidden flex flex-col ">
             <a href="about.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
                 <div><i class="fa-solid fa-circle-info fa-2x"></i></div>
                 <div><p>About Us</p></div>
@@ -66,7 +66,7 @@
                 <div><p>Contact Us</p></div>
             </a>
         </div>
-        <div id="userDropdown" class="md:hidden absolute z-50 w-full color-2 hidden flex flex-col arial">
+        <div id="userDropdown" class="md:hidden absolute z-50 w-full color-2 hidden flex flex-col ">
             <a href="login.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
                 <div><i class="fa-solid fa-users fa-2x"></i></div>
                 <div><p>Join</p></div>
