@@ -13,14 +13,22 @@
                 <a href="contact.jsp">Contact Us</a>
             </div>
             <div class="flex flex-row gap-2">
+            <c:if test="${sessionScope.LoggedIn != null}">
+				<c:out value="Hello ${sessionScope.LoggedIn.firstname}" />
+				<div id="desktopToggle">
+                    <i class="fa-solid fa-circle-user fa-xl"></i>
+                </div>
+			</c:if>
+			<c:if test="${sessionScope.LoggedIn == null}">
                 <a href="register.jsp">Join</a>
                 <div class="border-r-2 border-black"></div>
                 <div class="flex flex-row gap-2">
                     <a href="login.jsp">Sign in</a>
-                    <div id="desktopToggle">
+                    <div>
                         <i class="fa-solid fa-circle-user fa-xl"></i>
                     </div>
                 </div>
+            </c:if>
             </div>
             <div id="desktopDropdown" class="hidden origin-top-right absolute right-2 top-14 z-50 mt-2 w-56 rounded-md color-3 p-2 flex flex-col">
                 <div class="flex flex-row flex-grow gap-2 content-center items-center justify-center">
@@ -31,7 +39,7 @@
                         <a href="reserve.jsp">Book a Room</a>
                     </div>
                 </div>
-                <div class="flex flex-row flex-grow justify-between items-center content-center color-1 text-white py-1 px-2 text-xs rounded-md mt-2 color-5-hover cursor-pointer ">
+                <div class="logout flex flex-row flex-grow justify-between items-center content-center color-1 text-white py-1 px-2 text-xs rounded-md mt-2 color-5-hover cursor-pointer ">
                     <p><i class="fa-solid fa-right-from-bracket fa-flip-horizontal fa-lg"></i></p>
                     <p>Logout</p>
                 </div>
@@ -67,13 +75,25 @@
             </a>
         </div>
         <div id="userDropdown" class="md:hidden absolute z-50 w-full color-2 hidden flex flex-col ">
-            <a href="login.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
-                <div><i class="fa-solid fa-users fa-2x"></i></div>
-                <div><p>Join</p></div>
-            </a>
-            <a href="register.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
-                <div><i class="fa-solid fa-sign-in fa-2x"></i></div>
-                <div><p>Sign In</p></div>
-            </a>
+            <c:if test="${sessionScope.LoggedIn != null}">
+            	<a href="myaccount.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
+	                <div><i class="fa-solid fa-users fa-2x"></i></div>
+	                <div><p>My Account</p></div>
+	            </a>
+	            <a class="logout h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
+	                <div><i class="fa-solid fa-sign-in fa-2x fa-flip-horizontal"></i></div>
+	                <div><p>Logout</p></div>
+	            </a>
+            </c:if>
+            <c:if test="${sessionScope.LoggedIn == null}">
+	            <a href="login.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
+	                <div><i class="fa-solid fa-users fa-2x"></i></div>
+	                <div><p>Join</p></div>
+	            </a>
+	            <a href="register.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
+	                <div><i class="fa-solid fa-sign-in fa-2x"></i></div>
+	                <div><p>Sign In</p></div>
+	            </a>
+            </c:if>
         </div>
     </header>

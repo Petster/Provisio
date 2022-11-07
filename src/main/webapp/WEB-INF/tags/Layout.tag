@@ -20,11 +20,12 @@
 	<body>
 		<main class="mx-auto flex flex-col min-h-screen sm:break-words md:break-normal">
 			<t:Header></t:Header>
-			<section class="flex flex-grow md:justify-center md:w-4/5 md:mx-auto bg-gray-300">
+			<section class="flex flex-grow md:justify-center md:w-4/5 md:mx-auto">
 					<jsp:doBody />
 			</section>
 			<t:Footer></t:Footer>
 		</main>
 	</body>
 	<script src="js/global.js"></script>
+	<script src="js/ajax.js"></script>
 </html>
