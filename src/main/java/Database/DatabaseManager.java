@@ -12,10 +12,10 @@ import Database.DatabaseManager;
 
 public class DatabaseManager {
 
-	private String dbURL = "jdbc:mysql://localhost:3306";
-	private String dbName = "root";
-	private String dbPass = "root";
-	private String dbDriver = "com.mysql.cj.jdbc.Driver";
+	private final String dbURL = "jdbc:mysql://localhost:3306";
+	private final String dbName = "root";
+	private final String dbPass = "root";
+	private final String dbDriver = "com.mysql.cj.jdbc.Driver";
 	
 	public void loadDriver(String dbDriver) {
 		try {
