@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 
-import Database.DatabaseManager;
-
 public class DatabaseManager {
 
 	private final String dbURL = "jdbc:mysql://localhost:3306";
@@ -50,10 +48,10 @@ public class DatabaseManager {
 			ps.setString(2, user.getLastname());
 			ps.setString(3, user.getFirstname());
 			ps.setString(4,  user.getPhone());
-			ps.setString(5, user.getJoindate());
+			ps.setString(5, user.getJoinDate());
 			ps.setString(6,  user.getPassword());
 			ps.setInt(7, user.getLoyaltyPoints());
-			ps.setBoolean(8, user.getAdmin());
+			ps.setBoolean(8, user.isAdmin());
 			int rowsAffected = ps.executeUpdate();
 			
 		} catch(SQLIntegrityConstraintViolationException e) {
@@ -83,7 +81,7 @@ public class DatabaseManager {
 					loggedIn.setLastname(rs.getString(3));
 					loggedIn.setFirstname(rs.getString(4));
 					loggedIn.setPhone(rs.getString(5));
-					loggedIn.setJoindate(rs.getString(6));
+					loggedIn.setJoinDate(rs.getString(6));
 					loggedIn.setLoyaltyPoints(rs.getInt(7));
 					loggedIn.setAdmin(rs.getBoolean(8));
 					loggedIn.setPassword(rs.getString(9));
