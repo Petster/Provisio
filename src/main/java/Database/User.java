@@ -6,9 +6,9 @@ public class User {
 	private String password = "";
 	private String email = "";
 	private String phone = "";
-	private String joindate = "";
+	private String joinDate = "";
 	private Boolean isAdmin;
-	private Integer id;
+	private long id;
 	private Integer loyaltyPoints;
 	
 	public User() {}
@@ -18,7 +18,7 @@ public class User {
 		this.email = email;
 		this.id = id;
 		this.phone = phone;
-		this.joindate = joindate;
+		this.joinDate = joindate;
 		this.isAdmin = isAdmin;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -30,7 +30,7 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.phone = phone;
-		this.joindate = joindate;
+		this.joinDate = joindate;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.loyaltyPoints = loyaltyPoints;
@@ -45,7 +45,7 @@ public class User {
 		this.email = newEmail;
 	}
 	
-	public void setId(int newId) {
+	public void setId(long newId) {
 		this.id = newId;
 	}
 	
@@ -53,8 +53,8 @@ public class User {
 		this.phone = newPhone;
 	}
 	
-	public void setJoindate(String newJD) {
-		this.joindate = newJD;
+	public void setJoinDate(String newJD) {
+		this.joinDate = newJD;
 	}
 	
 	public void setAdmin(Boolean i) {
@@ -81,19 +81,19 @@ public class User {
 		return firstname;
 	}
 	
-	public Boolean getAdmin() {
+	public Boolean isAdmin() {
 		return isAdmin;
 	}
 	
-	public String getJoindate() {
-		return joindate;
+	public String getJoinDate() {
+		return joinDate;
 	}
 	
 	public String getPhone() {
 		return phone;
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	
