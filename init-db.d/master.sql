@@ -4,21 +4,21 @@ USE provisio;
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-    id int NOT NULL AUTO_INCREMENT,
+    id bigint NOT NULL AUTO_INCREMENT,
     email varchar(255),
-    lastName varchar(255),
-    firstName varchar(255),
+    last_name varchar(255),
+    first_name varchar(255),
     phone varchar(20),
-    joinDate date,
-    loyaltyPoints int,
-    isAdmin boolean,
+    join_date date,
+    loyalty_points int,
+    is_admin boolean,
     password varchar(255) NOT NULL,
     PRIMARY KEY (id)
 );
 
 DROP TABLE IF EXISTS rooms;
 CREATE TABLE rooms (
-    id int NOT NULL AUTO_INCREMENT,
+    id bigint NOT NULL AUTO_INCREMENT,
     title varchar(255),
     breakfast boolean,
     wifi boolean,
@@ -34,9 +34,9 @@ CREATE TABLE rooms (
 
 DROP TABLE IF EXISTS reservations;
 CREATE TABLE reservations (
-    id int NOT NULL AUTO_INCREMENT,
-    userID int NOT NULL,
-    roomType int NOT NULL,
+    id bigint NOT NULL AUTO_INCREMENT,
+    userID bigint NOT NULL,
+    roomType bigint NOT NULL,
     reserveDate date,
     fromDate date,
     toDate date,
@@ -48,8 +48,8 @@ CREATE TABLE reservations (
 
 DROP TABLE IF EXISTS news;
 CREATE TABLE news (
-    id int NOT NULL AUTO_INCREMENT,
-    userID int NOT NULL,
+    id bigint NOT NULL AUTO_INCREMENT,
+    userID bigint NOT NULL,
     title varchar(255),
     publishDate date,
     description varchar(255),
@@ -60,7 +60,7 @@ CREATE TABLE news (
 
 DROP TABLE IF EXISTS locations;
 CREATE TABLE locations (
-    id int NOT NULL AUTO_INCREMENT,
+    id bigint NOT NULL AUTO_INCREMENT,
     address varchar(255),
     title varchar(255),
     PRIMARY KEY (id)
@@ -68,10 +68,10 @@ CREATE TABLE locations (
 
 DROP TABLE IF EXISTS emails;
 CREATE TABLE emails (
-    id int NOT NULL AUTO_INCREMENT,
-    userID int,
+    id bigint NOT NULL AUTO_INCREMENT,
+    userID bigint,
     dateSent date,
-    reservationNum int,
+    reservationNum bigint,
     userEmail varchar(255),
     userFirstName varchar(255),
     subject varchar(255),

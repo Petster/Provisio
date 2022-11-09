@@ -12,11 +12,11 @@ INSERT INTO rooms (id, title, breakfast, wifi, fitness, store, nosmoke, mobile, 
 
 INSERT INTO rooms (id, title, breakfast, wifi, fitness, store, nosmoke, mobile, roomHighlights, image, price) values (3, 'Double Bed', true, true, true, true, false, true, 'Double Bed', '/images/rooms/double.jpg', 399.99);
 
-INSERT INTO users (id, email, lastName, firstName, phone, joinDate, loyaltyPoints, isAdmin, password) values (1, 'jason@test.com', 'Palmeri', 'Jason', '123-456-7890', '2022-11-07', '99', true, 'testPassword');
+INSERT INTO users (id, email, last_name, first_name, phone, join_date, loyalty_points, is_admin, password) values (1, 'jason@test.com', 'Palmeri', 'Jason', '123-456-7890', '2022-11-07', '99', true, 'testPassword');
 
-INSERT INTO users (id, email, lastName, firstName, phone, joinDate, loyaltyPoints, isAdmin, password) values (2, 'john@test.com', 'Moore', 'John', '123-456-7890', '2022-12-02', '39', false, 'testPassword');
+INSERT INTO users (id, email, last_name, first_name, phone, join_date, loyalty_points, is_admin, password) values (2, 'john@test.com', 'Moore', 'John', '123-456-7890', '2022-12-02', '39', false, 'testPassword');
 
-INSERT INTO users (id, email, lastName, firstName, phone, joinDate, loyaltyPoints, isAdmin, password) values (3, 'mishaela@test.com', 'Pedersen', 'Mishaela', '123-456-7890', '2022-11-22', '79', false, 'testPassword');
+INSERT INTO users (id, email, last_name, first_name, phone, join_date, loyalty_points, is_admin, password) values (3, 'mishaela@test.com', 'Pedersen', 'Mishaela', '123-456-7890', '2022-11-22', '79', false, 'testPassword');
 
 INSERT INTO news (userID, title, publishDate, description, image) values (1, 'New Hotel', '2022-11-07', 'We have a new hotel coming in december', '/images/newhotel.jpg');
 
