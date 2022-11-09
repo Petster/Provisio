@@ -11,8 +11,8 @@ import java.sql.Statement;
 public class DatabaseManager {
 
 	private final String dbURL = "jdbc:mysql://localhost:3306";
-	private final String dbName = "root";
-	private final String dbPass = "root";
+	private final String dbName = "clerk";
+	private final String dbPass = "password";
 	private final String dbDriver = "com.mysql.cj.jdbc.Driver";
 	
 	public void loadDriver(String dbDriver) {

@@ -44,13 +44,30 @@ public class UserRepository implements Repository<User> {
 			statement.setInt(6, user.getLoyaltyPoints());
 			statement.setBoolean(7, user.isAdmin());
 			statement.setString(8, user.getPassword());
-
+			statement.executeUpdate();
+			
 			return getUserWithGeneratedId(c, statement, user);
 		} catch (Exception e) {
 			logger.e("insertOne", e);
 		}
 
 		return null;
+	}
+	
+	@Override
+	public User selectOne(String username, String password) {
+		User result = null;
+		try (Connection c = establishConnection()) {
+			String q = "SELECT * FROM users WHERE email = ? AND password = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setString(1,  username);
+			statement.setString(2, password);
+			ResultSet rs = statement.executeQuery();
+			result = buildUser(rs);
+		} catch (Exception e) {
+			logger.e("getById", e);
+		}
+		return result;
 	}
 
 	@Override
@@ -130,27 +147,32 @@ public class UserRepository implements Repository<User> {
 
 	private User buildUser(ResultSet rs) throws SQLException {
 		User result = new User();
-		result.setId(rs.getLong(COLUMN_USER_ID));
-		result.setPhone(rs.getString(COLUMN_USER_PHONE));
-		result.setEmail(rs.getString(COLUMN_USER_EMAIL));
-		result.setLastname(rs.getString(COLUMN_USER_LASTNAME));
-		result.setFirstname(rs.getString(COLUMN_USER_FIRSTNAME));
-		result.setJoinDate(rs.getString(COLUMN_USER_JOIN_DATE));
-		result.setLoyaltyPoints(rs.getInt(COLUMN_USER_LOYALTY_POINTS));
-		result.setAdmin(rs.getBoolean(COLUMN_USER_IS_ADMIN));
-		result.setPassword(rs.getString(COLUMN_USER_PASSWORD));
-
+		while(rs.next()) {
+			result.setId(rs.getLong(COLUMN_USER_ID));
+			result.setPhone(rs.getString(COLUMN_USER_PHONE));
+			result.setEmail(rs.getString(COLUMN_USER_EMAIL));
+			result.setLastname(rs.getString(COLUMN_USER_LASTNAME));
+			result.setFirstname(rs.getString(COLUMN_USER_FIRSTNAME));
+			result.setJoinDate(rs.getString(COLUMN_USER_JOIN_DATE));
+			result.setLoyaltyPoints(rs.getInt(COLUMN_USER_LOYALTY_POINTS));
+			result.setAdmin(rs.getBoolean(COLUMN_USER_IS_ADMIN));
+			result.setPassword(rs.getString(COLUMN_USER_PASSWORD));
+		}
 		return result;
 	}
 
 	private User getUserWithGeneratedId(Connection c, Statement statement, User user) throws Exception {
 		ResultSet rs = statement.getGeneratedKeys();
+		long userId;
+		
 		if (rs == null || !rs.next()) {
 			throw new ProvisioException.UserRepositoryException("could not insert User");
-		}
+		} 
 
-		long userId = rs.getLong(0);
-		user.setId(userId);
+		if(rs.next()) {
+			userId = rs.getLong(1);
+			user.setId(userId);
+		}
 
 		c.close();
 		return user;
