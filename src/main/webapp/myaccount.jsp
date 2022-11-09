@@ -24,7 +24,7 @@
 			<p>Password: <c:out value="${sessionScope.LoggedIn.password}" /></p>
 			<p>Email: <c:out value="${sessionScope.LoggedIn.email}" /></p>
 			<p>Phone #: <c:out value="${sessionScope.LoggedIn.phone}" /></p>
-			<p>Join Date: <c:out value="${sessionScope.LoggedIn.joindate}" /></p>
+			<p>Join Date: <c:out value="${sessionScope.LoggedIn.joinDate}" /></p>
 			<p>Admin Status: <c:out value="${sessionScope.LoggedIn.admin}" /></p>
 			<p>Loyalty Points: <c:out value="${sessionScope.LoggedIn.loyaltyPoints}" /></p>
 		</div>

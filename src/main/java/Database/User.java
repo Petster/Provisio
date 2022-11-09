@@ -73,6 +73,10 @@ public class User {
 		this.loyaltyPoints = i;
 	}
 	
+	public Boolean getAdmin() {
+		return isAdmin;
+	}
+	
 	public String getLastname() {
 		return lastname;
 	}

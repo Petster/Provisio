@@ -9,8 +9,6 @@ let validInputs = [
 	false
 ];
 
-let canSubmit = false;
-
 let form = document.getElementById('userForm');
 
 let formInputs = form.querySelectorAll('input');
@@ -24,24 +22,22 @@ form.addEventListener('keyup', function(e) {
 			validInputs[i] = true;
 		}
 	}
-	console.log(validInputs);
 })
 
 $('#submitUserCreate').click(function(e) {
 		e.preventDefault();
-		for(let i = 0; i < validInputs.length; i++) {
+		if(validInputs.includes(false)) {
+			for(let i = 0; i < validInputs.length; i++) {
 			if(validInputs[i] === false) {
-				canSubmit = false;
 				swal({
 				  title: "Error",
 				  text: `${formInputs[i].name} is Empty`,
 				  icon: "error",
-				})
-			} else if (i >= 5) {
-				canSubmit = true;
+				});
+				break;
 			}
-		}
-		if(canSubmit) {
+			}
+		} else {
 			if($('#password').val() === $('#confirmpassword').val()) {
 	     		$.ajax({
 					type: 'post',
@@ -68,6 +64,6 @@ $('#submitUserCreate').click(function(e) {
 					  text: "Password's do not match",
 					  icon: "error",
 					});
-	     	}	
-		}     	
+	     	}    
+		}
      });
