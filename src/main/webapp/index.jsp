@@ -15,8 +15,8 @@
 				</ul>
 		  </div>
 		</section>
-		<div class="flex flex-row flex-grow gap-4">
-			<div class="color-3 rounded flex flex-grow flex-col w-3/5 p-4">
+		<div class="flex flex-col md:flex-row flex-grow gap-4">
+			<div id="follow" class="color-3 rounded flex flex-grow flex-col md:w-3/5 p-4 mx-2 md:mx-0">
 				<c:if test="${sessionScope.LoggedIn.email != null}">
 					<h1 class="text-3xl color-4-text font-bold">Welcome back, <c:out value="${sessionScope.LoggedIn.firstname}" /></h1>
 				</c:if>
@@ -27,33 +27,24 @@
 				<br/>
 				<p class="text-lg color-4-text">Whether its for business conferences or a vacation destination with family and friends or even a new adventure, we curate the best destinations for your next trip.</p>
 			</div>
-			<div class="color-3 rounded flex flex-grow flex-col w-2/5 p-4 overflow-y-scroll newsbox" style="max-height: 400px;">
+			<div id="news" class="color-3 rounded flex flex-grow flex-col md:w-2/5 p-4 overflow-y-scroll newsbox mx-2 md:mx-0" style="min-height:400px;max-height:400px">
 				<h1 class="text-3xl color-4-text font-bold">Recent News</h1>
-				<div class="flex flex-col">
-					<div class="flex flex-row content-center items-center justify-between border-b border-b-black">
-						<p class="font-bold text-lg">News Title</p>
-						<p>News Date</p>
+				<c:import url="/Index" />
+				<c:forEach items="${allNews}" var="i" >
+					<div class="flex flex-col">
+						<div class="flex flex-row content-center items-center justify-between border-b border-b-black">
+							<p class="font-bold text-lg"><c:out value="${i.title}" /></p>
+							<p><c:out value="${i.publishDate}" /></p>
+						</div>
+						<div>
+							<img src="${i.image}" alt="Provisio Logo" class="h-64 w-full" />
+						</div>
+						<div>
+							<p><c:out value="${i.description}" /></p>
+						</div>
 					</div>
-					<div>
-						<img src="img/LogoBlackSquareTransparent.png" alt="Provisio Logo" class="w-full" />
-					</div>
-					<div>
-						<p>content here</p>
-					</div>
-				</div>
-				<br/>
-				<div class="flex flex-col">
-					<div class="flex flex-row content-center items-center justify-between border-b border-b-black">
-						<p class="font-bold text-lg">News Title</p>
-						<p>News Date</p>
-					</div>
-					<div>
-						<img src="img/LogoBlackSquareTransparent.png" alt="Provisio Logo" class="w-full" />
-					</div>
-					<div>
-						<p>content here</p>
-					</div>
-				</div>
+					<br/>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -73,5 +64,19 @@
 
 				splide.mount();
 		  } );
+		
+		let follow = document.getElementById('follow').offsetHeight;;
+		
+		window.onload = (event) => {
+			calculateHeight();
+		}
+		
+		const calculateHeight = () => {
+			let follow = document.getElementById('follow').offsetHeight;
+			let news = document.getElementById('news');
+			news.style.maxHeight = follow + "px";
+		}
+		
+		window.onresize = calculateHeight;
 	</script>
 </t:Layout>

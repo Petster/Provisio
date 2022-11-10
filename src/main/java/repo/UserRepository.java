@@ -70,21 +70,6 @@ public class UserRepository implements Repository<User> {
 		return result;
 	}
 
-	public User selectOne(String username, String password) {
-		User result = null;
-		try (Connection c = establishConnection()) {
-			String q = "SELECT * FROM users WHERE email = ? AND password = ?";
-			PreparedStatement statement = c.prepareStatement(q);
-			statement.setString(1,  username);
-			statement.setString(2, password);
-			ResultSet rs = statement.executeQuery();
-			result = buildUser(rs);
-		} catch (Exception e) {
-			logger.e("getById", e);
-		}
-		return result;
-	}
-
 	@Override
 	public List<User> insertMany(List<User> users) {
 		return users.stream().map(this::insertOne).toList();

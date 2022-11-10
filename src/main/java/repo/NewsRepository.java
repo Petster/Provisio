@@ -74,7 +74,14 @@ public class NewsRepository implements Repository<News> {
 			PreparedStatement statement = c.prepareStatement(q);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()) {
-				result.add(buildNews(rs));
+				News news = new News();
+				news.setID(rs.getLong(COLUMN_NEWS_ID));
+				news.setUserID(rs.getLong(COLUMN_NEWS_USER_ID));
+				news.setTitle(rs.getString(COLUMN_NEWS_TITLE));
+				news.setPublishDate(rs.getString(COLUMN_NEWS_PUBLISH_DATE));
+				news.setDescription(rs.getString(COLUMN_NEWS_DESCRIPTION));
+				news.setImage(rs.getString(COLUMN_NEWS_IMAGE));;
+				result.add(news);
 			}
 		} catch (Exception e) {
 			logger.e("getAll", e);
@@ -147,5 +154,11 @@ public class NewsRepository implements Repository<News> {
 
 		c.close();
 		return news;
+	}
+
+	@Override
+	public News selectOne(String u, String p) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

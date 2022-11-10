@@ -2,6 +2,8 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -33,10 +35,10 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<News> allNews = new ArrayList<News>();
 		NewsRepository NR = new NewsRepository();
 		
-		allNews = NR.getAll();
+		List<News> allNews = NR.getAll();
+		Collections.reverse(allNews);
 		
 		request.setAttribute("allNews", allNews);
 	}
