@@ -15,4 +15,10 @@ public class ProvisioException extends Exception {
 			super(message);
 		}
 	}
+	
+	public static class NewsRepositoryException extends ProvisioException {
+		public NewsRepositoryException(String message) {
+			super(message);
+		}
+	}
 }
