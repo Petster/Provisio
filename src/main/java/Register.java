@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Database.DatabaseManager;
+import repo.UserRepository;
 import Database.User;
 
 /**
@@ -34,7 +35,7 @@ public class Register extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+				
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -54,15 +55,22 @@ public class Register extends HttpServlet {
 		LocalDateTime now = LocalDateTime.now();
 		
 		User newUser = new User(submitData.get(0), submitData.get(1), submitData.get(2), dtf.format(now), submitData.get(3), submitData.get(4), 0, false);
+		UserRepository UR = new UserRepository();
 		
-		DatabaseManager dbm = new DatabaseManager();
-		String userResponse = dbm.createUser(newUser);
+		User results = UR.insertOne(newUser);
 		
-		System.out.println(userResponse);
+		//DatabaseManager dbm = new DatabaseManager();
+		//String userResponse = dbm.createUser(newUser);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/");
-		dispatcher.forward(request, response);
+		//System.out.println(userResponse);
 		
+		if(results == null) {
+			response.sendError(500, "Passwords do not match");
+		} else {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/");
+			dispatcher.forward(request, response);	
+		}
+
 		doGet(request, response);
 	}
 

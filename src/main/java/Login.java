@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import Database.DatabaseManager;
 import Database.User;
+import repo.UserRepository;
 
 /**
  * Servlet implementation class Login
@@ -46,11 +47,13 @@ public class Login extends HttpServlet {
 		
 		//System.out.println(submitData.get(0) + " " + submitData.get(1));
 		
-		DatabaseManager dbm = new DatabaseManager();
+		//DatabaseManager dbm = new DatabaseManager();
+		UserRepository UR = new UserRepository();
 		HttpSession session = request.getSession();
 
 		try {
-			User loggedIn = dbm.loginUser(submitData.get(0), submitData.get(1));
+			//User loggedIn = dbm.loginUser(submitData.get(0), submitData.get(1));
+			User loggedIn = UR.selectOne(submitData.get(0), submitData.get(1));
 			if(loggedIn != null) {
 				session.setAttribute("LoggedIn", loggedIn);
 			} else {

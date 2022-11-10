@@ -59,21 +59,21 @@ public class ResetDatabase extends HttpServlet {
 			s.addBatch("DROP TABLE IF EXISTS provisio.emails");
 			s.addBatch(
 				"CREATE TABLE provisio.users (" +
-				    "id int NOT NULL AUTO_INCREMENT," +
+				    "id bigint NOT NULL AUTO_INCREMENT," +
 				    "email varchar(255)," +
-				    "lastName varchar(255)," +
-				    "firstName varchar(255)," +
+				    "last_name varchar(255)," +
+				    "first_name varchar(255)," +
 				    "phone varchar(20)," +
-				    "joinDate date," +
-				    "loyaltyPoints int," +
-				    "isAdmin boolean," +
+				    "join_date date," +
+				    "loyalty_points int," +
+				    "is_admin boolean," +
 				    "password varchar(255) NOT NULL," +
 				    "PRIMARY KEY (id)" +
 				")"
 			);
 			s.addBatch(
 				"CREATE TABLE provisio.rooms (" +
-				    "id int NOT NULL AUTO_INCREMENT," +
+				    "id bigint NOT NULL AUTO_INCREMENT," +
 				    "title varchar(255)," +
 				    "breakfast boolean," +
 				    "wifi boolean," +
@@ -89,8 +89,8 @@ public class ResetDatabase extends HttpServlet {
 			);
 			s.addBatch(
 				"CREATE TABLE provisio.reservations (" +
-				    "id int NOT NULL AUTO_INCREMENT," +
-				    "userID int NOT NULL," +
+				    "id bigint NOT NULL AUTO_INCREMENT," +
+				    "userID bigint NOT NULL," +
 				    "roomType int NOT NULL," +
 				    "reserveDate date," +
 				    "fromDate date," +
@@ -103,8 +103,8 @@ public class ResetDatabase extends HttpServlet {
 			);
 			s.addBatch(
 				"CREATE TABLE provisio.news (" +
-				    "id int NOT NULL AUTO_INCREMENT," +
-				    "userID int NOT NULL," +
+				    "id bigint NOT NULL AUTO_INCREMENT," +
+				    "userID bigint NOT NULL," +
 				    "title varchar(255)," +
 				    "publishDate date," +
 				    "description varchar(255)," +
@@ -115,7 +115,7 @@ public class ResetDatabase extends HttpServlet {
 			);
 			s.addBatch(
 				"CREATE TABLE provisio.locations (" +
-				    "id int NOT NULL AUTO_INCREMENT," +
+				    "id bigint NOT NULL AUTO_INCREMENT," +
 				    "address varchar(255)," +
 				    "title varchar(255)," +
 				    "PRIMARY KEY (id)" +
@@ -123,8 +123,8 @@ public class ResetDatabase extends HttpServlet {
 			);
 			s.addBatch(
 				"CREATE TABLE provisio.emails (" +
-				    "id int NOT NULL AUTO_INCREMENT," +
-				    "userID int," +
+				    "id bigint NOT NULL AUTO_INCREMENT," +
+				    "userID bigint," +
 				    "dateSent date," +
 				    "reservationNum int," +
 				    "userEmail varchar(255)," +
