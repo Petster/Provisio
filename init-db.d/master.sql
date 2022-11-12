@@ -26,7 +26,7 @@ CREATE TABLE rooms (
     store boolean,
     nosmoke boolean,
     mobile boolean,
-    roomHighlights varchar(255),
+    room_highlights varchar(255),
     image varchar(255),
     price int,
     PRIMARY KEY (id)
@@ -36,14 +36,14 @@ DROP TABLE IF EXISTS reservations;
 CREATE TABLE reservations (
     id bigint NOT NULL AUTO_INCREMENT,
     userID bigint NOT NULL,
-    roomType bigint NOT NULL,
-    reserveDate date,
-    fromDate date,
-    toDate date,
-    price int,
+    room_type bigint NOT NULL,
+    reserve_date date,
+    from_date date,
+    to_date date,
+    price decimal(10,2),
     PRIMARY KEY (id),
     FOREIGN KEY (userID) references users(id),
-    FOREIGN KEY (roomType) references rooms(id)
+    FOREIGN KEY (room_type) references rooms(id)
 );
 
 DROP TABLE IF EXISTS news;
@@ -51,7 +51,7 @@ CREATE TABLE news (
     id bigint NOT NULL AUTO_INCREMENT,
     userID bigint NOT NULL,
     title varchar(255),
-    publishDate date,
+    publish_date date,
     description varchar(255),
     image varchar(255),
     PRIMARY KEY (id),
@@ -71,12 +71,12 @@ CREATE TABLE emails (
     id bigint NOT NULL AUTO_INCREMENT,
     userID bigint,
     dateSent date,
-    reservationNum bigint,
-    userEmail varchar(255),
-    userFirstName varchar(255),
+    reservation_num bigint,
+    user_email varchar(255),
+    user_firstname varchar(255),
     subject varchar(255),
     message varchar(1000),
     PRIMARY KEY (id),
     FOREIGN KEY (userID) references users(id),
-    FOREIGN KEY (reservationNum) references reservations(id)
+    FOREIGN KEY (reservation_num) references reservations(id)
 );
