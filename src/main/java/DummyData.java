@@ -58,9 +58,9 @@ public class DummyData extends HttpServlet {
 			s.addBatch("INSERT INTO provisio.users (id, email, last_name, first_name, phone, join_date, loyalty_points, is_admin, password) values (1, 'jason@test.com', 'Palmeri', 'Jason', '123-456-7890', '2022-11-07', '99', true, 'testPassword')");
 			s.addBatch("INSERT INTO provisio.users (id, email, last_name, first_name, phone, join_date, loyalty_points, is_admin, password) values (2, 'john@test.com', 'Moore', 'John', '123-456-7890', '2022-12-02', '39', false, 'testPassword')");
 			s.addBatch("INSERT INTO provisio.users (id, email, last_name, first_name, phone, join_date, loyalty_points, is_admin, password) values (3, 'mishaela@test.com', 'Pedersen', 'Mishaela', '123-456-7890', '2022-11-22', '79', false, 'testPassword')");
-			s.addBatch("INSERT INTO provisio.news (userID, title, publishDate, description, image) values (1, 'New Hotel', '2022-11-07', 'We have a new hotel coming in december', '/images/newhotel.jpg')");
-			s.addBatch("INSERT INTO provisio.news (userID, title, publishDate, description, image) values (2, 'Test', '2022-12-07', 'We have a new hotel coming in december', '/images/newhotel.jpg')");
-			s.addBatch("INSERT INTO provisio.news (userID, title, publishDate, description, image) values (1, 'Great Value', '2022-05-07', 'Deals on hotel rooms this summer!', '/images/deals.jpg')");
+			s.addBatch("INSERT INTO provisio.news (userID, title, publishDate, description, image) values (1, 'New Hotel', '2022-11-07', 'We have a new hotel coming in december', 'https://via.placeholder.com/150')");
+			s.addBatch("INSERT INTO provisio.news (userID, title, publishDate, description, image) values (2, 'Test', '2022-12-07', 'We have a new hotel coming in december', 'https://via.placeholder.com/150')");
+			s.addBatch("INSERT INTO provisio.news (userID, title, publishDate, description, image) values (1, 'Great Value', '2022-05-07', 'Deals on hotel rooms this summer!', 'https://via.placeholder.com/150')");
 			s.addBatch("INSERT INTO provisio.reservations (id, userID, roomType, reserveDate, fromDate, toDate, price) values (1, 1, 1, '2022-11-07', '2022-12-01', '2022-12-08', 2099.93)");
 			s.addBatch("INSERT INTO provisio.reservations (id, userID, roomType, reserveDate, fromDate, toDate, price) values (2, 2, 2, '2022-10-07', '2022-11-01', '2022-11-08', 3499.93)");
 			s.addBatch("INSERT INTO provisio.reservations (id, userID, roomType, reserveDate, fromDate, toDate, price) values (3, 3, 3, '2022-11-07', '2023-01-01', '2023-01-08', 2799.93)");

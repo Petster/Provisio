@@ -4,7 +4,7 @@
 <header>
         <div id="desktop" class="hidden h-14 color-2 py-1 px-2 md:flex flex-row justify-between items-center content-center header-border ">
             <a href="index.jsp" class="flex flex-row">
-                <img src="img/LogoBlackSquareTransparent.png" alt="Provisio Logo" class="w-48" />
+                <image src="images/LogoBlackSquareTransparent.png" alt="Provisio Logo" class="w-48" />
             </a>
             <div class="flex flex-row gap-4">
                 <a href="about.jsp">About Us</a>
@@ -50,7 +50,7 @@
                 <p><i id="mobileToggleIcon" class="fa-solid fa-bars fa-xl"></i></p>
             </div>
             <a href="index.jsp" class="flex flex-row">
-                <img src="img/LogoBlackSquareTransparent.png" alt="Provisio Logo" class="w-48" />
+                <image src="images/LogoBlackSquareTransparent.png" alt="Provisio Logo" class="w-48" />
             </a>
             <div id="userToggle" class="flex flex-row p-2 cursor-pointer">
                 <p><i class="fa-solid fa-circle-user fa-xl"></i></p>
@@ -88,11 +88,11 @@
             <c:if test="${sessionScope.LoggedIn == null}">
 	            <a href="login.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
 	                <div><i class="fa-solid fa-users fa-2x"></i></div>
-	                <div><p>Join</p></div>
+	                <div><p>Sign In</p></div>
 	            </a>
 	            <a href="register.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
 	                <div><i class="fa-solid fa-sign-in fa-2x"></i></div>
-	                <div><p>Sign In</p></div>
+	                <div><p>Join</p></div>
 	            </a>
             </c:if>
         </div>
