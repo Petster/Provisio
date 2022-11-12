@@ -40,6 +40,10 @@ public class Index extends HttpServlet {
 		List<News> allNews = NR.getAll();
 		Collections.reverse(allNews);
 		
+		//for(int i = 0; i< allNews.size(); i++) {
+		//	System.out.println(allNews.get(i).getTitle());
+		//}
+		
 		request.setAttribute("allNews", allNews);
 	}
 

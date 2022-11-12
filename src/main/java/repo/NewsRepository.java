@@ -13,7 +13,7 @@ public class NewsRepository implements Repository<News> {
 	public final String COLUMN_NEWS_ID = "id";
 	public final String COLUMN_NEWS_USER_ID = "userID";
 	public final String COLUMN_NEWS_TITLE = "title";
-	public final String COLUMN_NEWS_PUBLISH_DATE = "publishDate";
+	public final String COLUMN_NEWS_PUBLISH_DATE = "publish_date";
 	public final String COLUMN_NEWS_DESCRIPTION = "description";
 	public final String COLUMN_NEWS_IMAGE = "image";
 	
@@ -28,7 +28,7 @@ public class NewsRepository implements Repository<News> {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
 			String insert = "INSERT INTO news (" +
-					                "userID, title, publishDate, description, image" +
+					                "userID, title, publish_date, description, image" +
 					                ") VALUES (?, ?, ?, ?, ?)";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);

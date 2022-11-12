@@ -70,7 +70,7 @@ DROP TABLE IF EXISTS emails;
 CREATE TABLE emails (
     id bigint NOT NULL AUTO_INCREMENT,
     userID bigint,
-    dateSent date,
+    date_sent date,
     reservation_num bigint,
     user_email varchar(255),
     user_firstname varchar(255),

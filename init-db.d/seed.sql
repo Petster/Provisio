@@ -18,11 +18,7 @@ INSERT INTO users (id, email, last_name, first_name, phone, join_date, loyalty_p
 
 INSERT INTO users (id, email, last_name, first_name, phone, join_date, loyalty_points, is_admin, password) values (3, 'mishaela@test.com', 'Pedersen', 'Mishaela', '123-456-7890', '2022-11-22', '79', false, 'testPassword');
 
-INSERT INTO news (userID, title, publishDate, description, image) values (1, 'New Hotel', '2022-11-07', 'We have a new hotel coming in december', 'https://via.placeholder.com/150');
-
-INSERT INTO news (userID, title, publishDate, description, image) values (1, 'New Hotel', '2022-11-07', 'We have a new hotel coming in december', '/images/newhotel.jpg');
-
-INSERT INTO news (userID, title, publishDate, description, image) values (2, 'Test', '2022-12-07', 'We have a new hotel coming in december', 'https://via.placeholder.com/150');
+INSERT INTO news (userID, title, publish_date, description, image) values (1, 'New Hotel', '2022-11-07', 'We have a new hotel coming in december', 'https://via.placeholder.com/150');
 
 INSERT INTO news (userID, title, publish_date, description, image) values (2, 'Test', '2022-12-07', 'We have a new hotel coming in december', 'https://via.placeholder.com/150');
 
