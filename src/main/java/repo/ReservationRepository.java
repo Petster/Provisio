@@ -4,10 +4,8 @@ import entity.Reservation;
 import exception.ProvisioException;
 import util.Logger;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationRepository implements Repository<Reservation> {
@@ -29,32 +27,103 @@ public class ReservationRepository implements Repository<Reservation> {
 
 	@Override
 	public Reservation insertOne(Reservation reservation) {
-		return null;
+		try (Connection c = establishConnection()) {
+			//@formatter:off
+			String insert = "INSERT INTO reservations (userID, roomType, reserveDate, fromDate, toDate, price)" +
+					                " VALUES (?,?,?,?,?,?)";
+			//@formatter:on
+			PreparedStatement statement = c.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+			statement.setLong(1, reservation.getUserId());
+			statement.setLong(2, reservation.getRoomType());
+			statement.setDate(3, reservation.getReserveDate());
+			statement.setDate(4, reservation.getFromDate());
+			statement.setDate(5, reservation.getToDate());
+			statement.setInt(6, reservation.getPrice());
+
+			return getReservationWithGeneratedId(c, statement, reservation);
+		} catch (Exception e) {
+			logger.e("insertOne", e);
+		}
+
+		return null; // noop
 	}
 
 	@Override
 	public List<Reservation> insertMany(List<Reservation> reservations) {
-		return null;
+		return reservations.stream().map(this::insertOne).toList();
 	}
 
 	@Override
 	public Reservation getById(long id) {
-		return null;
+		Reservation result = null;
+		try (Connection c = establishConnection()) {
+			String q = "SELECT *FROM reservations WHERE id = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setLong(1, id);
+
+			ResultSet rs = statement.executeQuery();
+			result = buildReservation(rs);
+		} catch (Exception e) {
+			logger.e("getById", e);
+		}
+
+		return result;
 	}
 
 	@Override
 	public List<Reservation> getAll() {
-		return null;
+		List<Reservation> result = new ArrayList<>(0);
+		try (Connection c = establishConnection()) {
+			String q = "SELECT * FROM reservations";
+			PreparedStatement statement = c.prepareStatement(q);
+
+			ResultSet rs = statement.executeQuery();
+
+			while (rs.next()) {
+				result.add(buildReservation(rs));
+			}
+		} catch (Exception e) {
+			logger.e("getAll", e);
+		}
+
+		return result;
 	}
 
 	@Override
 	public void updateById(Reservation reservation, long id) {
+		try (Connection c = establishConnection()) {
+			//@formatter:off
+			String q = "UPDATE reservations SET roomType = ?, reserveDate = ?, fromDate = ?, toDate = ?, price = ? WHERE id = ?";
+			//@formatter:on
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setLong(1, reservation.getRoomType());
+			statement.setDate(2, reservation.getReserveDate());
+			statement.setDate(3, reservation.getFromDate());
+			statement.setDate(4, reservation.getToDate());
+			statement.setInt(5, reservation.getPrice());
+			statement.setLong(6, reservation.getId());
 
+			int rowsAffected = statement.executeUpdate();
+			if (rowsAffected == -1) {
+				throw new ProvisioException.ReservationRepositoryException("Unable to updated reservation");
+			} else if (rowsAffected > 1) { // then batch operation and it is a problem
+				throw new ProvisioException.ReservationRepositoryException("More than 1 row as affected: " + rowsAffected);
+			}
+		} catch (Exception e) {
+			logger.e("updateById", e);
+		}
 	}
 
 	@Override
 	public void deleteById(long id) {
-
+		try (Connection c = establishConnection()) {
+			String q = "DELETE FROM reservations WHERE id = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setLong(1, id);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			logger.e("deleteById", e);
+		}
 	}
 
 	private Reservation getReservationWithGeneratedId(Connection c, Statement statement,
