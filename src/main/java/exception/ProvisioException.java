@@ -16,7 +16,7 @@ public class ProvisioException extends Exception {
 		}
 	}
 
-	public static class ReservationRepositoryException extends Throwable {
+	public static class ReservationRepositoryException extends ProvisioException {
 		public ReservationRepositoryException(String message) {
 			super(message);
 		}
