@@ -1,6 +1,6 @@
 package repo;
 
-import Database.User;
+import entity.User;
 import exception.ProvisioException;
 import util.Logger;
 
@@ -161,7 +161,8 @@ public class UserRepository implements Repository<User> {
 		return result;
 	}
 
-	private User getUserWithGeneratedId(Connection c, Statement statement, User user) throws Exception {
+	private User getUserWithGeneratedId(Connection c, Statement statement, User user) throws SQLException,
+			                                                                                         ProvisioException.UserRepositoryException {
 		ResultSet rs = statement.getGeneratedKeys();
 		long userId;
 		

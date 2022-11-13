@@ -1,5 +1,7 @@
 package Database;
 
+import entity.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -39,7 +41,8 @@ public class DatabaseManager {
 		loadDriver(dbDriver);
 		Connection conn = getConnection();
 		
-		String sql = "INSERT INTO `provisio`.`users` (email, lastName, firstName, phone, joinDate, password, loyaltyPoints, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO `provisio`.`users` (email, last_name, first_name, phone, join_date, password, " +
+				             "loyalty_points, is_admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		String message = "";
 		
 		try {

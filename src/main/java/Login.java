@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Database.DatabaseManager;
-import Database.User;
+import entity.User;
 import repo.UserRepository;
 
 /**
