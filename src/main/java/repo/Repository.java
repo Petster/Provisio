@@ -22,8 +22,6 @@ public interface Repository<T> {
 	}
 
 	T insertOne(T t);
-	
-	T selectOne(String u, String p);
 
 	List<T> insertMany(List<T> tList);
 

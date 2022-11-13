@@ -28,7 +28,7 @@ public class NewsRepository implements Repository<News> {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
 			String insert = "INSERT INTO news (" +
-					                "userID, title, publish_date, description, image" +
+					                "userID, title, publishDate, description, image" +
 					                ") VALUES (?, ?, ?, ?, ?)";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);

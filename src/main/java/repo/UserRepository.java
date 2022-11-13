@@ -45,7 +45,7 @@ public class UserRepository implements Repository<User> {
 			statement.setBoolean(7, user.isAdmin());
 			statement.setString(8, user.getPassword());
 			statement.executeUpdate();
-			
+
 			return getUserWithGeneratedId(c, statement, user);
 		} catch (Exception e) {
 			logger.e("insertOne", e);
@@ -53,22 +53,7 @@ public class UserRepository implements Repository<User> {
 
 		return null;
 	}
-	
-	@Override
-	public User selectOne(String username, String password) {
-		User result = null;
-		try (Connection c = establishConnection()) {
-			String q = "SELECT * FROM users WHERE email = ? AND password = ?";
-			PreparedStatement statement = c.prepareStatement(q);
-			statement.setString(1,  username);
-			statement.setString(2, password);
-			ResultSet rs = statement.executeQuery();
-			result = buildUser(rs);
-		} catch (Exception e) {
-			logger.e("getById", e);
-		}
-		return result;
-	}
+
 
 	@Override
 	public List<User> insertMany(List<User> users) {
@@ -79,8 +64,10 @@ public class UserRepository implements Repository<User> {
 	public User getById(long id) {
 		User result = null;
 		try (Connection c = establishConnection()) {
-			String q = "SELECT * FROM users where id = ?";
+			String q = "SELECT * FROM users WHERE id = ?";
 			PreparedStatement statement = c.prepareStatement(q);
+			statement.setLong(1, id);
+
 			ResultSet rs = statement.executeQuery();
 			result = buildUser(rs);
 		} catch (Exception e) {
@@ -145,9 +132,44 @@ public class UserRepository implements Repository<User> {
 		}
 	}
 
+
+	public User selectOne(String username, String password) {
+		User result = null;
+		try (Connection c = establishConnection()) {
+			String q = "SELECT * FROM users WHERE email = ? AND password = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setString(1, username);
+			statement.setString(2, password);
+			ResultSet rs = statement.executeQuery();
+			result = buildUser(rs);
+		} catch (Exception e) {
+			logger.e("getById", e);
+		}
+		return result;
+	}
+
+
+	private User getUserWithGeneratedId(Connection c, Statement statement, User user) throws SQLException,
+			                                                                                         ProvisioException.UserRepositoryException {
+		ResultSet rs = statement.getGeneratedKeys();
+		long userId;
+
+		if (rs == null || !rs.next()) {
+			throw new ProvisioException.UserRepositoryException("could not insert User");
+		}
+
+		if (rs.next()) {
+			userId = rs.getLong(1);
+			user.setId(userId);
+		}
+
+		c.close();
+		return user;
+	}
+
 	private User buildUser(ResultSet rs) throws SQLException {
 		User result = new User();
-		while(rs.next()) {
+		while (rs.next()) {
 			result.setId(rs.getLong(COLUMN_USER_ID));
 			result.setPhone(rs.getString(COLUMN_USER_PHONE));
 			result.setEmail(rs.getString(COLUMN_USER_EMAIL));
@@ -159,23 +181,5 @@ public class UserRepository implements Repository<User> {
 			result.setPassword(rs.getString(COLUMN_USER_PASSWORD));
 		}
 		return result;
-	}
-
-	private User getUserWithGeneratedId(Connection c, Statement statement, User user) throws SQLException,
-			                                                                                         ProvisioException.UserRepositoryException {
-		ResultSet rs = statement.getGeneratedKeys();
-		long userId;
-		
-		if (rs == null || !rs.next()) {
-			throw new ProvisioException.UserRepositoryException("could not insert User");
-		} 
-
-		if(rs.next()) {
-			userId = rs.getLong(1);
-			user.setId(userId);
-		}
-
-		c.close();
-		return user;
 	}
 }

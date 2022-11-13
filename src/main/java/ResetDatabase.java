@@ -55,7 +55,7 @@ public class ResetDatabase extends HttpServlet {
 			s.addBatch("DROP TABLE IF EXISTS provisio.rooms");
 			s.addBatch("DROP TABLE IF EXISTS provisio.reservations");
 			s.addBatch("DROP TABLE IF EXISTS provisio.news");
-			s.addBatch("DROP TABLES IF EXISTS provisio.locations");
+			s.addBatch("DROP TABLE IF EXISTS provisio.locations");
 			s.addBatch("DROP TABLE IF EXISTS provisio.emails");
 			s.addBatch(
 					"CREATE TABLE provisio.users (" +
