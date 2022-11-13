@@ -13,7 +13,8 @@ CREATE TABLE users (
     loyalty_points int,
     is_admin boolean,
     password varchar(255) NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    UNIQUE (email)
 );
 
 DROP TABLE IF EXISTS rooms;

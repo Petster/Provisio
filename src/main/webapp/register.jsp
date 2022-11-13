@@ -33,11 +33,11 @@
 				</div>
 				<div class="flex flex-col flex-grow">
 					<label for="password">Password</label>
-					<input required class="w-full rounded-md text-md p-2" name="password" type="password" id="password" placeholder="Enter your password"/>
+					<input pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required class="w-full rounded-md text-md p-2" name="password" type="password" id="password" placeholder="Enter your password"/>
 				</div>
 				<div class="flex flex-col flex-grow">
 					<label for="confirmpassword">Confirm Password</label>
-					<input required class="w-full rounded-md text-md p-2" name="confirmpassword" type="password" id="confirmpassword" placeholder="Re-Enter your password"/>
+					<input pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required class="w-full rounded-md text-md p-2" name="confirmpassword" type="password" id="confirmpassword" placeholder="Re-Enter your password"/>
 				</div>
 				<div class="flex flex-row justify-between flex-grow">
 					<a href="login.jsp" class="color-5 color-2-hover color-2-text color-5-text-hover py-2 px-20 rounded-md font-bold">Login</a>
