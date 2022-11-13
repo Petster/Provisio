@@ -1,4 +1,8 @@
 @charset "ISO-8859-1";
+.baskerville {
+	font-family: 'Libre Baskerville', serif;
+}
+
 .color-1 {
     background-color: #190933!important;
 }
@@ -99,6 +103,13 @@
 }
 #slideshowImage4 {
 	background-image: url('https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.kingbed {
+	background-image: url('../images/kingbed.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;

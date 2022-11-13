@@ -4,17 +4,10 @@
 <%@page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:Layout>
-	<div class="p-2 flex-grow flex flex-col">
-		<div class="flex flex-row w-full color-3 rounded-lg p-2 content-center items-center justify-between ">
-			<div class="flex flex-col">
-				<img src="img/LogoSquareTransparent.png" alt="Provisio Logo" class="h-36" />
-			</div>
+	<div class="p-2 flex-grow flex flex-col gap-2">
+		<div class="flex flex-col gap-4 md:flex-row w-full color-3 rounded-lg p-2 content-center items-center justify-between ">
 			<div class="flex flex-row">
-				<t:Calendar></t:Calendar>
-				<div class="flex flex-col color-4-text justify-center items-center content-center px-4">
-					<i class="fa-sharp color-4-text fa-solid fa-arrow-right fa-2x"></i>
-				</div>
-				<t:Calendar></t:Calendar>
+				<input class="hidden" id="datepicker" name="datepicker"/>
 			</div>
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-row">
@@ -39,5 +32,53 @@
 				</div>
 			</div>
 		</div>
+		<div class="grid grid-cols-1 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 ">
+			<div class="flex flex-row color-3 color-2-hover hover:cursor-pointer w-full rounded-lg">
+				<div class="kingbed rounded-l-lg w-2/5"></div>
+				<div class="p-2 w-2/3 flex flex-col">
+					<h1 class="text-2xl baskerville color-5-text">King Bed</h1>
+					<h2 class="text-lg baskerville color-5-text">Amenities</h2>
+					<div class="border-b-2 border-black"></div>
+					<div class="flex flex-row gap-3 mt-1">
+						<i class="fa fa-coffee"></i>
+						<i class="fa fa-wifi"></i>
+						<i class="fa fa-weight"></i>
+					</div>
+					<h2 class="text-lg baskerville color-5-text">Room Highlights</h2>
+					<div class="border-b-2 border-black"></div>
+					<div class="flex flex-row justify-between p-2 mt-1 ml-4">
+						<ul class="list-disc">
+							<li>Test</li>
+							<li>Test</li>
+							<li>Test</li>
+							<li>Test</li>
+						</ul>
+						<ul class="list-disc">
+							<li>Test</li>
+							<li>Test</li>
+							<li>Test</li>
+							<li>Test</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	<script>
+	const picker = new easepick.create({
+	    element: "#datepicker",
+	    css: [
+	        "css/calendar.css"
+	    ],
+	    zIndex: 10,
+	    firstDay: 0,
+	    grid: 2,
+	    calendars: 2,
+	    inline: true,
+	    plugins: [
+	        "AmpPlugin",
+	        "RangePlugin"
+	    ]
+	})
+	</script>
 </t:Layout>

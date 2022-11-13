@@ -4,7 +4,7 @@
 <header>
         <div id="desktop" class="hidden h-14 color-2 py-1 px-2 md:flex flex-row justify-between items-center content-center header-border ">
             <a href="index.jsp" class="flex flex-row">
-                <image src="images/LogoBlackSquareTransparent.png" alt="Provisio Logo" class="w-48" />
+                <image src="images/LogoBlackCropped.png" alt="Provisio Logo" class="w-32" />
             </a>
             <div class="flex flex-row gap-4">
                 <a href="about.jsp">About Us</a>
@@ -50,7 +50,7 @@
                 <p><i id="mobileToggleIcon" class="fa-solid fa-bars fa-xl"></i></p>
             </div>
             <a href="index.jsp" class="flex flex-row">
-                <image src="images/LogoBlackSquareTransparent.png" alt="Provisio Logo" class="w-48" />
+                <image src="images/LogoBlackCropped.png" alt="Provisio Logo" class="w-32" />
             </a>
             <div id="userToggle" class="flex flex-row p-2 cursor-pointer">
                 <p><i class="fa-solid fa-circle-user fa-xl"></i></p>
