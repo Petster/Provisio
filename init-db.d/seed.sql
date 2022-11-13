@@ -6,11 +6,11 @@ INSERT INTO locations (address, title) values ('456 main street, columbus, oh', 
 
 INSERT INTO locations (address, title) values ('15 national blvd, lincoln, NE', 'Premier Hotel & Suites');
 
-INSERT INTO rooms (id, title, breakfast, wifi, fitness, store, nosmoke, mobile, room_highlights, image, price) values (1, 'Single Bed', true, true, true, true, false, true, 'Single Bed', '/images/rooms/single.jpg', 299.99);
+INSERT INTO rooms (id, title, breakfast, wifi, fitness, store, nosmoke, mobile, room_highlights, image, price) values (1, 'Single Bed', true, true, true, true, false, true, 'Single Bed', 'singlebed', 299.99);
 
-INSERT INTO rooms (id, title, breakfast, wifi, fitness, store, nosmoke, mobile, room_highlights, image, price) values (2, 'Suite with Queen Bed', true, true, true, true, true, true, 'Suite with Queen Bed', '/images/rooms/suite1.jpg', 499.99);
+INSERT INTO rooms (id, title, breakfast, wifi, fitness, store, nosmoke, mobile, room_highlights, image, price) values (2, 'Suite with Queen Bed', true, true, true, true, true, true, 'Suite with Queen Bed', 'queenbed', 499.99);
 
-INSERT INTO rooms (id, title, breakfast, wifi, fitness, store, nosmoke, mobile, room_highlights, image, price) values (3, 'Double Bed', true, true, true, true, false, true, 'Double Bed', '/images/rooms/double.jpg', 399.99);
+INSERT INTO rooms (id, title, breakfast, wifi, fitness, store, nosmoke, mobile, room_highlights, image, price) values (3, 'Double Bed', true, true, true, true, false, true, 'Double Bed', 'doublebed', 399.99);
 
 INSERT INTO users (id, email, last_name, first_name, phone, join_date, loyalty_points, is_admin, password) values (1, 'jason@test.com', 'Palmeri', 'Jason', '123-456-7890', '2022-11-07', '99', true, 'testPassword');
 

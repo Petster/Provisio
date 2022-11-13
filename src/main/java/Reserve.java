@@ -1,7 +1,6 @@
 
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,12 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import entity.News;
-import repo.NewsRepository;
+import entity.Location;
+import entity.Room;
+import repo.LocationRepository;
+import repo.RoomRepository;
 
-/**
- * Servlet implementation class Reserve
- */
 @WebServlet("/Reserve")
 public class Reserve extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,8 +31,14 @@ public class Reserve extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		RoomRepository RR = new RoomRepository();
+		List<Room> allRooms = RR.getAll();
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		LocationRepository LR = new LocationRepository();
+		List<Location> allLocations = LR.getAll();
+		
+		request.setAttribute("allLocations", allLocations);
+		request.setAttribute("allRooms", allRooms);
 	}
 
 	/**

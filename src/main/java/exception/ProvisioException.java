@@ -27,4 +27,16 @@ public class ProvisioException extends Exception {
 			super(message);
 		}
 	}
+	
+	public static class RoomRepositoryException extends ProvisioException {
+		public RoomRepositoryException(String message) {
+			super(message);
+		}
+	}
+	
+	public static class LocationRepositoryException extends ProvisioException {
+		public LocationRepositoryException(String message) {
+			super(message);
+		}
+	}
 }

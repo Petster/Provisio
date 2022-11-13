@@ -114,3 +114,24 @@
 	background-size: cover;
 	background-position: center;
 }
+
+.doublebed {
+	background-image: url('../images/doublebed.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.queenbed {
+	background-image: url('../images/queenbed.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+.singlebed {
+	background-image: url('../images/singlebed.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
