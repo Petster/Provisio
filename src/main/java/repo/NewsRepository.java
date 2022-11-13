@@ -1,6 +1,6 @@
 package repo;
 
-import Database.News;
+import entity.News;
 import exception.ProvisioException;
 import util.Logger;
 
@@ -28,7 +28,7 @@ public class NewsRepository implements Repository<News> {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
 			String insert = "INSERT INTO news (" +
-					                "userID, title, publishDate, description, image" +
+					                "userID, title, publish_date, description, image" +
 					                ") VALUES (?, ?, ?, ?, ?)";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
@@ -154,11 +154,5 @@ public class NewsRepository implements Repository<News> {
 
 		c.close();
 		return news;
-	}
-
-	@Override
-	public News selectOne(String u, String p) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

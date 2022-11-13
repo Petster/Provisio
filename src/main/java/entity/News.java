@@ -1,4 +1,4 @@
-package Database;
+package entity;
 
 public class News {
 	private long id;
