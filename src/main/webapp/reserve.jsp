@@ -3,6 +3,9 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${sessionScope.LoggedIn.email == null}">
+	<c:redirect url="/register.jsp"/>
+</c:if>
 <t:Layout>
 	<div class="p-2 flex-grow flex flex-col gap-2">
 		<div class="flex flex-col gap-4 md:flex-row w-full color-3 rounded-lg p-2 content-center items-center justify-between ">

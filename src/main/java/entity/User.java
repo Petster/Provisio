@@ -13,7 +13,7 @@ public class User {
 	
 	public User() {}
 	
-	public User(Integer id, String password, String email, String phone, String joindate, Boolean isAdmin, String firstname, String lastname, Integer loyaltyPoints) {
+	public User(long id, String password, String email, String phone, String joindate, Boolean isAdmin, String firstname, String lastname, Integer loyaltyPoints) {
 		this.password = password;
 		this.email = email;
 		this.id = id;
