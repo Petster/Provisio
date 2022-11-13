@@ -12,10 +12,10 @@ public class ReservationRepository implements Repository<Reservation> {
 	// field constants
 	private final String COLUMN_RESERVATION_ID = "id";
 	private final String COLUMN_RESERVATION_USER_FK = "userID";
-	private final String COLUMN_RESERVATION_ROOM_FK = "roomType";
-	private final String COLUMN_RESERVATION_RESERVE_DATE = "reserveDate";
-	private final String COLUMN_RESERVATION_FROM_DATE = "fromDate";
-	private final String COLUMN_RESERVATION_TO_DATE = "toDate";
+	private final String COLUMN_RESERVATION_ROOM_FK = "room_type";
+	private final String COLUMN_RESERVATION_RESERVE_DATE = "reserve_date";
+	private final String COLUMN_RESERVATION_FROM_DATE = "from_date";
+	private final String COLUMN_RESERVATION_TO_DATE = "to_date";
 	private final String COLUMN_RESERVATION_PRICE = "price";
 
 	private final Logger logger;
@@ -29,7 +29,7 @@ public class ReservationRepository implements Repository<Reservation> {
 	public Reservation insertOne(Reservation reservation) {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
-			String insert = "INSERT INTO reservations (userID, roomType, reserveDate, fromDate, toDate, price)" +
+			String insert = "INSERT INTO reservations (userID, room_type, reserve_date, from_date, to_date, price)" +
 					                " VALUES (?,?,?,?,?,?)";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
@@ -93,7 +93,7 @@ public class ReservationRepository implements Repository<Reservation> {
 	public void updateById(Reservation reservation, long id) {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
-			String q = "UPDATE reservations SET roomType = ?, reserveDate = ?, fromDate = ?, toDate = ?, price = ? WHERE id = ?";
+			String q = "UPDATE reservations SET room_type = ?, reserve_date = ?, from_date = ?, to_date = ?, price = ? WHERE id = ?";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(q);
 			statement.setLong(1, reservation.getRoomType());
