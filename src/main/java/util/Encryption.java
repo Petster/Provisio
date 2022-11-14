@@ -35,4 +35,4 @@ public class Encryption {
 		return submittedPassword.equals(encryptedPassword);
 	}
 }
-}
+

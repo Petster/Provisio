@@ -60,7 +60,6 @@ public class UserRepository implements Repository<User> {
 		return null;
 	}
 
-	@Override
 	public User selectOne(String username, String password) {
 		User result = null;
 		try (Connection c = establishConnection()) {
@@ -206,48 +205,6 @@ public class UserRepository implements Repository<User> {
 		} catch (Exception e) {
 			logger.e("deleteById", e);
 		}
-	}
-
-	public User selectOne(String username, String password) {
-		User result = null;
-		try (Connection c = establishConnection()) {
-			Encryption auth = new Encryption();
-
-			String q = "SELECT * FROM users WHERE email = ?";
-			PreparedStatement statement = c.prepareStatement(q);
-			statement.setString(1, username);
-			ResultSet rs = statement.executeQuery();
-			rs.next();
-			String rsPassword = rs.getString("password");
-			if(rsPassword.contains(".")) {
-				String passwordArr[] = rsPassword.split("\\.");
-				Boolean passwordMatch = auth.verifyPassword(passwordArr[1], passwordArr[0], password);
-				if(passwordMatch == true) {
-					result = buildUser(rs);
-				}
-			} else {
-				if(rsPassword.equals(password)) {
-					result = buildUser(rs);
-				}
-			}
-		} catch (Exception e) {
-			logger.e("getById", e);
-		}
-	
-	public User selectOne(String username) {
-		User result = null;
-		try (Connection c = establishConnection()) {
-
-			String q = "SELECT * FROM users WHERE email = ?";
-			PreparedStatement statement = c.prepareStatement(q);
-			statement.setString(1, username);
-			ResultSet rs = statement.executeQuery();
-			rs.next();
-			return buildUser(rs);
-		} catch (Exception e) {
-			logger.e("getById", e);
-		}
-		return result;
 	}
 	
 	private User getUserWithGeneratedId(Connection c, Statement statement, User user) throws SQLException,

@@ -8,7 +8,7 @@
 </c:if>
 <t:Layout>
 	<div class="p-2 flex-grow flex flex-col">
-		<h1 class="text-2xl text-center color-4-text font-bold p-8">Welcome Back</h1>
+		<h1 class="text-2xl text-center color-4-text font-bold p-8">Create an Account</h1>
 		<div class="flex flex-col content-center items-center justify-center color-3 p-8 rounded-xl">
 			<form id="userForm" class="flex flex-col flex-grow w-5/6 gap-4">
 				<div class="flex flex-row flex-grow gap-4">
