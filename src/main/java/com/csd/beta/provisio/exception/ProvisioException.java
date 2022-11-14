@@ -10,6 +10,12 @@ public class ProvisioException extends Exception {
 	}
 
 
+	public static class RegistrationException extends ProvisioException {
+		public RegistrationException(String message) {
+			super(message);
+		}
+	}
+
 	public static class UserRepositoryException extends ProvisioException {
 		public UserRepositoryException(String message) {
 			super(message);

@@ -34,6 +34,7 @@
 				<div class="flex flex-col flex-grow">
 					<label for="password">Password</label>
 					<input pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$" required class="w-full rounded-md text-md p-2" name="password" type="password" id="password" placeholder="Enter your password"/>
+					<p>Password must be at least 8 characters and include 1 uppercase letter and a number</p>
 				</div>
 				<div class="flex flex-col flex-grow">
 					<label for="confirmpassword">Confirm Password</label>

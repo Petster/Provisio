@@ -1,19 +1,33 @@
 package com.csd.beta.provisio.entity;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class User {
+	private long id;
+	private String email = "";
+	private String password = "";
+	private String phone = "";
 	private String firstname = "";
 	private String lastname = "";
-	private String password = "";
-	private String email = "";
-	private String phone = "";
 	private String joinDate = "";
 	private Boolean isAdmin;
-	private long id;
 	private Integer loyaltyPoints;
 	
-	public User() {}
+	public User() {
+		firstname = "";
+		lastname = "";
+		password = "";
+		email = "";
+		loyaltyPoints = 0;
+		isAdmin = false;
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime now = LocalDateTime.now();
+		joinDate = dtf.format(now);
+	}
 	
 	public User(Integer id, String password, String email, String phone, String joindate, Boolean isAdmin, String firstname, String lastname, Integer loyaltyPoints) {
+		super();
 		this.password = password;
 		this.email = email;
 		this.id = id;
@@ -27,6 +41,7 @@ public class User {
 	
 	/*creating user*/
 	public User(String password, String email, String phone, String joindate, String firstname, String lastname, Integer loyaltyPoints, Boolean isAdmin) {
+		super();
 		this.password = password;
 		this.email = email;
 		this.phone = phone;
@@ -111,5 +126,26 @@ public class User {
 	
 	public Integer getLoyaltyPoints() {
 		return loyaltyPoints;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof User user)) return false;
+
+		if (getId() != user.getId()) return false;
+		return getEmail().equals(user.getEmail());
+	}
+
+	@Override
+	public int hashCode() {
+		int result = (int) (getId() ^ (getId() >>> 32));
+		result = 31 * result + getEmail().hashCode();
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" + "id=" + id + ", email='" + email + '\'' + ", password='" + password + '\'' + ", phone='" + phone + '\'' + ", firstname='" + firstname + '\'' + ", lastname='" + lastname + '\'' + ", joinDate='" + joinDate + '\'' + ", isAdmin=" + isAdmin + ", loyaltyPoints=" + loyaltyPoints + '}';
 	}
 }

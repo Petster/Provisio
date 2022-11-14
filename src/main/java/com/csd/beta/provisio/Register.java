@@ -1,8 +1,9 @@
 package com.csd.beta.provisio;
 
 import com.csd.beta.provisio.entity.User;
+import com.csd.beta.provisio.exception.ProvisioException;
 import com.csd.beta.provisio.repo.UserRepository;
-import com.google.gson.Gson;
+import com.csd.beta.provisio.util.Logger;
 import com.google.gson.JsonObject;
 
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,13 +24,16 @@ import java.util.regex.Pattern;
 @WebServlet("/Register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final UserRepository userRepository;
+	private final Logger logger;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Register() {
 		super();
-		// TODO Auto-generated constructor stub
+		userRepository = new UserRepository();
+		logger = new Logger(Register.class.getSimpleName());
 	}
 
 	/**
@@ -45,65 +48,61 @@ public class Register extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		ArrayList<String> submitData = new ArrayList<>();
-		submitData.add(request.getParameter("password"));
-		submitData.add(request.getParameter("email"));
-		submitData.add(request.getParameter("phone"));
-		submitData.add(request.getParameter("fname"));
-		submitData.add(request.getParameter("lname"));
-		submitData.add(request.getParameter("confirmpassword"));
+		final PrintWriter out = response.getWriter();
+		final JsonObject myObj = new JsonObject();
+		final Map<String, String> registrationData = new HashMap<>(); // using a map to cache params
+		response.setContentType("application/json"); // set content to JSON
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		LocalDateTime now = LocalDateTime.now();
+		try {
+			// sanitize input coming from client
+			registrationData.put("password", request.getParameter("password").trim());
+			registrationData.put("email", request.getParameter("email").trim());
+			registrationData.put("phone", request.getParameter("phone").trim());
+			registrationData.put("fname", request.getParameter("fname").trim());
+			registrationData.put("lname", request.getParameter("lname").trim());
+			registrationData.put("confirmpassword", request.getParameter("confirmpassword").trim());
 
-		Gson gson = new Gson();
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json");
-		JsonObject myObj = new JsonObject();
+			// test if user email already exists
+			User foundUser = userRepository.getUserByUserName(registrationData.get("email"));
+			if (foundUser != null) {
+				throw new ProvisioException.RegistrationException("User already exists");
+			}
 
-		Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");
-		Matcher matcher = pattern.matcher(submitData.get(0));
-		boolean matchFound = matcher.find();
+			// test that passwords match and are valid
+			Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");
+			Matcher matcher = pattern.matcher(registrationData.get("password"));
+			boolean matchFound = matcher.find();
+			if (!registrationData.get("password").equals(registrationData.get("confirmpassword"))) {
+				throw new ProvisioException.RegistrationException("Passwords do not match");
+			} else if (registrationData.get("password").length() <= 7 || !matchFound) {
+				throw new ProvisioException.RegistrationException("Password must be at least 8 characters and include 1 uppercase letter and a number");
+			}
 
-		if (submitData.get(0).length() <= 7 || !matchFound) {
-			myObj.addProperty("success", false);
-			myObj.addProperty("msg",
-					"Password must be atleast 8 characters and include 1 uppercase letter " + "and a " +
-							"number");
+			// save the new user
+			User newUser = new User();
+			newUser.setEmail(registrationData.get("email"));
+			newUser.setPassword(registrationData.get("password"));
+			newUser.setPhone(registrationData.get("phone"));
+			newUser.setFirstname(registrationData.get("fname"));
+			newUser.setLastname(registrationData.get("lname"));
 
+			User createdUser = userRepository.insertOne(newUser);
+			logger.i("doPost", createdUser);
+
+			// return success to the client
+			myObj.addProperty("success", true);
+			myObj.addProperty("msg", "Your account was created successfully");
 			out.println(myObj);
 			out.close();
-		} else {
-			User newUser = new User(submitData.get(0), submitData.get(1), submitData.get(2), dtf.format(now)
-					, submitData.get(3), submitData.get(4), 0, false);
-			UserRepository UR = new UserRepository();
 
-			User results = UR.insertOne(newUser);
-
-			//DatabaseManager dbm = new DatabaseManager();
-			//String userResponse = dbm.createUser(newUser);
-
-			//System.out.println(userResponse);
-
-			if (results == null) {
-				myObj.addProperty("success", false);
-				myObj.addProperty("msg", "An account with that email already exists");
-
-				out.println(myObj);
-				out.close();
-
-				//response.sendError(500, "An account with that email already exists");
-			} else {
-				myObj.addProperty("success", true);
-				myObj.addProperty("msg", "Your account was created successfully");
-
-				out.println(myObj);
-				out.close();
-			}
+			doGet(request, response);
+		} catch (Exception e) {
+			logger.e("doPost", e);
+			myObj.addProperty("success", false);
+			myObj.addProperty("msg", e.getMessage());
+			out.println(myObj);
+			out.close();
 		}
-
-
-		doGet(request, response);
 	}
 
 }

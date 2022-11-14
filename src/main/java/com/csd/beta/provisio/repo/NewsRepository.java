@@ -93,7 +93,7 @@ public class NewsRepository implements Repository<News> {
 	public void updateById(News news, long id) {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
-			String q = "UPDATE news SET title = ?, publishDate = ?, description = ?, image = ?" +
+			String q = "UPDATE news SET title = ?, publish_date = ?, description = ?, image = ?" +
 					"WHERE id = ?";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(q);

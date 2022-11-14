@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepository implements Repository<User> {
-	public final String TABLE_USER = "users";
 	public final String COLUMN_USER_ID = "id";
 	public final String COLUMN_USER_EMAIL = "email";
 	public final String COLUMN_USER_LASTNAME = "last_name";
@@ -57,51 +56,6 @@ public class UserRepository implements Repository<User> {
 		}
 
 		return null;
-	}
-
-	public User selectOne(String username, String password) {
-		User result = null;
-		try (Connection c = establishConnection()) {
-
-			Encryption auth = new Encryption();
-
-			String q = "SELECT * FROM users WHERE email = ?";
-			PreparedStatement statement = c.prepareStatement(q);
-			statement.setString(1, username);
-			ResultSet rs = statement.executeQuery();
-			rs.next();
-			String rsPassword = rs.getString("password");
-			if(rsPassword.contains(".")) {
-				String passwordArr[] = rsPassword.split("\\.");
-				Boolean passwordMatch = auth.verifyPassword(passwordArr[1], passwordArr[0], password);
-				if(passwordMatch == true) {
-					result = buildUser(rs);
-				}
-			} else {
-				if(rsPassword.equals(password)) {
-					result = buildUser(rs);
-				}
-			}
-		} catch (Exception e) {
-			logger.e("getById", e);
-		}
-		return result;
-	}
-
-	public User selectOne(String username) {
-		User result = null;
-		try (Connection c = establishConnection()) {
-
-			String q = "SELECT * FROM users WHERE email = ?";
-			PreparedStatement statement = c.prepareStatement(q);
-			statement.setString(1, username);
-			ResultSet rs = statement.executeQuery();
-			rs.next();
-			return buildUser(rs);
-		} catch (Exception e) {
-			logger.e("getById", e);
-		}
-		return result;
 	}
 
 	@Override
@@ -169,7 +123,19 @@ public class UserRepository implements Repository<User> {
 		}
 	}
 
-	public void updateById(User user, long id, String newPassword) {
+	@Override
+	public void deleteById(long id) {
+		try (Connection c = establishConnection()) {
+			String q = "DELETE FROM users WHERE id = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setLong(1, id);
+			statement.executeUpdate();
+		} catch (Exception e) {
+			logger.e("deleteById", e);
+		}
+	}
+
+	public void changeUserPassword(User user, String newPassword) {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
 			String q = "UPDATE users SET password = ? WHERE id = ?";
@@ -190,20 +156,39 @@ public class UserRepository implements Repository<User> {
 				throw new ProvisioException.UserRepositoryException("More than 1 row was affected: " + rowsAffected);
 			}
 		} catch (Exception e) {
-			logger.e("updateById", e);
+			logger.e("changeUserPassword", e);
 		}
 	}
 
-	@Override
-	public void deleteById(long id) {
+	public User getUserByUserName(String username) {
+		User result = null;
 		try (Connection c = establishConnection()) {
-			String q = "DELETE FROM users WHERE id = ?";
+			String q = "SELECT * FROM users WHERE email = ?";
 			PreparedStatement statement = c.prepareStatement(q);
-			statement.setLong(1, id);
-			statement.executeUpdate();
+			statement.setString(1, username);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				result = buildUser(rs);
+			}
 		} catch (Exception e) {
-			logger.e("deleteById", e);
+			logger.e("getUserByUserName", e);
 		}
+		return result;
+	}
+
+	public User getUserByUserNameAndPassword(String username, String password) {
+		User result = null;
+		try (Connection c = establishConnection()) {
+			String q = "SELECT * FROM users WHERE email = ? AND password = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setString(1, username);
+			statement.setString(2, password);
+			ResultSet rs = statement.executeQuery();
+			result = buildUser(rs);
+		} catch (Exception e) {
+			logger.e("getUserByUserNameAndPassword", e);
+		}
+		return result;
 	}
 
 	private User getUserWithGeneratedId(Connection c, Statement statement, User user) throws SQLException,

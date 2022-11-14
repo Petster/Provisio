@@ -51,7 +51,7 @@ public class Forgot extends HttpServlet {
 		submitData.add(request.getParameter("confirmnewpassword"));
 
 		UserRepository UR = new UserRepository();
-		User reset = UR.selectOne(submitData.get(0));
+		User reset = UR.getUserByUserName(submitData.get(0));
 
 		Gson gson = new Gson();
 		PrintWriter out = response.getWriter();
@@ -63,7 +63,7 @@ public class Forgot extends HttpServlet {
 		boolean matchFound = matcher.find();
 
 		if (submitData.get(1).equals(submitData.get(2))) {
-			if (submitData.get(1).length() <= 7 || matchFound == false) {
+			if (submitData.get(1).length() <= 7 || !matchFound) {
 				myObj.addProperty("success", false);
 				myObj.addProperty("msg", "Password must be atleast 8 characters and include 1 uppercase " +
 						                         "letter and a number");
@@ -72,7 +72,7 @@ public class Forgot extends HttpServlet {
 				out.close();
 			} else {
 				try {
-					UR.updateById(reset, reset.getId(), submitData.get(1));
+					UR.changeUserPassword(reset, submitData.get(1));
 					myObj.addProperty("success", true);
 					myObj.addProperty("msg", "Password has been reset");
 
