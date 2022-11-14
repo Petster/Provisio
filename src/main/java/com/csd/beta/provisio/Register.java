@@ -56,7 +56,7 @@ public class Register extends HttpServlet {
 		try {
 			// sanitize input coming from client
 			registrationData.put("password", request.getParameter("password").trim());
-			registrationData.put("email", request.getParameter("email").trim());
+			registrationData.put("email", request.getParameter("email").toLowerCase().trim());
 			registrationData.put("phone", request.getParameter("phone").trim());
 			registrationData.put("fname", request.getParameter("fname").trim());
 			registrationData.put("lname", request.getParameter("lname").trim());
@@ -75,7 +75,8 @@ public class Register extends HttpServlet {
 			if (!registrationData.get("password").equals(registrationData.get("confirmpassword"))) {
 				throw new ProvisioException.RegistrationException("Passwords do not match");
 			} else if (registrationData.get("password").length() <= 7 || !matchFound) {
-				throw new ProvisioException.RegistrationException("Password must be at least 8 characters and include 1 uppercase letter and a number");
+				throw new ProvisioException.RegistrationException("Password must be at least 8 characters and include "
+						                                                  + "1 uppercase letter and a number");
 			}
 
 			// save the new user
@@ -92,17 +93,15 @@ public class Register extends HttpServlet {
 			// return success to the client
 			myObj.addProperty("success", true);
 			myObj.addProperty("msg", "Your account was created successfully");
-			out.println(myObj);
-			out.close();
-
-			doGet(request, response);
 		} catch (Exception e) {
 			logger.e("doPost", e);
 			myObj.addProperty("success", false);
 			myObj.addProperty("msg", e.getMessage());
-			out.println(myObj);
-			out.close();
 		}
+
+		out.println(myObj);
+		out.close();
+		doGet(request, response);
 	}
 
 }

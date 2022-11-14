@@ -22,9 +22,9 @@ public class UserRepository implements Repository<User> {
 
 	private final Logger logger;
 
+
 	public UserRepository() {
 		logger = new Logger(UserRepository.class.getSimpleName());
-
 	}
 
 	@Override
@@ -176,6 +176,13 @@ public class UserRepository implements Repository<User> {
 		return result;
 	}
 
+	/**
+	 * Used to authenticate the user inputs at the {@link com.csd.beta.provisio.Login} servlet
+	 *
+	 * @param username the email input
+	 * @param password the password input
+	 * @return the found User
+	 */
 	public User getUserByUserNameAndPassword(String username, String password) {
 		User result = null;
 		try (Connection c = establishConnection()) {
@@ -184,17 +191,19 @@ public class UserRepository implements Repository<User> {
 			String q = "SELECT * FROM users WHERE email = ?";
 			PreparedStatement statement = c.prepareStatement(q);
 			statement.setString(1, username);
+
 			ResultSet rs = statement.executeQuery();
-			rs.next();
-			String rsPassword = rs.getString("password");
-			if(rsPassword.contains(".")) {
-				String passwordArr[] = rsPassword.split("\\.");
-				Boolean passwordMatch = auth.verifyPassword(passwordArr[1], passwordArr[0], password);
-				if(passwordMatch == true) {
-					result = buildUser(rs);
-				}
-			} else {
-				if(rsPassword.equals(password)) {
+			if (rs.next()) {
+				String rsPassword = rs.getString(COLUMN_USER_PASSWORD);
+				if (rsPassword.contains(".")) { // salted password check
+					String[] passwordArr = rsPassword.split("\\.");
+					boolean passwordMatch = auth.verifyPassword(passwordArr[1], passwordArr[0], password);
+					if (passwordMatch) {
+						result = buildUser(rs);
+					}
+					// todo we should not implement a workaround for our encryption, even for seed data. It creates
+					//  side effects
+				} else if (rsPassword.equals(password)) { // testPassword check
 					result = buildUser(rs);
 				}
 			}
@@ -205,7 +214,7 @@ public class UserRepository implements Repository<User> {
 	}
 
 	private User getUserWithGeneratedId(Connection c, Statement statement, User user) throws SQLException,
-			ProvisioException.UserRepositoryException {
+			                                                                                         ProvisioException.UserRepositoryException {
 		ResultSet rs = statement.getGeneratedKeys();
 		long userId;
 

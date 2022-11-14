@@ -10,7 +10,7 @@ public class Logger {
 
 
 	public void i(String operation, Object o) {
-		System.out.println("\n" + TAG + " > " + operation + "\n\t" + o.getClass() + o);
+		System.out.println("\n" + TAG + " > " + operation + "\n\t" + o.getClass() + " " + o);
 	}
 
 	public void e(String operation, Exception e) {
