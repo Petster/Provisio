@@ -3,6 +3,7 @@ package repo;
 import entity.User;
 import exception.ProvisioException;
 import util.Logger;
+import util.Encryption;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -35,7 +36,6 @@ public class UserRepository implements Repository<User> {
 			Encryption auth = new Encryption();
 			String salt = auth.generateSalt();
 			String encryptedPassword = auth.generateEncryptedPassword(user.getPassword(), salt);
-			
 			String insert = "INSERT INTO users (" +
 					                "email, last_name, first_name, phone, join_date, loyalty_points, is_admin, " +
 					                "password) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
@@ -60,7 +60,52 @@ public class UserRepository implements Repository<User> {
 		return null;
 	}
 
+	@Override
+	public User selectOne(String username, String password) {
+		User result = null;
+		try (Connection c = establishConnection()) {
+			
+			Encryption auth = new Encryption();
+			
+			String q = "SELECT * FROM users WHERE email = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setString(1, username);
+			ResultSet rs = statement.executeQuery();
+			rs.next();
+			String rsPassword = rs.getString("password");
+			if(rsPassword.contains(".")) {
+				String passwordArr[] = rsPassword.split("\\.");
+				Boolean passwordMatch = auth.verifyPassword(passwordArr[1], passwordArr[0], password);
+				if(passwordMatch == true) {
+					result = buildUser(rs);
+				}
+			} else {
+				if(rsPassword.equals(password)) {
+					result = buildUser(rs);
+				}
+			}
+		} catch (Exception e) {
+			logger.e("getById", e);
+		}
+		return result;
+	}
 
+	public User selectOne(String username) {
+		User result = null;
+		try (Connection c = establishConnection()) {
+			
+			String q = "SELECT * FROM users WHERE email = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setString(1, username);
+			ResultSet rs = statement.executeQuery();
+			rs.next();
+			return buildUser(rs);
+		} catch (Exception e) {
+			logger.e("getById", e);
+		}
+		return result;
+	}
+	
 	@Override
 	public List<User> insertMany(List<User> users) {
 		return users.stream().map(this::insertOne).toList();
@@ -132,7 +177,6 @@ public class UserRepository implements Repository<User> {
 			String q = "UPDATE users SET password = ? WHERE id = ?";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(q);
-
 			Encryption auth = new Encryption();
 			String salt = auth.generateSalt();
 			String encryptedPassword = auth.generateEncryptedPassword(newPassword, salt);
@@ -140,7 +184,7 @@ public class UserRepository implements Repository<User> {
 
 			statement.setString(1, formattedPassword);
 			statement.setLong(2, user.getId());
-
+      
 			int rowsAffected = statement.executeUpdate();
 			if (rowsAffected == -1) {
 				throw new ProvisioException.UserRepositoryException("Unable to update user");
@@ -163,7 +207,6 @@ public class UserRepository implements Repository<User> {
 			logger.e("deleteById", e);
 		}
 	}
-
 
 	public User selectOne(String username, String password) {
 		User result = null;
@@ -190,8 +233,6 @@ public class UserRepository implements Repository<User> {
 		} catch (Exception e) {
 			logger.e("getById", e);
 		}
-		return result;
-	}
 	
 	public User selectOne(String username) {
 		User result = null;

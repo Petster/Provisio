@@ -62,7 +62,6 @@ $('#submitUserCreate').click(function(e) {
 					} else {
 						swal({
 						  title: "Error",
-						  text: "Failed to Create Account Try Again",
 						  text: `${results.msg}`,
 						  icon: "error",
 						});

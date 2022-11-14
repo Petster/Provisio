@@ -19,7 +19,6 @@ import repo.UserRepository;
 @WebServlet("/Forgot")
 public class Forgot extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -61,7 +60,6 @@ public class Forgot extends HttpServlet {
 			if(submitData.get(1).length() <= 7 || matchFound == false) {
 				myObj.addProperty("success", false);
 				myObj.addProperty("msg", "Password must be atleast 8 characters and include 1 uppercase letter and a number");
-
 				out.println(myObj.toString());
 				out.close();
 			} else {
@@ -69,7 +67,6 @@ public class Forgot extends HttpServlet {
 					UR.updateById(reset, reset.getId(), submitData.get(1));
 					myObj.addProperty("success", true);
 					myObj.addProperty("msg", "Password has been reset");
-
 					out.println(myObj.toString());
 					out.close();
 				} catch (Exception e) {
@@ -79,11 +76,10 @@ public class Forgot extends HttpServlet {
 		} else {
 			myObj.addProperty("success", false);
 			myObj.addProperty("msg", "Passwords do not match");
-
 			out.println(myObj.toString());
 			out.close();
 		}
 		doGet(request, response);
 	}
-
+}
 }

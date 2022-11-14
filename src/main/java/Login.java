@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -54,18 +55,15 @@ public class Login extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		try {
-			//User loggedIn = dbm.loginUser(submitData.get(0), submitData.get(1));
 			User loggedIn = UR.selectOne(submitData.get(0), submitData.get(1));
 			if(loggedIn == null || loggedIn.getEmail() == "") {
 				myObj.addProperty("success", false);
 				myObj.addProperty("msg", "No account exists for this email or the password was incorrect");
-
 				out.println(myObj.toString());
 				out.close();
 			} else {
 				session.setAttribute("LoggedIn", loggedIn);
 				myObj.addProperty("success", true);
-
 				out.println(myObj.toString());
 				out.close();
 			}
