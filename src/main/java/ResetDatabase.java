@@ -68,7 +68,8 @@ public class ResetDatabase extends HttpServlet {
 					    "loyalty_points int," +
 					    "is_admin boolean," +
 					    "password varchar(255) NOT NULL," +
-					    "PRIMARY KEY (id)" +
+					    "PRIMARY KEY (id)," +
+					    "UNIQUE (email)" +
 					")"
 				);
 			s.addBatch(

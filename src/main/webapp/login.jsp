@@ -33,14 +33,14 @@
 	    	$.ajax({
 				type: 'post',
 				url: 'Login',
-				data: $('#loginForm').serialize(),
-				success: function(response) {
+				data: $('#loginForm').serialize()
+			}).then((results) => {
+				if(results.success) {
 					window.location.href = 'index.jsp';
-				},
-				error: function(response) {
+				} else {
 					swal({
 					  title: "Error",
-					  text: `Failed to Login (Check username and password) ${response}`,
+					  text: results.msg,
 					  icon: "error",
 					});
 				}
