@@ -1,7 +1,6 @@
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -10,9 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import Database.DatabaseManager;
 import Database.User;
@@ -49,29 +45,20 @@ public class Login extends HttpServlet {
 		submitData.add(request.getParameter("username"));
 		submitData.add(request.getParameter("password"));
 		
-		Gson gson = new Gson();
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json");
-		JsonObject myObj = new JsonObject();
+		//System.out.println(submitData.get(0) + " " + submitData.get(1));
 		
+		//DatabaseManager dbm = new DatabaseManager();
 		UserRepository UR = new UserRepository();
 		HttpSession session = request.getSession();
 
 		try {
+			//User loggedIn = dbm.loginUser(submitData.get(0), submitData.get(1));
 			User loggedIn = UR.selectOne(submitData.get(0), submitData.get(1));
-			
-			if(loggedIn == null || loggedIn.getEmail() == "") {
-				myObj.addProperty("success", false);
-				myObj.addProperty("msg", "No account exists for this email or the password was incorrect");
-				
-				out.println(myObj.toString());
-				out.close();
-			} else {
+			if(loggedIn != null) {
 				session.setAttribute("LoggedIn", loggedIn);
-				myObj.addProperty("success", true);
-				
-				out.println(myObj.toString());
-				out.close();
+			} else {
+				String message = "Could not Login to Account";
+				response.sendError(500, message);
 			}
 		} catch (Exception e) {
 			System.out.println(e);

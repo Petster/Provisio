@@ -29,18 +29,9 @@ $('#submitUserCreate').click(function(e) {
 		if(validInputs.includes(false)) {
 			for(let i = 0; i < validInputs.length; i++) {
 			if(validInputs[i] === false) {
-				let fieldName = ""
-				switch(formInputs[i].name) {
-					case "fname": fieldName = "First Name"; break;
-					case "lname": fieldName = "Last Name"; break;
-					case "email": fieldName = "Email"; break;
-					case "phone": fieldName = "Phone Number"; break;
-					case "password": fieldName = "Password"; break;
-					case "confirmpassword": fieldName = "Confirm Password"; break;
-				}
 				swal({
 				  title: "Error",
-				  text: `The ${fieldName} field is empty`,
+				  text: `${formInputs[i].name} is Empty`,
 				  icon: "error",
 				});
 				break;
@@ -52,17 +43,17 @@ $('#submitUserCreate').click(function(e) {
 					type: 'post',
 					url: 'Register',
 					data: $('#userForm').serialize(),
-				}).then((results) => {
-					if(results.success) {
+					success: function(response) {
 						swal({
 						  title: "Success",
 						  text: "Account Created",
 						  icon: "success",
 						}).then(function() {window.location.href = 'login.jsp'});
-					} else {
+					},
+					error: function(response) {
 						swal({
 						  title: "Error",
-						  text: `${results.msg}`,
+						  text: "Failed to Create Account Try Again",
 						  icon: "error",
 						});
 					}

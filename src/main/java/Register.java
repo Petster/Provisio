@@ -1,12 +1,9 @@
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,10 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 import Database.DatabaseManager;
 import repo.UserRepository;
@@ -61,51 +54,22 @@ public class Register extends HttpServlet {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
 		
-		Gson gson = new Gson();
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json");
-		JsonObject myObj = new JsonObject();
+		User newUser = new User(submitData.get(0), submitData.get(1), submitData.get(2), dtf.format(now), submitData.get(3), submitData.get(4), 0, false);
+		UserRepository UR = new UserRepository();
 		
-		Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");
-		Matcher matcher = pattern.matcher(submitData.get(0));
-		Boolean matchFound = matcher.find();
+		User results = UR.insertOne(newUser);
 		
-		if(submitData.get(0).length() <= 7 || matchFound == false) {
-			myObj.addProperty("success", false);
-			myObj.addProperty("msg", "Password must be atleast 8 characters and include 1 uppercase letter and a number");
-			
-			out.println(myObj.toString());
-			out.close();
+		//DatabaseManager dbm = new DatabaseManager();
+		//String userResponse = dbm.createUser(newUser);
+		
+		//System.out.println(userResponse);
+		
+		if(results == null) {
+			response.sendError(500, "Passwords do not match");
 		} else {
-			User newUser = new User(submitData.get(0), submitData.get(1), submitData.get(2), dtf.format(now), submitData.get(3), submitData.get(4), 0, false);
-			UserRepository UR = new UserRepository();
-			
-			User results = UR.insertOne(newUser);
-			
-			//DatabaseManager dbm = new DatabaseManager();
-			//String userResponse = dbm.createUser(newUser);
-			
-			//System.out.println(userResponse);
-			
-			
-			if(results == null) {
-				myObj.addProperty("success", false);
-				myObj.addProperty("msg", "An account with that email already exists");
-				
-				out.println(myObj.toString());
-				out.close();
-				
-				//response.sendError(500, "An account with that email already exists");
-			} else {
-				myObj.addProperty("success", true);
-				myObj.addProperty("msg", "Your account was created successfully");
-				
-				out.println(myObj.toString());
-				out.close();
-			}
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/");
+			dispatcher.forward(request, response);	
 		}
-		
-		
 
 		doGet(request, response);
 	}
