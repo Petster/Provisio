@@ -179,12 +179,25 @@ public class UserRepository implements Repository<User> {
 	public User getUserByUserNameAndPassword(String username, String password) {
 		User result = null;
 		try (Connection c = establishConnection()) {
-			String q = "SELECT * FROM users WHERE email = ? AND password = ?";
+			Encryption auth = new Encryption();
+
+			String q = "SELECT * FROM users WHERE email = ?";
 			PreparedStatement statement = c.prepareStatement(q);
 			statement.setString(1, username);
-			statement.setString(2, password);
 			ResultSet rs = statement.executeQuery();
-			result = buildUser(rs);
+			rs.next();
+			String rsPassword = rs.getString("password");
+			if(rsPassword.contains(".")) {
+				String passwordArr[] = rsPassword.split("\\.");
+				Boolean passwordMatch = auth.verifyPassword(passwordArr[1], passwordArr[0], password);
+				if(passwordMatch == true) {
+					result = buildUser(rs);
+				}
+			} else {
+				if(rsPassword.equals(password)) {
+					result = buildUser(rs);
+				}
+			}
 		} catch (Exception e) {
 			logger.e("getUserByUserNameAndPassword", e);
 		}

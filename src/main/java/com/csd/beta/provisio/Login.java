@@ -48,7 +48,7 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ArrayList<String> submitData = new ArrayList<String>();
 		String userName = request.getParameter("username");
-		String password = request.getParameter("username");
+		String password = request.getParameter("password");
 		logger.i("doPost username", userName);
 		logger.i("doPost password", password);
 
