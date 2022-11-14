@@ -20,8 +20,8 @@
                     <label for="password">Password</label>
                     <input class="w-full rounded-md text-md p-2" name="password" type="password" id="password"
                            placeholder="Enter your password"/>
-                    <p class="font-bold text-md">Forgot your password? Click <a class="underline"
-                                                                                href="forgot.jsp">Here</a></p>
+                    <p class="font-bold text-md"><a class="hover:underline"
+                                                    href="forgot.jsp">Forgot your password? </a></p>
                 </div>
                 <div class="flex flex-row justify-between flex-grow">
                     <a href="register.jsp"

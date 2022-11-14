@@ -29,6 +29,7 @@ $('#submitUserCreate').click(function(e) {
 		if(validInputs.includes(false)) {
 			for(let i = 0; i < validInputs.length; i++) {
 			if(validInputs[i] === false) {
+				formInputs[i].style.border = '1px red solid';
 				let fieldName = ""
 				switch(formInputs[i].name) {
 					case "fname": fieldName = "First Name"; break;
@@ -43,7 +44,8 @@ $('#submitUserCreate').click(function(e) {
 				  text: `The ${fieldName} field is empty`,
 				  icon: "error",
 				});
-				break;
+			} else {
+				formInputs[i].style.border = 'none';
 			}
 			}
 		} else {
