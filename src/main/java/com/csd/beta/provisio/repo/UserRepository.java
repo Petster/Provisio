@@ -35,10 +35,9 @@ public class UserRepository implements Repository<User> {
 			Encryption auth = new Encryption();
 			String salt = auth.generateSalt();
 			String encryptedPassword = auth.generateEncryptedPassword(user.getPassword(), salt);
-
 			String insert = "INSERT INTO users (" +
-					                "email, last_name, first_name, phone, join_date, loyalty_points, is_admin, " +
-					                "password) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
+					"email, last_name, first_name, phone, join_date, loyalty_points, is_admin, " +
+					"password) VALUES (?, ?, ?, ?, ?, ?, ?, ?) ";
 			String formattedPassword = salt + "." + encryptedPassword;
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
@@ -58,6 +57,51 @@ public class UserRepository implements Repository<User> {
 		}
 
 		return null;
+	}
+
+	public User selectOne(String username, String password) {
+		User result = null;
+		try (Connection c = establishConnection()) {
+
+			Encryption auth = new Encryption();
+
+			String q = "SELECT * FROM users WHERE email = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setString(1, username);
+			ResultSet rs = statement.executeQuery();
+			rs.next();
+			String rsPassword = rs.getString("password");
+			if(rsPassword.contains(".")) {
+				String passwordArr[] = rsPassword.split("\\.");
+				Boolean passwordMatch = auth.verifyPassword(passwordArr[1], passwordArr[0], password);
+				if(passwordMatch == true) {
+					result = buildUser(rs);
+				}
+			} else {
+				if(rsPassword.equals(password)) {
+					result = buildUser(rs);
+				}
+			}
+		} catch (Exception e) {
+			logger.e("getById", e);
+		}
+		return result;
+	}
+
+	public User selectOne(String username) {
+		User result = null;
+		try (Connection c = establishConnection()) {
+
+			String q = "SELECT * FROM users WHERE email = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+			statement.setString(1, username);
+			ResultSet rs = statement.executeQuery();
+			rs.next();
+			return buildUser(rs);
+		} catch (Exception e) {
+			logger.e("getById", e);
+		}
+		return result;
 	}
 
 	@Override
@@ -102,7 +146,7 @@ public class UserRepository implements Repository<User> {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
 			String q = "UPDATE users SET email = ?, last_name = ?, first_name = ?, phone = ?, join_date = " +
-					           "?, loyalty_points = ?, is_admin = ?, password = ? WHERE id = ?";
+					"?, loyalty_points = ?, is_admin = ?, password = ? WHERE id = ?";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(q);
 			statement.setString(1, user.getEmail());
@@ -113,6 +157,31 @@ public class UserRepository implements Repository<User> {
 			statement.setInt(6, user.getLoyaltyPoints());
 			statement.setBoolean(7, user.isAdmin());
 			statement.setString(8, user.getPassword());
+
+			int rowsAffected = statement.executeUpdate();
+			if (rowsAffected == -1) {
+				throw new ProvisioException.UserRepositoryException("Unable to update user");
+			} else if (rowsAffected > 1) {
+				throw new ProvisioException.UserRepositoryException("More than 1 row was affected: " + rowsAffected);
+			}
+		} catch (Exception e) {
+			logger.e("updateById", e);
+		}
+	}
+
+	public void updateById(User user, long id, String newPassword) {
+		try (Connection c = establishConnection()) {
+			//@formatter:off
+			String q = "UPDATE users SET password = ? WHERE id = ?";
+			//@formatter:on
+			PreparedStatement statement = c.prepareStatement(q);
+			Encryption auth = new Encryption();
+			String salt = auth.generateSalt();
+			String encryptedPassword = auth.generateEncryptedPassword(newPassword, salt);
+			String formattedPassword = salt + "." + encryptedPassword;
+
+			statement.setString(1, formattedPassword);
+			statement.setLong(2, user.getId());
 
 			int rowsAffected = statement.executeUpdate();
 			if (rowsAffected == -1) {
@@ -137,65 +206,8 @@ public class UserRepository implements Repository<User> {
 		}
 	}
 
-	public void updateById(User user, long id, String newPassword) {
-		try (Connection c = establishConnection()) {
-			//@formatter:off
-			String q = "UPDATE users SET password = ? WHERE id = ?";
-			//@formatter:on
-			PreparedStatement statement = c.prepareStatement(q);
-
-			Encryption auth = new Encryption();
-			String salt = auth.generateSalt();
-			String encryptedPassword = auth.generateEncryptedPassword(newPassword, salt);
-			String formattedPassword = salt + "." + encryptedPassword;
-
-			statement.setString(1, formattedPassword);
-			statement.setLong(2, user.getId());
-
-			int rowsAffected = statement.executeUpdate();
-			if (rowsAffected == -1) {
-				throw new ProvisioException.UserRepositoryException("Unable to update user");
-			} else if (rowsAffected > 1) {
-				throw new ProvisioException.UserRepositoryException("More than 1 row was affected: " + rowsAffected);
-			}
-		} catch (Exception e) {
-			logger.e("updateById", e);
-		}
-	}
-
-	public User selectOne(String username) {
-		User result = null;
-		try (Connection c = establishConnection()) {
-
-			String q = "SELECT * FROM users WHERE email = ?";
-			PreparedStatement statement = c.prepareStatement(q);
-			statement.setString(1, username);
-			ResultSet rs = statement.executeQuery();
-			rs.next();
-			return buildUser(rs);
-		} catch (Exception e) {
-			logger.e("getById", e);
-		}
-		return result;
-	}
-
-	public User selectOne(String username, String password) {
-		User result = null;
-		try (Connection c = establishConnection()) {
-			String q = "SELECT * FROM users WHERE email = ? AND password = ?";
-			PreparedStatement statement = c.prepareStatement(q);
-			statement.setString(1, username);
-			statement.setString(2, password);
-			ResultSet rs = statement.executeQuery();
-			result = buildUser(rs);
-		} catch (Exception e) {
-			logger.e("getById", e);
-		}
-		return result;
-	}
-
 	private User getUserWithGeneratedId(Connection c, Statement statement, User user) throws SQLException,
-			                                                                                         ProvisioException.UserRepositoryException {
+			ProvisioException.UserRepositoryException {
 		ResultSet rs = statement.getGeneratedKeys();
 		long userId;
 

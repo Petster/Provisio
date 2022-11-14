@@ -1,6 +1,6 @@
 package com.csd.beta.provisio;
 
-import com.csd.beta.provisio.Database.News;
+import com.csd.beta.provisio.entity.News;
 import com.csd.beta.provisio.repo.NewsRepository;
 
 import javax.servlet.ServletException;

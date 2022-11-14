@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9945abb7-e946-426f-b663-6aae951cf238" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Reserve.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/entity/Location.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/entity/News.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/entity/Room.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/LocationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/RoomRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/calendar.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/LogoBlackCropped.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/LogoWhiteCropped.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/doublebed.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/kingbed.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/queenbed.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/singlebed.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Tomcat_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Tomcat_9.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init-db.d/master.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init-db.d/master.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init-db.d/seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init-db.d/seed.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Database/News.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/DummyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/DummyData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Index.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/ResetDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/ResetDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/exception/ProvisioException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/exception/ProvisioException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/NewsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Header.tag" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Header.tag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Layout.tag" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Layout.tag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/reserve.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reserve.jsp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2HWjAidKvwO1IwLf3MfY8AGVmiv" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/jason/OneDrive/Documents/@Code/Provisio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9945abb7-e946-426f-b663-6aae951cf238" name="Changes" comment="" />
+      <created>1668407594062</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668407594062</updated>
+      <workItem from="1668407598819" duration="1434000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

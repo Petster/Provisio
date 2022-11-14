@@ -1,6 +1,6 @@
 package com.csd.beta.provisio.repo;
 
-import com.csd.beta.provisio.Database.News;
+import com.csd.beta.provisio.entity.News;
 import com.csd.beta.provisio.exception.ProvisioException;
 import com.csd.beta.provisio.util.Logger;
 
@@ -28,8 +28,8 @@ public class NewsRepository implements Repository<News> {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
 			String insert = "INSERT INTO news (" +
-					                "userID, title, publish_date, description, image" +
-					                ") VALUES (?, ?, ?, ?, ?)";
+					"userID, title, publish_date, description, image" +
+					") VALUES (?, ?, ?, ?, ?)";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			statement.setLong(1, news.getUserID());
@@ -80,7 +80,7 @@ public class NewsRepository implements Repository<News> {
 				news.setTitle(rs.getString(COLUMN_NEWS_TITLE));
 				news.setPublishDate(rs.getString(COLUMN_NEWS_PUBLISH_DATE));
 				news.setDescription(rs.getString(COLUMN_NEWS_DESCRIPTION));
-				news.setImage(rs.getString(COLUMN_NEWS_IMAGE));
+				news.setImage(rs.getString(COLUMN_NEWS_IMAGE));;
 				result.add(news);
 			}
 		} catch (Exception e) {
@@ -93,8 +93,8 @@ public class NewsRepository implements Repository<News> {
 	public void updateById(News news, long id) {
 		try (Connection c = establishConnection()) {
 			//@formatter:off
-			String q = "UPDATE news SET title = ?, publish_date = ?, description = ?, image = ?" +
-					           "WHERE id = ?";
+			String q = "UPDATE news SET title = ?, publishDate = ?, description = ?, image = ?" +
+					"WHERE id = ?";
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(q);
 			statement.setString(1, news.getTitle());
@@ -128,13 +128,13 @@ public class NewsRepository implements Repository<News> {
 
 	private News buildNews(ResultSet rs) throws SQLException {
 		News result = new News();
-		while (rs.next()) {
+		while(rs.next()) {
 			result.setID(rs.getLong(COLUMN_NEWS_ID));
 			result.setUserID(rs.getLong(COLUMN_NEWS_USER_ID));
 			result.setTitle(rs.getString(COLUMN_NEWS_TITLE));
 			result.setPublishDate(rs.getString(COLUMN_NEWS_PUBLISH_DATE));
 			result.setDescription(rs.getString(COLUMN_NEWS_DESCRIPTION));
-			result.setImage(rs.getString(COLUMN_NEWS_IMAGE));
+			result.setImage(rs.getString(COLUMN_NEWS_IMAGE));;
 		}
 		return result;
 	}
@@ -147,7 +147,7 @@ public class NewsRepository implements Repository<News> {
 			throw new ProvisioException.UserRepositoryException("could not insert News Article");
 		}
 
-		if (rs.next()) {
+		if(rs.next()) {
 			userId = rs.getLong(1);
 			news.setID(userId);
 		}
