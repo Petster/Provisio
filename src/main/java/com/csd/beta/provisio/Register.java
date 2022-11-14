@@ -5,7 +5,6 @@ import com.csd.beta.provisio.repo.UserRepository;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,8 +36,7 @@ public class Register extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-			                                                                                      IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -46,9 +44,8 @@ public class Register extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-			                                                                                       IOException {
-		ArrayList<String> submitData = new ArrayList<String>();
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		ArrayList<String> submitData = new ArrayList<>();
 		submitData.add(request.getParameter("password"));
 		submitData.add(request.getParameter("email"));
 		submitData.add(request.getParameter("phone"));
@@ -56,7 +53,7 @@ public class Register extends HttpServlet {
 		submitData.add(request.getParameter("lname"));
 		submitData.add(request.getParameter("confirmpassword"));
 
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY-MM-dd");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDateTime now = LocalDateTime.now();
 
 		Gson gson = new Gson();
@@ -66,12 +63,13 @@ public class Register extends HttpServlet {
 
 		Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");
 		Matcher matcher = pattern.matcher(submitData.get(0));
-		Boolean matchFound = matcher.find();
+		boolean matchFound = matcher.find();
 
-		if (submitData.get(0).length() <= 7 || matchFound == false) {
+		if (submitData.get(0).length() <= 7 || !matchFound) {
 			myObj.addProperty("success", false);
-			myObj.addProperty("msg", "Password must be atleast 8 characters and include 1 uppercase letter " +
-					                         "and a number");
+			myObj.addProperty("msg",
+					"Password must be atleast 8 characters and include 1 uppercase letter " + "and a " +
+							"number");
 
 			out.println(myObj);
 			out.close();
