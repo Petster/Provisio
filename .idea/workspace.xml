@@ -5,33 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9945abb7-e946-426f-b663-6aae951cf238" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Reserve.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/entity/Location.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/entity/News.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/entity/Room.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/LocationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/RoomRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/calendar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/LogoBlackCropped.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/LogoWhiteCropped.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/doublebed.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/kingbed.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/queenbed.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/singlebed.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/admin.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Tomcat_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Tomcat_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/init-db.d/master.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init-db.d/master.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/init-db.d/seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init-db.d/seed.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Database/News.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/DummyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/DummyData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Index.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/ResetDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/ResetDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/exception/ProvisioException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/exception/ProvisioException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/NewsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/NewsRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Header.tag" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Header.tag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Layout.tag" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Layout.tag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/reserve.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reserve.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +25,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -81,7 +60,8 @@
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -92,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668407594062</updated>
-      <workItem from="1668407598819" duration="1434000" />
+      <workItem from="1668407598819" duration="7538000" />
     </task>
     <servers />
   </component>

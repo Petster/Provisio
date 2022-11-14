@@ -31,6 +31,12 @@
             </c:if>
         </div>
         <div id="desktopDropdown" class="hidden origin-top-right absolute right-2 top-14 z-50 mt-2 w-56 rounded-md color-3 p-2 flex flex-col">
+            <c:if test="${sessionScope.LoggedIn.admin != false}">
+                <a href="admin.jsp" class="flex flex-row flex-grow justify-between items-center content-center color-1 text-white py-1 px-2 text-xs rounded-md mb-2 color-5-hover cursor-pointer ">
+                    <p><i class="fa-solid fa-admin fa-lg"></i></p>
+                    <p>Admin</p>
+                </a>
+            </c:if>
             <div class="flex flex-row flex-grow gap-2 content-center items-center justify-center">
                 <div class="color-1 text-white py-1 px-2 text-xs rounded-md flex flex-grow justify-center color-5-hover cursor-pointer ">
                     <a href="myaccount.jsp">My Account</a>

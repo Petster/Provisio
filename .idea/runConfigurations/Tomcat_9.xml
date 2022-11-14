@@ -1,10 +1,13 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Tomcat 9" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9" ALTERNATIVE_JRE_ENABLED="false">
+    <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+    <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+    <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
     <option name="UPDATING_POLICY" value="redeploy-artifacts" />
     <deployment>
-      <artifact name="Gradle : com.csd.beta : provisio-1.0-SNAPSHOT.war">
+      <artifact name="Gradle : com.csd.beta : provisio-1.0-SNAPSHOT.war (exploded)">
         <settings>
-          <option name="CONTEXT_PATH" value="/Gradle___com_csd_beta___provisio_1_0_SNAPSHOT_war" />
+          <option name="CONTEXT_PATH" value="/Gradle___com_csd_beta___provisio_1_0_SNAPSHOT_war__exploded_" />
         </settings>
       </artifact>
     </deployment>
@@ -92,7 +95,7 @@
     <method v="2">
       <option name="Make" enabled="true" />
       <option name="BuildArtifacts" enabled="true">
-        <artifact name="Gradle : com.csd.beta : provisio-1.0-SNAPSHOT.war" />
+        <artifact name="Gradle : com.csd.beta : provisio-1.0-SNAPSHOT.war (exploded)" />
       </option>
     </method>
   </configuration>
