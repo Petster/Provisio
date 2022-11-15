@@ -20,7 +20,7 @@
 ![](https://user-images.githubusercontent.com/78231948/201999046-f169f025-df02-4387-92a1-7c94ae00eae7.png)
 
 **Step 5:** Right click the docker-compose.yaml to run the yaml file
-- If port 3306 is already being used you can change the port or run `sudo kill `sudo lsof -t -i:3306``
+- If port 3306 is already being used you can change the port or run `` sudo kill `sudo lsof -t -i:3306` ``
 
 ![](https://user-images.githubusercontent.com/78231948/202038681-9117975d-6309-4b32-b47f-275baa4aeb66.png)
 
