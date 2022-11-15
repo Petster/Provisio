@@ -31,6 +31,9 @@
 	</section>
 	<t:Footer></t:Footer>
 </main>
+<div id="modalLayer" class="hidden flex flex-col content-center items-center justify-center">
+
+</div>
 </body>
 <script src="js/global.js"></script>
 <script src="js/ajax.js"></script>
