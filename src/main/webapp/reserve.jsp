@@ -188,23 +188,52 @@
 
 			$('#confirmPurchase').click(function(e) {
 				e.preventDefault();
-				let datepicker = document.getElementById('datepicker').value.split(' - ');
-				if(datepicker[0] !== '') {
-					//continue
-				}
-				let d1 = new Date(datepicker[0]);
-				let d2 = new Date(datepicker[1]);
+				try {
+					let datepicker = document.getElementById('datepicker').value.split(' - ');
+					if(datepicker[0] === '') {
+						throw new Error("You must select a date before reserving a room");
+					}
+					let d1 = new Date(datepicker[0]);
+					let d2 = new Date(datepicker[1]);
 
-				let diftime = d2.getTime() - d1.getTime();
-				let difday = diftime / (1000 * 3600 * 24);
-				let finalData = {
-					roomType: id,
-					fromDate: datepicker[0],
-					toDate: datepicker[1],
-					price: difday*price
-				}
+					let diftime = d2.getTime() - d1.getTime();
+					let difday = diftime / (1000 * 3600 * 24);
+					let finalData = "roomType=" + id + "&fromDate=" + datepicker[0] + "&toDate=" + datepicker[1] + "&price=" + difday*price;
 
-				console.log(finalData);
+					swal({
+						title: "Reservation Confirmation",
+						text: "Confirm Reservation for " + title + " for $" + difday*price + " From: " + datepicker[0] + " To: " + datepicker[1],
+						icon: "info",
+						buttons: ['Cancel', 'Confirm Reservation']
+					}).then((result) => {
+						if(result) {
+							$.ajax({
+								type: 'post',
+								url: 'Reserve',
+								data: finalData
+							}).then((result) => {
+								if(result.success) {
+									swal({
+										title: "Success",
+										text: result.msg,
+										icon: "success",
+									}).then(() => {
+										$('#modalLayer').toggleClass('hidden').empty();
+									})
+								} else {
+									throw new Error(result.msg);
+								}
+							})
+						}
+					})
+
+				} catch (e) {
+					swal({
+						title: "Error",
+						text: e.message,
+						icon: "error",
+					});
+				}
 			})
 		})
 	</script>

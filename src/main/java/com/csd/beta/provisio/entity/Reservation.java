@@ -1,26 +1,34 @@
 package com.csd.beta.provisio.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 public class Reservation {
 	private long _id;
 	private long _userId;
 	private long _roomType;
-	private Date _reserveDate;
-	private Date _fromDate;
-	private Date _toDate;
+	private String _reserveDate;
+	private String _fromDate;
+	private String _toDate;
 	private int _price;
 
 	// no arg
 	public Reservation() {}
 
 	// all arg
-
-
-	public Reservation(long id, long userId, long roomType, Date reserveDate, Date fromDate,
-	                   Date toDate, int price) {
+	public Reservation(long id, long userId, long roomType, String reserveDate, String fromDate,
+					   String toDate, int price) {
 		_id = id;
+		_userId = userId;
+		_roomType = roomType;
+		_reserveDate = reserveDate;
+		_fromDate = fromDate;
+		_toDate = toDate;
+		_price = price;
+	}
+
+	// insert one
+	public Reservation(long userId, long roomType, String reserveDate, String fromDate, String toDate, int price) {
 		_userId = userId;
 		_roomType = roomType;
 		_reserveDate = reserveDate;
@@ -53,27 +61,27 @@ public class Reservation {
 		_roomType = roomType;
 	}
 
-	public Date getReserveDate() {
+	public String getReserveDate() {
 		return _reserveDate;
 	}
 
-	public void setReserveDate(Date reserveDate) {
+	public void setReserveDate(String reserveDate) {
 		_reserveDate = reserveDate;
 	}
 
-	public Date getFromDate() {
+	public String getFromDate() {
 		return _fromDate;
 	}
 
-	public void setFromDate(Date fromDate) {
+	public void setFromDate(String fromDate) {
 		_fromDate = fromDate;
 	}
 
-	public Date getToDate() {
+	public String getToDate() {
 		return _toDate;
 	}
 
-	public void setToDate(Date toDate) {
+	public void setToDate(String toDate) {
 		_toDate = toDate;
 	}
 

@@ -36,10 +36,11 @@ public class ReservationRepository implements Repository<Reservation> {
 			PreparedStatement statement = c.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			statement.setLong(1, reservation.getUserId());
 			statement.setLong(2, reservation.getRoomType());
-			statement.setDate(3, reservation.getReserveDate());
-			statement.setDate(4, reservation.getFromDate());
-			statement.setDate(5, reservation.getToDate());
+			statement.setString(3, reservation.getReserveDate());
+			statement.setString(4, reservation.getFromDate());
+			statement.setString(5, reservation.getToDate());
 			statement.setInt(6, reservation.getPrice());
+			statement.executeUpdate();
 
 			return getReservationWithGeneratedId(c, statement, reservation);
 		} catch (Exception e) {
@@ -99,9 +100,9 @@ public class ReservationRepository implements Repository<Reservation> {
 			//@formatter:on
 			PreparedStatement statement = c.prepareStatement(q);
 			statement.setLong(1, reservation.getRoomType());
-			statement.setDate(2, reservation.getReserveDate());
-			statement.setDate(3, reservation.getFromDate());
-			statement.setDate(4, reservation.getToDate());
+			statement.setString(2, reservation.getReserveDate());
+			statement.setString(3, reservation.getFromDate());
+			statement.setString(4, reservation.getToDate());
 			statement.setInt(5, reservation.getPrice());
 			statement.setLong(6, reservation.getId());
 
@@ -136,8 +137,10 @@ public class ReservationRepository implements Repository<Reservation> {
 			throw new ProvisioException.ReservationRepositoryException("could not insert Reservation");
 		}
 
-		long reservationId = rs.getLong(COLUMN_RESERVATION_ID);
-		reservation.setId(reservationId);
+		if(rs.next()) {
+			long reservationId = rs.getLong(COLUMN_RESERVATION_ID);
+			reservation.setId(reservationId);
+		}
 
 		c.close();
 		return reservation;
@@ -148,9 +151,9 @@ public class ReservationRepository implements Repository<Reservation> {
 		result.setId(rs.getLong(COLUMN_RESERVATION_ID));
 		result.setUserId(rs.getLong(COLUMN_RESERVATION_USER_FK));
 		result.setRoomType(rs.getLong(COLUMN_RESERVATION_ROOM_FK));
-		result.setReserveDate(rs.getDate(COLUMN_RESERVATION_RESERVE_DATE));
-		result.setFromDate(rs.getDate(COLUMN_RESERVATION_FROM_DATE));
-		result.setToDate(rs.getDate(COLUMN_RESERVATION_TO_DATE));
+		result.setReserveDate(rs.getString(COLUMN_RESERVATION_RESERVE_DATE));
+		result.setFromDate(rs.getString(COLUMN_RESERVATION_FROM_DATE));
+		result.setToDate(rs.getString(COLUMN_RESERVATION_TO_DATE));
 		result.setPrice(rs.getInt(COLUMN_RESERVATION_PRICE));
 
 		return result;

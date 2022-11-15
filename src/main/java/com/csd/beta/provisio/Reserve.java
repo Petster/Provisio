@@ -1,25 +1,39 @@
 package com.csd.beta.provisio;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.csd.beta.provisio.entity.Location;
+import com.csd.beta.provisio.entity.Reservation;
 import com.csd.beta.provisio.entity.Room;
+import com.csd.beta.provisio.entity.User;
 import com.csd.beta.provisio.repo.LocationRepository;
+import com.csd.beta.provisio.repo.ReservationRepository;
 import com.csd.beta.provisio.repo.RoomRepository;
 import com.csd.beta.provisio.util.Logger;
+import com.google.gson.JsonObject;
 
 @WebServlet("/Reserve")
 public class Reserve extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final RoomRepository roomRepository;
     private final LocationRepository locationRepository;
+    private final ReservationRepository reservationRepository;
     private final Logger logger;
 
     /**
@@ -29,6 +43,7 @@ public class Reserve extends HttpServlet {
         super();
         roomRepository = new RoomRepository();
         locationRepository = new LocationRepository();
+        reservationRepository = new ReservationRepository();
         logger = new Logger(Reserve.class.getSimpleName());
     }
 
@@ -48,8 +63,40 @@ public class Reserve extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        final HttpSession session = request.getSession();
+        final PrintWriter out = response.getWriter();
+        final JsonObject myObj = new JsonObject();
+        final Map<String, String> submitData = new HashMap<>();
+        response.setContentType("application/json");
 
+        try {
+            User LoggedIn = (User)session.getAttribute("LoggedIn");
+            submitData.put("price", request.getParameter("price"));
+            submitData.put("fromDate", request.getParameter("fromDate"));
+            submitData.put("toDate", request.getParameter("toDate"));
+            submitData.put("id", request.getParameter("roomType"));
 
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDateTime now = LocalDateTime.now();
+            Date reserveDate = formatter.parse(dtf.format(now));
+            Date fromDate = formatter.parse(submitData.get("fromDate"));
+            Date toDate = formatter.parse(submitData.get("toDate"));
+
+            Reservation newRes = new Reservation(LoggedIn.getId(), Long.parseLong(submitData.get("id")), dtf.format(now), submitData.get("fromDate"), submitData.get("toDate"), Integer.parseInt(submitData.get("price")));
+
+            Reservation created = reservationRepository.insertOne(newRes);
+            myObj.addProperty("success", true);
+            myObj.addProperty("msg", "Your reservation was created successfully");
+
+        } catch (Exception e) {
+            logger.e("doPost", e);
+            myObj.addProperty("success", false);
+            myObj.addProperty("msg", e.getMessage());
+        }
+
+        out.println(myObj);
+        out.close();
         doGet(request, response);
     }
 
