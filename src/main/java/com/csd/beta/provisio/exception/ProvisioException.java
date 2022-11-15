@@ -22,6 +22,12 @@ public class ProvisioException extends Exception {
 		}
 	}
 
+	public static class ForgotException extends ProvisioException {
+		public ForgotException(String message) {
+			super(message);
+		}
+	}
+
 	public static class UserRepositoryException extends ProvisioException {
 		public UserRepositoryException(String message) {
 			super(message);

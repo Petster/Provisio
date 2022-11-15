@@ -1,8 +1,9 @@
 package com.csd.beta.provisio;
 
 import com.csd.beta.provisio.entity.User;
+import com.csd.beta.provisio.exception.ProvisioException;
 import com.csd.beta.provisio.repo.UserRepository;
-import com.google.gson.Gson;
+import com.csd.beta.provisio.util.Logger;
 import com.google.gson.JsonObject;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,13 +24,16 @@ import java.util.regex.Pattern;
 @WebServlet("/Forgot")
 public class Forgot extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final UserRepository userRepository;
+	private final Logger logger;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Forgot() {
 		super();
-		// TODO Auto-generated constructor stub
+		userRepository = new UserRepository();
+		logger = new Logger(Forgot.class.getSimpleName());
 	}
 
 	/**
@@ -45,50 +50,43 @@ public class Forgot extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
 			                                                                                       IOException {
-		ArrayList<String> submitData = new ArrayList<String>();
-		submitData.add(request.getParameter("username"));
-		submitData.add(request.getParameter("newpassword"));
-		submitData.add(request.getParameter("confirmnewpassword"));
-
-		UserRepository UR = new UserRepository();
-		User reset = UR.getUserByUserName(submitData.get(0));
-
-		Gson gson = new Gson();
-		PrintWriter out = response.getWriter();
+		final PrintWriter out = response.getWriter();
+		final JsonObject  myObj = new JsonObject();
+		final Map<String, String> newData = new HashMap<>();
 		response.setContentType("application/json");
-		JsonObject myObj = new JsonObject();
 
-		Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");
-		Matcher matcher = pattern.matcher(submitData.get(1));
-		boolean matchFound = matcher.find();
+		try {
+			newData.put("username", request.getParameter("username").trim());
+			newData.put("newpassword", request.getParameter("newpassword").trim());
+			newData.put("confirmnewpassword", request.getParameter("confirmnewpassword").trim());
 
-		if (submitData.get(1).equals(submitData.get(2))) {
-			if (submitData.get(1).length() <= 7 || !matchFound) {
-				myObj.addProperty("success", false);
-				myObj.addProperty("msg", "Password must be atleast 8 characters and include 1 uppercase " +
-						                         "letter and a number");
-
-				out.println(myObj);
-				out.close();
-			} else {
-				try {
-					UR.changeUserPassword(reset, submitData.get(1));
-					myObj.addProperty("success", true);
-					myObj.addProperty("msg", "Password has been reset");
-
-					out.println(myObj);
-					out.close();
-				} catch (Exception e) {
-					System.out.println(e);
-				}
+			User foundUser = userRepository.getUserByUserName(newData.get("username"));
+			if(foundUser == null) {
+				throw new ProvisioException.ForgotException("No account was found with that email");
 			}
-		} else {
-			myObj.addProperty("success", false);
-			myObj.addProperty("msg", "Passwords do not match");
 
-			out.println(myObj);
-			out.close();
+			Pattern pattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$");
+			Matcher matcher = pattern.matcher(newData.get("newpassword"));
+			boolean matchFound = matcher.find();
+			if (!newData.get("newpassword").equals(newData.get("confirmnewpassword"))) {
+				throw new ProvisioException.ForgotException("Passwords do not match");
+			} else if(newData.get("newpassword").length() <= 7 || !matchFound) {
+				throw new ProvisioException.RegistrationException("Password must be at least 8 characters and include 1 uppercase letter and a number");
+			}
+
+			userRepository.changeUserPassword(foundUser, newData.get("newpassword"));
+			logger.i("doPost", foundUser);
+
+			myObj.addProperty("success", true);
+			myObj.addProperty("msg", "Password has been reset");
+		} catch (Exception e) {
+			logger.e("doPost", e);
+			myObj.addProperty("success", false);
+			myObj.addProperty("msg", e.getMessage());
 		}
+
+		out.println(myObj);
+		out.close();
 		doGet(request, response);
 	}
 
