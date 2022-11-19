@@ -25,7 +25,7 @@
 <body>
 <main class="mx-auto flex flex-col min-h-screen sm:break-words md:break-normal">
 	<t:Header></t:Header>
-	<section class="flex flex-grow md:justify-center md:w-4/5 md:mx-auto">
+	<section id="mainSection" class="flex flex-grow md:justify-center md:w-4/5 md:mx-auto">
 		<jsp:doBody />
 	</section>
 	<t:Footer></t:Footer>

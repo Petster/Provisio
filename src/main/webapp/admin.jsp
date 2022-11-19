@@ -8,6 +8,10 @@
 </c:if>
 <t:Layout>
   <div class="p-2 flex-grow flex flex-col gap-4">
+    <div class="flex flex-row p-2 justify-between items-center content-center mx-auto gap-4">
+      <button class="flex flex-grow color-4 text-white p-3 rounded-md" id="resetDatabase">Reset Database</button>
+      <button class="flex flex-grow color-4 text-white p-3 rounded-md" id="dummyData">Create Dummy Data</button>
+    </div>
     <div class="flex flex-col flex-grow color-3 p-2 rounded-lg">
       <div class="flex flex-col content-center items-center justify-center ">
         <h1 class="text-xl">Create News Article</h1>
@@ -127,6 +131,49 @@
           swal({
             title: "Error",
             text: result.msg,
+            icon: "error",
+          });
+        }
+      })
+    });
+    $('#resetDatabase').click(function(e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: 'ResetDatabase',
+        success: function(response) {
+          swal({
+            title: "Success",
+            text: "Database Reset",
+            icon: "success",
+          });
+        },
+        error: function(response) {
+          swal({
+            title: "Error",
+            text: "Failed to Reset Database",
+            icon: "error",
+          });
+        }
+      })
+    });
+
+    $('#dummyData').click(function(e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'post',
+        url: 'DummyData',
+        success: function(response) {
+          swal({
+            title: "Success",
+            text: "Dummy Data Created",
+            icon: "success",
+          });
+        },
+        error: function(response) {
+          swal({
+            title: "Error",
+            text: `Failed to Create Dummy Data ${response}`,
             icon: "error",
           });
         }

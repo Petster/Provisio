@@ -41,7 +41,7 @@
 		</div>
 		<div id="roomWrapper" class="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3 ">
 			<c:forEach items="${allRooms}" var="i" >
-				<div roomType="${i.ID}" price="${i.price}" title="${i.title}" image="${i.image}" desc="${i.highlights}" amenities="${i.breakfast},${i.wifi},${i.fitness},${i.store},${i.noSmoke},${i.mobile}]" class="roomItem flex flex-row color-3 color-2-hover hover:cursor-pointer w-full rounded-lg">
+				<div roomType="${i.ID}" price="${i.price}" title="${i.title}" image="${i.image}" desc="${i.highlights}" amenities="${i.breakfast},${i.wifi},${i.fitness},${i.store},${i.noSmoke},${i.mobile}" class="roomItem flex flex-row color-3 color-2-hover hover:cursor-pointer w-full rounded-lg">
 					<div class="${i.image} rounded-l-lg w-2/5"></div>
 					<div class="p-2 w-2/3 flex flex-col">
 						<h1 class="text-2xl baskerville color-5-text"><c:out value="${i.title}"></c:out></h1>

@@ -13,10 +13,10 @@ public class ReservationRepository implements Repository<Reservation> {
 	// field constants
 	private final String COLUMN_RESERVATION_ID = "id";
 	private final String COLUMN_RESERVATION_USER_FK = "userID";
-	private final String COLUMN_RESERVATION_ROOM_FK = "roomType";
-	private final String COLUMN_RESERVATION_RESERVE_DATE = "reserveDate";
-	private final String COLUMN_RESERVATION_FROM_DATE = "fromDate";
-	private final String COLUMN_RESERVATION_TO_DATE = "toDate";
+	private final String COLUMN_RESERVATION_ROOM_FK = "room_type";
+	private final String COLUMN_RESERVATION_RESERVE_DATE = "reserve_date";
+	private final String COLUMN_RESERVATION_FROM_DATE = "from_date";
+	private final String COLUMN_RESERVATION_TO_DATE = "to_date";
 	private final String COLUMN_RESERVATION_PRICE = "price";
 
 	private final Logger logger;
@@ -59,7 +59,7 @@ public class ReservationRepository implements Repository<Reservation> {
 	public Reservation getById(long id) {
 		Reservation result = null;
 		try (Connection c = establishConnection()) {
-			String q = "SELECT *FROM reservations WHERE id = ?";
+			String q = "SELECT * FROM reservations WHERE id = ?";
 			PreparedStatement statement = c.prepareStatement(q);
 			statement.setLong(1, id);
 
@@ -86,6 +86,25 @@ public class ReservationRepository implements Repository<Reservation> {
 			}
 		} catch (Exception e) {
 			logger.e("getAll", e);
+		}
+
+		return result;
+	}
+
+	public List<Reservation> getAllById(long id) {
+		List<Reservation> result = new ArrayList<>(0);
+		try (Connection c = establishConnection()) {
+			String q = "SELECT * FROM reservations WHERE userID = ?";
+			PreparedStatement statement = c.prepareStatement(q);
+
+			statement.setLong(1, id);
+			ResultSet rs = statement.executeQuery();
+
+			while (rs.next()) {
+				result.add(buildReservation(rs));
+			}
+		} catch (Exception e) {
+			logger.e("getAllById", e);
 		}
 
 		return result;
