@@ -81,6 +81,7 @@
 
 	</div>
 	<script>
+		const minDate = new Date();
 		const picker = new easepick.create({
 			element: "#datepicker",
 			css: [
@@ -91,8 +92,14 @@
 			grid: 2,
 			calendars: 2,
 			inline: true,
+			LockPlugin: {
+				minDate: minDate,
+				selectForward: false,
+				selectBackward: false
+			},
 			plugins: [
-				"RangePlugin"
+				"RangePlugin",
+				"LockPlugin"
 			]
 		})
 

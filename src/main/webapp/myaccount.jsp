@@ -83,10 +83,6 @@
 					<c:out value="${sessionScope.LoggedIn.joinDate}" />
 				</div>
 				<div class="flex flex-row justify-between text-lg font-bold">
-					<p>Password:</p>
-					<c:out value="${sessionScope.LoggedIn.password}" />
-				</div>
-				<div class="flex flex-row justify-between text-lg font-bold">
 					<p>Admin Status:</p>
 					<c:out value="${sessionScope.LoggedIn.admin}" />
 				</div>
