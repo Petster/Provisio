@@ -225,7 +225,7 @@
 										text: result.msg,
 										icon: "success",
 									}).then(() => {
-										$('#modalLayer').toggleClass('hidden').empty();
+										window.location.href = 'myaccount.jsp';
 									})
 								} else {
 									throw new Error(result.msg);
