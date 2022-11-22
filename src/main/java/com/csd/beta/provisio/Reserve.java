@@ -22,6 +22,7 @@ import com.csd.beta.provisio.entity.Location;
 import com.csd.beta.provisio.entity.Reservation;
 import com.csd.beta.provisio.entity.Room;
 import com.csd.beta.provisio.entity.User;
+import com.csd.beta.provisio.exception.ProvisioException;
 import com.csd.beta.provisio.repo.LocationRepository;
 import com.csd.beta.provisio.repo.ReservationRepository;
 import com.csd.beta.provisio.repo.RoomRepository;
@@ -79,13 +80,14 @@ public class Reserve extends HttpServlet {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDateTime now = LocalDateTime.now();
-            Date reserveDate = formatter.parse(dtf.format(now));
-            Date fromDate = formatter.parse(submitData.get("fromDate"));
-            Date toDate = formatter.parse(submitData.get("toDate"));
 
             Reservation newRes = new Reservation(LoggedIn.getId(), Long.parseLong(submitData.get("id")), dtf.format(now), submitData.get("fromDate"), submitData.get("toDate"), Integer.parseInt(submitData.get("price")));
 
             Reservation created = reservationRepository.insertOne(newRes);
+            if (created == null) {
+                throw new ProvisioException("Unable to save the repository");
+            }
+
             myObj.addProperty("success", true);
             myObj.addProperty("msg", "Your reservation was created successfully");
 
