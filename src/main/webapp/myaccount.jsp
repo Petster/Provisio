@@ -59,11 +59,8 @@
 				<div class="border-b-2 color-4-border w-3/5"></div>
 				<div class="flex flex-row p-2 gap-3 justify-center items-center content-center sm:justify flex-wrap sm:flex-nowrap">
 					<div class="flex flex-col">
-						<div id="circle-1">
-							<div class="loader-bg">
-								<div class="font-bold text-lg color-1-text"><c:out value="${sessionScope.LoggedIn.loyaltyPoints}" /> Points</div>
-							</div>
-						</div>
+						<div class="pie" data-pie='{ "lineargradient": ["#ffff00","#ff0000"], "percent": <c:out value="${sessionScope.LoggedIn.loyaltyPoints}" />, "unit": " Points", "fontSize": "0.7rem", "colorSlice": "#000", "colorCircle": "#e6e6e6", "strokeWidth": 15 }'></div>
+
 					</div>
 					<div class="flex flex-col content-center items-center gap-y-10">
 						<h1 id="loyaltyEncouragement" class="text-lg font-bold text-center"></h1>
@@ -112,12 +109,8 @@
 		let lp = <c:out value="${sessionScope.LoggedIn.loyaltyPoints}" />;
 		$(document).ready(function() {
 			let loyaltyEncouragement;
-			new Circlebar({
-				element : "#circle-1",
-				maxValue: lp,
-				triggerPercentage : true,
-				type: "progress"
-			});
+			const circle = new CircularProgressBar("pie");
+			circle.initial();
 
 			switch(true) {
 				case (lp <= 25):
@@ -186,7 +179,10 @@
 			const today = new Date()
 			fromDate = new Date(fromDate);
 			toDate = new Date(toDate);
-			if(today < fromDate) {
+			if(today > fromDate) {
+				status = "Ongoing";
+				statusClass = "hidden";
+			} else if(today <= fromDate) {
 				status = "Upcoming";
 				statusClass = "";
 			} else if (today > toDate) {

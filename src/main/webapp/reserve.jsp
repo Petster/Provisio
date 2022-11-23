@@ -82,7 +82,9 @@
 
 	</div>
 	<script>
-		const minDate = new Date();
+		let minDate = new Date();
+		minDate.setDate(minDate.getDate() + 1);
+
 		const picker = new easepick.create({
 			element: "#datepicker",
 			css: [
