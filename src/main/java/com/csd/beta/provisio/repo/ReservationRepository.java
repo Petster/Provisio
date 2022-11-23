@@ -68,6 +68,7 @@ public class ReservationRepository implements Repository<Reservation> {
 			statement.setLong(1, id);
 
 			ResultSet rs = statement.executeQuery();
+			rs.next();
 			result = buildReservation(rs);
 		} catch (Exception e) {
 			logger.e("getById", e);

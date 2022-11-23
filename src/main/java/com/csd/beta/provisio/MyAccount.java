@@ -7,6 +7,7 @@ import com.csd.beta.provisio.entity.User;
 import com.csd.beta.provisio.repo.LocationRepository;
 import com.csd.beta.provisio.repo.ReservationRepository;
 import com.csd.beta.provisio.repo.RoomRepository;
+import com.csd.beta.provisio.repo.UserRepository;
 import com.csd.beta.provisio.util.Logger;
 import com.google.gson.JsonObject;
 
@@ -23,14 +24,17 @@ public class MyAccount extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final RoomRepository roomRepository;
     private final LocationRepository locationRepository;
+    private final UserRepository userRepository;
     private final ReservationRepository reservationRepository;
     private final Logger logger;
+
 
     public MyAccount() {
         super();
         roomRepository = new RoomRepository();
         locationRepository = new LocationRepository();
         reservationRepository = new ReservationRepository();
+        userRepository = new UserRepository();
         logger = new Logger(MyAccount.class.getSimpleName());
     }
 
@@ -55,13 +59,22 @@ public class MyAccount extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         JsonObject myObj = new JsonObject();
+        User LoggedIn = (User)session.getAttribute("LoggedIn");
 
         if(query.equals("cancelRes")) {
             final Map<String, String> submitData = new HashMap<>();
             submitData.put("reservation", request.getParameter("reservation"));
 
             try {
+                Reservation current = reservationRepository.getById(Long.parseLong(submitData.get("reservation")));
+                Room currentRoom = roomRepository.getById(current.getRoomType());
+
+                int newPoints = LoggedIn.getLoyaltyPoints() - currentRoom.getLoyaltyPoints();
+                LoggedIn.setLoyaltyPoints(newPoints);
+                userRepository.updateById(LoggedIn, LoggedIn.getId());
+
                 reservationRepository.deleteById(Long.parseLong(submitData.get("reservation")));
+
                 myObj.addProperty("success", true);
                 myObj.addProperty("msg", "Your Reservation was cancelled");
             } catch (Exception e) {

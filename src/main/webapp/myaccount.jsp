@@ -54,10 +54,22 @@
 			</div>
 		</div>
 		<div class="flex flex-col w-1/2 gap-4">
-			<div class="flex flex-col color-3 p-4 flex-grow rounded-lg">
+			<div class="flex flex-col color-3 p-4 rounded-lg">
 				<h1 class="text-start text-2xl font-bold  color-4-text baskerville">Loyalty Rewards</h1>
 				<div class="border-b-2 color-4-border w-3/5"></div>
-				<p>Loyalty Points: <c:out value="${sessionScope.LoggedIn.loyaltyPoints}" /></p>
+				<div class="flex flex-row p-2 gap-3 justify-center items-center content-center sm:justify flex-wrap sm:flex-nowrap">
+					<div class="flex flex-col">
+						<div id="circle-1">
+							<div class="loader-bg">
+								<div class="font-bold text-lg color-1-text"><c:out value="${sessionScope.LoggedIn.loyaltyPoints}" /> Points</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex flex-col content-center items-center gap-y-10">
+						<h1 id="loyaltyEncouragement" class="text-lg font-bold text-center"></h1>
+						<i id="reward" class="animate__animated animate__slow animate__delay-2s animate__repeat-3 fa-solid fa-gift fa-4x"></i>
+					</div>
+				</div>
 			</div>
 			<div class="flex flex-col color-3 p-4 flex-grow rounded-lg">
 				<h1 class="text-start text-2xl font-bold  color-4-text baskerville">Account Details</h1>
@@ -97,6 +109,49 @@
 
 	</div>
 	<script>
+		let lp = <c:out value="${sessionScope.LoggedIn.loyaltyPoints}" />;
+		$(document).ready(function() {
+			let loyaltyEncouragement;
+			new Circlebar({
+				element : "#circle-1",
+				maxValue: lp,
+				triggerPercentage : true,
+				type: "progress"
+			});
+
+			switch(true) {
+				case (lp <= 25):
+					loyaltyEncouragement = "Starting strong!"
+					break;
+				case (lp <= 50):
+					loyaltyEncouragement = "Almost there!"
+					break;
+				case (lp <= 75):
+					loyaltyEncouragement = "So close you can almost touch it!"
+					break;
+				case (lp <= 99):
+					loyaltyEncouragement = "The finish line is up ahead!"
+					break;
+				case (lp >= 100):
+					loyaltyEncouragement = "You are ready for a reward!"
+					break;
+			}
+
+			document.getElementById('loyaltyEncouragement').innerHTML = loyaltyEncouragement;
+		})
+
+		if(lp >= 100) {
+			document.getElementById('reward').classList.add('animate__wobble');
+			document.getElementById('reward').classList.add('cursor-pointer');
+			document.getElementById('reward').addEventListener('click', function() {
+				swal({
+					title: "Congratulations!",
+					text: 'You have earned a coupon for 50% off your next reservation!',
+					icon: "success",
+				})
+			})
+		}
+
 		let follow = document.getElementById('mainSection').offsetHeight;
 
 		window.onload = (event) => {
