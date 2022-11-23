@@ -77,42 +77,42 @@
 }
 
 .color-6 {
-	background-color: #E7BCBC;
+	background-color: #E7BCBC!important;
 }
 .color-6-text {
-	color: #E7BCBC;
+	color: #E7BCBC!important;
 }
 .color-6-text-hover:hover {
-	color: #E7BCBC;
+	color: #E7BCBC!important;
 }
 .color-6-hover:hover {
-	background-color:  #E7BCBC;
+	background-color:  #E7BCBC!important;
 }
 
 .color-7 {
-	background-color: #E7D6BC;
+	background-color: #E7D6BC!important;
 }
 .color-7-text {
-	color: #E7D6BC;
+	color: #E7D6BC!important;
 }
 .color-7-text-hover:hover {
-	color: #E7D6BC;
+	color: #E7D6BC!important;
 }
 .color-7-hover:hover {
-	background-color:  #E7D6BC;
+	background-color:  #E7D6BC!important;
 }
 
 .color-8 {
-	background-color: #BCBEE7;
+	background-color: #BCBEE7!important;
 }
 .color-8-text {
-	color: #BCBEE7;
+	color: #BCBEE7!important;
 }
 .color-8-text-hover:hover {
-	color: #BCBEE7;
+	color: #BCBEE7!important;
 }
 .color-8-hover:hover {
-	background-color:  #BCBEE7;
+	background-color:  #BCBEE7!important;
 }
 
 .header-border {

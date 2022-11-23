@@ -4,7 +4,9 @@
 <%@page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:Layout>
+	<t:NormalSection>
 	<div class="p-2 flex-grow flex flex-col">
 		<h1 class="text-2xl">Reservation Lookup</h1>
 	</div>
+	</t:NormalSection>
 </t:Layout>

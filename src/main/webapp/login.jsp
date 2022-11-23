@@ -7,6 +7,7 @@
     <c:redirect url="/index.jsp"/>
 </c:if>
 <t:Layout>
+    <t:CenteredSection>
     <div class="p-2 flex-grow flex flex-col">
         <h1 class="text-2xl text-center color-4-text font-bold p-8">Welcome Back</h1>
         <div class="flex flex-col content-center items-center justify-center color-3 p-8 rounded-lg">
@@ -23,7 +24,7 @@
                     <p class="font-bold text-md"><a class="hover:underline"
                                                     href="forgot.jsp">Forgot your password? </a></p>
                 </div>
-                <div class="flex flex-row justify-between flex-grow">
+                <div class="flex flex-col-reverse md:flex-row gap-4 text-center justify-between flex-grow">
                     <a href="register.jsp"
                        class="color-5 color-2-hover color-2-text color-5-text-hover py-2 px-20 rounded-md font-bold">Register</a>
                     <button id="submitLoginUser"
@@ -55,4 +56,5 @@
 			})
 		});
     </script>
+    </t:CenteredSection>
 </t:Layout>

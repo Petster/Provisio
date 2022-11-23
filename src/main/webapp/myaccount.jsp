@@ -7,9 +7,10 @@
 	<c:redirect url="/index.jsp"/>
 </c:if>
 <t:Layout>
+	<t:CenteredSection>
 	<c:import url="/MyAccount" />
 	<div class="flex flex-row w-full gap-4 p-4">
-		<div id="roomsList" class="flex flex-col color-3 p-2 w-1/2 rounded-lg overflow-y-auto newsbox" style="max-height: 600px">
+		<div id="roomsList" class="flex flex-col color-3 p-2 w-1/2 rounded-lg overflow-y-auto newsbox" style="min-height: 800px">
 			<h1 class="text-start text-2xl font-bold  color-4-text baskerville">Reservations</h1>
 			<div class="border-b-2 color-4-border w-2/4"></div>
 			<div id="roomWrapper" class="flex flex-col gap-3 mt-2">
@@ -59,8 +60,7 @@
 				<div class="border-b-2 color-4-border w-3/5"></div>
 				<div class="flex flex-row p-2 gap-3 justify-center items-center content-center sm:justify flex-wrap sm:flex-nowrap">
 					<div class="flex flex-col">
-						<div class="pie" data-pie='{ "lineargradient": ["#ffff00","#ff0000"], "percent": <c:out value="${sessionScope.LoggedIn.loyaltyPoints}" />, "unit": " Points", "fontSize": "0.7rem", "colorSlice": "#000", "colorCircle": "#e6e6e6", "strokeWidth": 15 }'></div>
-
+						<div class="pie" data-pie='{ "lineargradient": ["#667761","#667761"], "percent": <c:out value='${sessionScope.LoggedIn.loyaltyPoints}' />, "unit": " Points", "fontSize": "0.7rem", "colorSlice": "#DCEED1", "colorCircle": "#DCEED1", "stroke": 5, "rotation": 0 }'></div>
 					</div>
 					<div class="flex flex-col content-center items-center gap-y-10">
 						<h1 id="loyaltyEncouragement" class="text-lg font-bold text-center"></h1>
@@ -113,6 +113,9 @@
 			circle.initial();
 
 			switch(true) {
+				case (lp <= 0):
+					loyaltyEncouragement = "Create a reservation to start earning points!"
+					break;
 				case (lp <= 25):
 					loyaltyEncouragement = "Starting strong!"
 					break;
@@ -128,6 +131,10 @@
 				case (lp >= 100):
 					loyaltyEncouragement = "You are ready for a reward!"
 					break;
+			}
+
+			if(lp >= 100) {
+				$('.pie-unit-1').html('100+ Points')
 			}
 
 			document.getElementById('loyaltyEncouragement').innerHTML = loyaltyEncouragement;
@@ -302,4 +309,5 @@
 			})
 		})
 	</script>
+	</t:CenteredSection>
 </t:Layout>

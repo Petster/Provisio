@@ -7,6 +7,7 @@
   <c:redirect url="/index.jsp"/>
 </c:if>
 <t:Layout>
+  <t:NormalSection>
   <div class="p-2 flex-grow flex flex-col gap-4">
     <div class="flex flex-row p-2 justify-between items-center content-center mx-auto gap-4">
       <button class="flex flex-grow color-4 text-white p-3 rounded-md" id="resetDatabase">Reset Database</button>
@@ -184,4 +185,5 @@
       })
     });
   </script>
+  </t:NormalSection>
 </t:Layout>

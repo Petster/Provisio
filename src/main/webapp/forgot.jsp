@@ -7,6 +7,7 @@
 	<c:redirect url="/index.jsp"/>
 </c:if>
 <t:Layout>
+	<t:CenteredSection>
 	<div class="p-2 flex-grow flex flex-col">
 		<h1 class="text-2xl text-center color-4-text font-bold p-8">Password Reset</h1>
 		<div class="flex flex-col content-center items-center justify-center color-3 p-8 rounded-lg">
@@ -55,4 +56,5 @@
 			})
 	    });
 	</script>
+	</t:CenteredSection>
 </t:Layout>

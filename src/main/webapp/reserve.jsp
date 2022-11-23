@@ -7,6 +7,7 @@
 	<c:redirect url="/login.jsp"/>
 </c:if>
 <t:Layout>
+	<t:NormalSection>
 	<c:import url="/Reserve" />
 	<div class="p-2 flex-grow flex flex-col gap-2">
 		<div class="flex flex-col gap-4 md:flex-row w-full color-3 rounded-lg p-2 content-center items-center justify-between ">
@@ -254,4 +255,5 @@
 			})
 		})
 	</script>
+	</t:NormalSection>
 </t:Layout>

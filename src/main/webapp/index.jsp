@@ -4,6 +4,7 @@
 <%@page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:Layout>
+	<t:NormalSection>
 	<div class="flex-grow flex flex-col gap-4 pb-4">
 		<section class="splide" class="h-96" aria-label="Splide Basic HTML Example">
 		  <div class="splide__track">
@@ -79,4 +80,5 @@
 		
 		window.onresize = calculateHeight;
 	</script>
+	</t:NormalSection>
 </t:Layout>
