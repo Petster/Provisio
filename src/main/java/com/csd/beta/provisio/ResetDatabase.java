@@ -72,6 +72,14 @@ public class ResetDatabase extends HttpServlet {
 							")"
 			);
 			s.addBatch(
+					"CREATE TABLE provisio.locations (" +
+							"id bigint NOT NULL AUTO_INCREMENT," +
+							"address varchar(255)," +
+							"title varchar(255)," +
+							"PRIMARY KEY (id)" +
+							")"
+			);
+			s.addBatch(
 					"CREATE TABLE provisio.rooms (" +
 							"id bigint NOT NULL AUTO_INCREMENT," +
 							"title varchar(255)," +
@@ -84,6 +92,7 @@ public class ResetDatabase extends HttpServlet {
 							"room_highlights varchar(255)," +
 							"image varchar(255)," +
 							"price decimal(10,2)," +
+							"loyalty_points int," +
 							"PRIMARY KEY (id)" +
 							")"
 			);
@@ -92,13 +101,16 @@ public class ResetDatabase extends HttpServlet {
 							"id bigint NOT NULL AUTO_INCREMENT," +
 							"userID bigint NOT NULL," +
 							"room_type bigint NOT NULL," +
+							"location bigint NOT NULL," +
+							"guests bigint NOT NULL," +
 							"reserve_date date," +
 							"from_date date," +
 							"to_date date," +
 							"price decimal(10,2)," +
 							"PRIMARY KEY (id)," +
 							"FOREIGN KEY (userID) references users(id)," +
-							"FOREIGN KEY (room_type) references rooms(id)" +
+							"FOREIGN KEY (room_type) references rooms(id)," +
+							"FOREIGN KEY (location) references locations(id)" +
 							")"
 			);
 			s.addBatch(
@@ -111,14 +123,6 @@ public class ResetDatabase extends HttpServlet {
 							"image varchar(255)," +
 							"PRIMARY KEY (id)," +
 							"FOREIGN KEY (userID) references users(id)" +
-							")"
-			);
-			s.addBatch(
-					"CREATE TABLE provisio.locations (" +
-							"id bigint NOT NULL AUTO_INCREMENT," +
-							"address varchar(255)," +
-							"title varchar(255)," +
-							"PRIMARY KEY (id)" +
 							")"
 			);
 			s.addBatch(

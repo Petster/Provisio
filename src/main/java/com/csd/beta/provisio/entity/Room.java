@@ -12,10 +12,11 @@ public class Room {
     private String room_highlights = "";
     private String image = "";
     private int price;
+    private int loyalty_points;
 
     public Room() {}
 
-    public Room(long id, String title, Boolean breakfast, Boolean wifi, Boolean fitness, Boolean store, Boolean nosmoke, Boolean mobile, String room_highlights, String image, int price) {
+    public Room(long id, String title, Boolean breakfast, Boolean wifi, Boolean fitness, Boolean store, Boolean nosmoke, Boolean mobile, String room_highlights, String image, int price, int loyalty_points) {
         this.id = id;
         this.title = title;
         this.breakfast = breakfast;
@@ -27,9 +28,10 @@ public class Room {
         this.room_highlights = room_highlights;
         this.image = image;
         this.price = price;
+        this.loyalty_points = loyalty_points;
     }
 
-    public Room(String title, Boolean breakfast, Boolean wifi, Boolean fitness, Boolean store, Boolean nosmoke, Boolean mobile, String room_highlights, String image, int price) {
+    public Room(String title, Boolean breakfast, Boolean wifi, Boolean fitness, Boolean store, Boolean nosmoke, Boolean mobile, String room_highlights, String image, int price, int loyalty_points) {
         this.title = title;
         this.breakfast = breakfast;
         this.wifi = wifi;
@@ -40,7 +42,12 @@ public class Room {
         this.room_highlights = room_highlights;
         this.image = image;
         this.price = price;
+        this.loyalty_points = loyalty_points;
     }
+
+    public void setLoyaltyPoints(int newVal) { this.loyalty_points = newVal; }
+
+    public int getLoyaltyPoints() { return this.loyalty_points; }
 
     public void setID(long newID) {
         this.id = newID;

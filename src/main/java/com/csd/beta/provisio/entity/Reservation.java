@@ -7,6 +7,8 @@ public class Reservation {
 	private long _id;
 	private long _userId;
 	private long _roomType;
+	private long _location;
+	private int _guests;
 	private String _reserveDate;
 	private String _fromDate;
 	private String _toDate;
@@ -16,11 +18,13 @@ public class Reservation {
 	public Reservation() {}
 
 	// all arg
-	public Reservation(long id, long userId, long roomType, String reserveDate, String fromDate,
+	public Reservation(long id, long userId, long roomType, long location, int guests, String reserveDate, String fromDate,
 					   String toDate, int price) {
 		_id = id;
 		_userId = userId;
 		_roomType = roomType;
+		_location = location;
+		_guests = guests;
 		_reserveDate = reserveDate;
 		_fromDate = fromDate;
 		_toDate = toDate;
@@ -28,14 +32,24 @@ public class Reservation {
 	}
 
 	// insert one
-	public Reservation(long userId, long roomType, String reserveDate, String fromDate, String toDate, int price) {
+	public Reservation(long userId, long roomType, long location, int guests, String reserveDate, String fromDate, String toDate, int price) {
 		_userId = userId;
 		_roomType = roomType;
+		_location = location;
+		_guests = guests;
 		_reserveDate = reserveDate;
 		_fromDate = fromDate;
 		_toDate = toDate;
 		_price = price;
 	}
+
+	public long getLocation() { return _location; }
+
+	public void setLocation(long location) { _location = location; }
+
+	public int getGuests() { return _guests; }
+
+	public void setGuests(int guests) { _guests = guests; }
 
 	public long getId() {
 		return _id;

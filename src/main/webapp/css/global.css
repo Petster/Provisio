@@ -191,3 +191,37 @@
 	opacity: 1;
 	transition: opacity .3s;
 }
+
+.tinyscroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.tinyscroll::-webkit-scrollbar-button {
+	width: 0px;
+	height: 0px;
+}
+.tinyscroll::-webkit-scrollbar-thumb {
+	background: #545e56;
+	border: 0px none #ffffff;
+	border-radius: 50px;
+}
+.tinyscroll::-webkit-scrollbar-thumb:hover {
+	background: #ffffff;
+}
+.tinyscroll::-webkit-scrollbar-thumb:active {
+	background: #000000;
+}
+.tinyscroll::-webkit-scrollbar-track {
+	background: #e0dfd5;
+	border: 0px none #ffffff;
+	border-radius: 0px;
+}
+.tinyscroll::-webkit-scrollbar-track:hover {
+	background: #5c7f6a;
+}
+.tinyscroll::-webkit-scrollbar-track:active {
+	background: #ffffff;
+}
+.tinyscroll::-webkit-scrollbar-corner {
+	background: transparent;
+}

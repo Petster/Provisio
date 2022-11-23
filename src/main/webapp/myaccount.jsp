@@ -15,36 +15,40 @@
 			<div id="roomWrapper" class="flex flex-col gap-3 mt-2">
 				<c:forEach items="${myReservations}" var="i" >
 					<c:forEach items="${allRooms}" var="k">
-						<c:if test="${i.roomType == k.ID}">
-							<div reservationid="${i.id}" reservedate="${i.reserveDate}" fromDate="${i.fromDate}" toDate="${i.toDate}" roomType="${k.ID}" overallPrice="${i.price}" price="${k.price}" title="${k.title}" image="${k.image}" desc="${k.highlights}" amenities="${k.breakfast},${k.wifi},${k.fitness},${k.store},${k.noSmoke},${k.mobile}" class="roomItem flex flex-row color-2 hover:cursor-pointer w-full rounded-lg">
-								<div class="${k.image} rounded-l-lg w-2/5"></div>
-								<div class="p-2 w-2/3 flex flex-col">
-									<h1 class="text-2xl baskerville color-5-text"><c:out value="${k.title}"></c:out></h1>
-									<h2 class="text-lg baskerville color-5-text mt-4">Amenities</h2>
-									<div class="border-b-2 border-black"></div>
-									<div class="flex flex-row gap-3 mt-1 py-3">
-										<c:if test="${k.breakfast == true}">
-											<i class="fa fa-coffee fa-xl color-5-text"></i>
-										</c:if>
-										<c:if test="${k.wifi == true}">
-											<i class="fa fa-wifi fa-xl color-5-text"></i>
-										</c:if>
-										<c:if test="${k.fitness == true}">
-											<i class="fa fa-dumbbell fa-xl color-5-text"></i>
-										</c:if>
-										<c:if test="${k.store == true}">
-											<i class="fa fa-store fa-xl color-5-text"></i>
-										</c:if>
-										<c:if test="${k.noSmoke == true}">
-											<i class="fa fa-ban-smoking fa-xl color-5-text"></i>
-										</c:if>
-										<c:if test="${k.mobile == true}">
-											<i class="fa fa-mobile fa-xl color-5-text"></i>
-										</c:if>
+						<c:forEach items="${allLocations}" var="n">
+							<c:if test="${i.roomType == k.ID}">
+								<c:if test="${i.location == n.ID}">
+									<div earned="${k.loyaltyPoints}" guests="${i.guests}" location="${n.title}" address="${n.address}" reservationid="${i.id}" reservedate="${i.reserveDate}" fromDate="${i.fromDate}" toDate="${i.toDate}" roomType="${k.ID}" overallPrice="${i.price}" price="${k.price}" title="${k.title}" image="${k.image}" desc="${k.highlights}" amenities="${k.breakfast},${k.wifi},${k.fitness},${k.store},${k.noSmoke},${k.mobile}" class="roomItem flex flex-row color-2 hover:cursor-pointer w-full rounded-lg">
+										<div class="${k.image} rounded-l-lg w-2/5"></div>
+										<div class="p-2 w-2/3 flex flex-col">
+											<h1 class="text-2xl baskerville color-5-text"><c:out value="${k.title}"></c:out></h1>
+											<h2 class="text-lg baskerville color-5-text mt-4">Amenities</h2>
+											<div class="border-b-2 border-black"></div>
+											<div class="flex flex-row flex-wrap gap-y-8 gap-3 mt-1 py-3">
+												<c:if test="${k.breakfast == true}">
+													<i class="fa fa-coffee fa-xl color-5-text"></i>
+												</c:if>
+												<c:if test="${k.wifi == true}">
+													<i class="fa fa-wifi fa-xl color-5-text"></i>
+												</c:if>
+												<c:if test="${k.fitness == true}">
+													<i class="fa fa-dumbbell fa-xl color-5-text"></i>
+												</c:if>
+												<c:if test="${k.store == true}">
+													<i class="fa fa-store fa-xl color-5-text"></i>
+												</c:if>
+												<c:if test="${k.noSmoke == true}">
+													<i class="fa fa-ban-smoking fa-xl color-5-text"></i>
+												</c:if>
+												<c:if test="${k.mobile == true}">
+													<i class="fa fa-mobile fa-xl color-5-text"></i>
+												</c:if>
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
-						</c:if>
+								</c:if>
+							</c:if>
+						</c:forEach>
 					</c:forEach>
 				</c:forEach>
 			</div>
@@ -117,6 +121,10 @@
 			let reservationid = $(this).attr('reservationid');
 			let overallPrice = $(this).attr('overallPrice');
 			let amenities = $(this).attr('amenities').split(',');
+			let location = $(this).attr('location');
+			let address = $(this).attr('address');
+			let guests = $(this).attr('guests');
+			let earned = $(this).attr('earned');
 			let status;
 			let statusClass;
 
@@ -134,7 +142,7 @@
 
 			$('#modalLayer').toggleClass('hidden');
 			$('#modalLayer').append(`
-				<div class="roomItem h-96 flex flex-row color-3 w-3/4 rounded-lg">
+				<div class="roomItem sm:h-96 flex flex-row color-3 sm:w-3/4 rounded-lg">
 					<div class="`+image+` rounded-l-lg w-2/5"></div>
 					<div class="p-2 w-2/3 flex flex-col">
 						<div class="flex flex-row justify-between content-center items-center">
@@ -145,18 +153,24 @@
 						</div>
 						<h2 class="text-lg baskerville color-5-text mt-4">Amenities</h2>
 						<div class="border-b-2 border-black"></div>
-						<div id="amenities" class="flex flex-row gap-3 mt-1 py-3">
+						<div id="amenities" class="flex flex-row flex-wrap gap-3 mt-1 py-3">
 						</div>
 						<h2 class="text-lg baskerville color-5-text">Room Highlights</h2>
 						<div class="border-b-2 border-black"></div>
-						<div class="flex flex-row justify-between p-2 mt-4 ml-4">
+						<div class="flex flex-row justify-between p-2 m-2 h-24 overflow-auto tinyscroll">
 							`+desc+`
 						</div>
-						<div class="flex flex-col p-2 mt-4 ml-4">
-							<p>Check-In</p>
-							`+fromDate+`
-							<p>Check-Out</p>
-							`+toDate+`
+						<h2 class="text-lg baskerville color-5-text">Reservation Details</h2>
+						<div class="border-b-2 border-black"></div>
+						<div class="flex flex-col p-2 m-2 overflow-auto tinyscroll">
+							<p class="text-md font-bold">`+guests+` Guests</p>
+							<p class="text-md font-bold">`+earned+` Loyalty Points Earned</p>
+							<p class="text-md font-bold">`+location+`</p>
+							<p>&ensp;`+address+`</p>
+							<p class="text-md font-bold">Check-In</p>
+							<p>&ensp;`+fromDate+`</p>
+							<p class="text-md font-bold">Check-Out</p>
+							<p>&ensp;`+toDate+`</p>
 						</div>
 						<div class="flex flex-col flex-grow"></div>
 						<div class="flex flex-row justify-between content-center items-center">

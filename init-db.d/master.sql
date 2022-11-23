@@ -17,6 +17,14 @@ CREATE TABLE users (
                        UNIQUE (email)
 );
 
+DROP TABLE IF EXISTS locations;
+CREATE TABLE locations (
+                       id bigint NOT NULL AUTO_INCREMENT,
+                       address varchar(255),
+                       title varchar(255),
+                       PRIMARY KEY (id)
+);
+
 DROP TABLE IF EXISTS rooms;
 CREATE TABLE rooms (
                        id bigint NOT NULL AUTO_INCREMENT,
@@ -29,7 +37,8 @@ CREATE TABLE rooms (
                        mobile boolean,
                        room_highlights varchar(255),
                        image varchar(255),
-                       price int,
+                       price decimal(10,2),
+                       loyalty_points int,
                        PRIMARY KEY (id)
 );
 
@@ -38,13 +47,16 @@ CREATE TABLE reservations (
                               id bigint NOT NULL AUTO_INCREMENT,
                               userID bigint NOT NULL,
                               room_type bigint NOT NULL,
+                              location bigint NOT NULL,
+                              guests bigint NOT NULL,
                               reserve_date date,
                               from_date date,
                               to_date date,
                               price decimal(10,2),
                               PRIMARY KEY (id),
                               FOREIGN KEY (userID) references users(id),
-                              FOREIGN KEY (room_type) references rooms(id)
+                              FOREIGN KEY (room_type) references rooms(id),
+                              FOREIGN KEY (location) references locations(id)
 );
 
 DROP TABLE IF EXISTS news;
@@ -57,14 +69,6 @@ CREATE TABLE news (
                       image varchar(255),
                       PRIMARY KEY (id),
                       FOREIGN KEY (userID) references users(id)
-);
-
-DROP TABLE IF EXISTS locations;
-CREATE TABLE locations (
-                           id bigint NOT NULL AUTO_INCREMENT,
-                           address varchar(255),
-                           title varchar(255),
-                           PRIMARY KEY (id)
 );
 
 DROP TABLE IF EXISTS emails;

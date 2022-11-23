@@ -76,6 +76,10 @@
             <input type="text" id="roomPrice" name="roomPrice" />
           </div>
           <div class="flex flex-col">
+            <label for="roomLoyalty">Loyalty Point Value</label>
+            <input type="text" id="roomLoyalty" name="roomLoyalty" />
+          </div>
+          <div class="flex flex-col">
             <label for="roomImg">Image (Class)</label>
             <input type="text" id="roomImg" name="roomImg" />
           </div>

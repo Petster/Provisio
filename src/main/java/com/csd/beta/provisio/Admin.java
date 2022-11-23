@@ -66,6 +66,7 @@ public class Admin extends HttpServlet {
             int roomPrice = Integer.parseInt(request.getParameter("roomPrice"));
             submitData.add(request.getParameter("roomImg"));
             submitData.add(request.getParameter("roomDesc"));
+            submitData.add(request.getParameter("roomLoyalty"));
 
             ArrayList<String> ammenities = new ArrayList<>();
             ammenities.add(request.getParameter("breakfast"));
@@ -84,7 +85,7 @@ public class Admin extends HttpServlet {
                 }
             }
 
-            Room newRoom = new Room(submitData.get(0), finalAmmen.get(0),  finalAmmen.get(1),  finalAmmen.get(2),  finalAmmen.get(3),  finalAmmen.get(4),  finalAmmen.get(5),  submitData.get(2),  submitData.get(1), roomPrice);
+            Room newRoom = new Room(submitData.get(0), finalAmmen.get(0),  finalAmmen.get(1),  finalAmmen.get(2),  finalAmmen.get(3),  finalAmmen.get(4),  finalAmmen.get(5),  submitData.get(2),  submitData.get(1), roomPrice, Integer.parseInt(submitData.get(3)));
 
             RoomRepository RR = new RoomRepository();
 

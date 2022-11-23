@@ -26,6 +26,7 @@ import com.csd.beta.provisio.exception.ProvisioException;
 import com.csd.beta.provisio.repo.LocationRepository;
 import com.csd.beta.provisio.repo.ReservationRepository;
 import com.csd.beta.provisio.repo.RoomRepository;
+import com.csd.beta.provisio.repo.UserRepository;
 import com.csd.beta.provisio.util.Logger;
 import com.google.gson.JsonObject;
 
@@ -35,6 +36,7 @@ public class Reserve extends HttpServlet {
     private final RoomRepository roomRepository;
     private final LocationRepository locationRepository;
     private final ReservationRepository reservationRepository;
+    private final UserRepository userRepository;
     private final Logger logger;
 
     /**
@@ -45,6 +47,7 @@ public class Reserve extends HttpServlet {
         roomRepository = new RoomRepository();
         locationRepository = new LocationRepository();
         reservationRepository = new ReservationRepository();
+        userRepository = new UserRepository();
         logger = new Logger(Reserve.class.getSimpleName());
     }
 
@@ -72,16 +75,24 @@ public class Reserve extends HttpServlet {
 
         try {
             User LoggedIn = (User)session.getAttribute("LoggedIn");
+            submitData.put("location", request.getParameter("location"));
+            submitData.put("guests", request.getParameter("guests"));
             submitData.put("price", request.getParameter("price"));
             submitData.put("fromDate", request.getParameter("fromDate"));
             submitData.put("toDate", request.getParameter("toDate"));
             submitData.put("id", request.getParameter("roomType"));
+            submitData.put("loyalty", request.getParameter("loyalty"));
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDateTime now = LocalDateTime.now();
 
-            Reservation newRes = new Reservation(LoggedIn.getId(), Long.parseLong(submitData.get("id")), dtf.format(now), submitData.get("fromDate"), submitData.get("toDate"), Integer.parseInt(submitData.get("price")));
+            Reservation newRes = new Reservation(LoggedIn.getId(), Long.parseLong(submitData.get("id")), Long.parseLong(submitData.get("location")), Integer.parseInt(submitData.get("guests")), dtf.format(now), submitData.get("fromDate"), submitData.get("toDate"), Integer.parseInt(submitData.get("price")));
+
+            int previousPoints = LoggedIn.getLoyaltyPoints();
+            int newPoints = previousPoints + Integer.parseInt(submitData.get("loyalty"));
+            LoggedIn.setLoyaltyPoints(newPoints);
+            userRepository.updateById(LoggedIn, LoggedIn.getId());
 
             Reservation created = reservationRepository.insertOne(newRes);
             if (created == null) {

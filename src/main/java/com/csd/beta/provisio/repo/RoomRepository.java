@@ -26,6 +26,7 @@ public class RoomRepository implements Repository<Room> {
     public final String COLUMN_ROOM_ROOM_HIGHLIGHTS = "room_highlights";
     public final String COLUMN_ROOM_IMAGE = "image";
     public final String COLUMN_ROOM_PRICE = "price";
+    public final String COLUMN_ROOM_LOYALTY_POINTS = "loyalty_points";
 
     private final Logger logger;
 
@@ -38,8 +39,8 @@ public class RoomRepository implements Repository<Room> {
         try (Connection c = establishConnection()) {
             //@formatter:off
             String insert = "INSERT INTO rooms (" +
-                    "title, breakfast, wifi, fitness, store, nosmoke, mobile, room_highlights, image, price" +
-                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                    "title, breakfast, wifi, fitness, store, nosmoke, mobile, room_highlights, image, price, loyalty_points" +
+                    ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
             //@formatter:on
             PreparedStatement statement = c.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, room.getTitle());
@@ -52,6 +53,7 @@ public class RoomRepository implements Repository<Room> {
             statement.setString(8, room.getHighlights());
             statement.setString(9, room.getImage());
             statement.setInt(10, room.getPrice());
+            statement.setInt(11, room.getLoyaltyPoints());
             statement.executeUpdate();
 
             return getRoomWithGeneratedId(c, statement, room);
@@ -104,6 +106,7 @@ public class RoomRepository implements Repository<Room> {
                 room.setRoomHighlights(rs.getString(COLUMN_ROOM_ROOM_HIGHLIGHTS));
                 room.setImage(rs.getString(COLUMN_ROOM_IMAGE));
                 room.setPrice(rs.getInt(COLUMN_ROOM_PRICE));
+                room.setLoyaltyPoints(rs.getInt(COLUMN_ROOM_LOYALTY_POINTS));
                 result.add(room);
             }
         } catch (Exception e) {
@@ -117,7 +120,7 @@ public class RoomRepository implements Repository<Room> {
         try (Connection c = establishConnection()) {
             //@formatter:off
             String q = "UPDATE rooms SET title = ?, breakfast = ?, wifi = ?, fitness = ?, store = ?, nosmoke = ?, mobile = ?," +
-                    "room_highlights = ?, image = ?, price = ? WHERE id = ?";
+                    "room_highlights = ?, image = ?, price = ?, loyalty_points = ? WHERE id = ?";
             //@formatter:on
             PreparedStatement statement = c.prepareStatement(q);
             statement.setString(1, room.getTitle());
@@ -130,6 +133,8 @@ public class RoomRepository implements Repository<Room> {
             statement.setString(8, room.getHighlights());
             statement.setString(9, room.getImage());
             statement.setInt(10, room.getPrice());
+            statement.setInt(11, room.getLoyaltyPoints());
+            statement.setLong(12, id);
 
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected == -1) {
@@ -185,6 +190,7 @@ public class RoomRepository implements Repository<Room> {
             result.setRoomHighlights(rs.getString(COLUMN_ROOM_ROOM_HIGHLIGHTS));
             result.setImage(rs.getString(COLUMN_ROOM_IMAGE));
             result.setPrice(rs.getInt(COLUMN_ROOM_PRICE));
+            result.setLoyaltyPoints(rs.getInt(COLUMN_ROOM_LOYALTY_POINTS));
         }
         return result;
     }

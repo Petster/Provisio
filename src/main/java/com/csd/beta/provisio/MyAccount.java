@@ -40,10 +40,12 @@ public class MyAccount extends HttpServlet {
         User LoggedIn = (User)session.getAttribute("LoggedIn");
         List<Reservation> myReservations = reservationRepository.getAllById(LoggedIn.getId());
         List<Room> allRooms = roomRepository.getAll();
+        List<Location> allLocations = locationRepository.getAll();
         Collections.reverse(myReservations);
 
         request.setAttribute("myReservations", myReservations);
         request.setAttribute("allRooms", allRooms);
+        request.setAttribute("allLocations", allLocations);
     }
 
     @Override

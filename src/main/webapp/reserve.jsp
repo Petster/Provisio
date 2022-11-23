@@ -15,7 +15,8 @@
 			</div>
 			<div class="flex flex-col gap-2">
 				<div class="flex flex-row">
-					<select class="flex flex-grow color-4 color-2-text p-1 text-md border-2 color-1-border" type="text" name="location">
+					<select class="flex flex-grow color-4 color-2-text p-1 text-md border-2 color-1-border" type="text" id="location" name="location">
+						<option value="0">Select a Location</option>
 						<c:forEach items="${allLocations}" var="i" varStatus="loop">
 							<option value="${loop.getCount()}"><c:out value="${i.address}"></c:out></option>
 						</c:forEach>
@@ -41,7 +42,7 @@
 		</div>
 		<div id="roomWrapper" class="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3 ">
 			<c:forEach items="${allRooms}" var="i" >
-				<div roomType="${i.ID}" price="${i.price}" title="${i.title}" image="${i.image}" desc="${i.highlights}" amenities="${i.breakfast},${i.wifi},${i.fitness},${i.store},${i.noSmoke},${i.mobile}" class="roomItem flex flex-row color-3 color-2-hover hover:cursor-pointer w-full rounded-lg">
+				<div loyalty="${i.loyaltyPoints}" roomType="${i.ID}" price="${i.price}" title="${i.title}" image="${i.image}" desc="${i.highlights}" amenities="${i.breakfast},${i.wifi},${i.fitness},${i.store},${i.noSmoke},${i.mobile}" class="roomItem flex flex-row color-3 color-2-hover hover:cursor-pointer w-full rounded-lg">
 					<div class="${i.image} rounded-l-lg w-2/5"></div>
 					<div class="p-2 w-2/3 flex flex-col">
 						<h1 class="text-2xl baskerville color-5-text"><c:out value="${i.title}"></c:out></h1>
@@ -135,11 +136,14 @@
 			let desc = $(this).attr('desc');
 			let image = $(this).attr('image');
 			let id = $(this).attr('roomType');
+			let loyalty = $(this).attr('loyalty');
 			let amenities = $(this).attr('amenities').split(',');
+			let location = document.getElementById('location').value;
+			let guests = document.getElementById('guests').value;
 
 			$('#modalLayer').toggleClass('hidden');
 			$('#modalLayer').append(`
-				<div class="roomItem h-96 flex flex-row color-3 w-3/4 rounded-lg">
+				<div class="roomItem sm:h-96 flex flex-row color-3 sm:w-3/4 rounded-lg">
 					<div class="`+image+` rounded-l-lg w-2/5"></div>
 					<div class="p-2 w-2/3 flex flex-col">
 						<div class="flex flex-row justify-between content-center items-center">
@@ -157,7 +161,7 @@
 						</div>
 						<div class="flex flex-col flex-grow"></div>
 						<div class="flex flex-row justify-between content-center items-center">
-							<p class="text-2xl font-bold color-4-text">$`+price+`/night</p>
+							<p class="text-2xl font-bold color-4-text">$`+price+`/night <span class="text-sm">`+loyalty+` Loyalty Points</span></p>
 							<button id="confirmPurchase" class="font-bold color-4 color-2-text color-2-hover color-4-text-hover rounded-md p-2">Reserve Room</button>
 						</div>
 					</div>
@@ -205,11 +209,15 @@
 
 					let diftime = d2.getTime() - d1.getTime();
 					let difday = diftime / (1000 * 3600 * 24);
-					let finalData = "roomType=" + id + "&fromDate=" + datepicker[0] + "&toDate=" + datepicker[1] + "&price=" + difday*price;
+					let finalData = "roomType=" + id + "&fromDate=" + datepicker[0] + "&toDate=" + datepicker[1] + "&price=" + difday*price + "&location=" + location + "&guests=" + guests + "&loyalty=" + loyalty;
+
+					if(location == 0) {
+						throw new Error("Please select a Location");
+					}
 
 					swal({
 						title: "Reservation Confirmation",
-						text: "Confirm Reservation for " + title + " for $" + difday*price + " From: " + datepicker[0] + " To: " + datepicker[1],
+						text: "Confirm Reservation for " + title + " for $" + difday*price + " From: " + datepicker[0] + " To: " + datepicker[1] + " For " + guests + " Guests?",
 						icon: "info",
 						buttons: ['Cancel', 'Confirm Reservation']
 					}).then((result) => {

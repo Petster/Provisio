@@ -111,6 +111,7 @@ public class UserRepository implements Repository<User> {
 			statement.setInt(6, user.getLoyaltyPoints());
 			statement.setBoolean(7, user.isAdmin());
 			statement.setString(8, user.getPassword());
+			statement.setLong(9, id);
 
 			int rowsAffected = statement.executeUpdate();
 			if (rowsAffected == -1) {
