@@ -57,4 +57,10 @@ public class ProvisioException extends Exception {
 			super(message);
 		}
 	}
+
+	public static class EmailRepositoryException extends ProvisioException {
+		public EmailRepositoryException(String message) {
+			super(message);
+		}
+	}
 }

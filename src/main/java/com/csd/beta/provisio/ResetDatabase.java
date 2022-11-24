@@ -128,16 +128,14 @@ public class ResetDatabase extends HttpServlet {
 			s.addBatch(
 					"CREATE TABLE provisio.emails (" +
 							"id bigint NOT NULL AUTO_INCREMENT," +
-							"userID bigint," +
 							"date_sent date," +
 							"reservation_num bigint," +
 							"user_email varchar(255)," +
 							"user_firstname varchar(255)," +
+							"user_phone varchar(20)," +
 							"subject varchar(255)," +
 							"message varchar(1000)," +
-							"PRIMARY KEY (id)," +
-							"FOREIGN KEY (userID) references users(id)," +
-							"FOREIGN KEY (reservation_num) references reservations(id)" +
+							"PRIMARY KEY (id)" +
 							")"
 			);
 			s.executeBatch();

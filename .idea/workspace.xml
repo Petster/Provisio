@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9945abb7-e946-426f-b663-6aae951cf238" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/ContactUs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/entity/Email.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/EmailRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/emailValidation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Header.tag" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Header.tag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init-db.d/master.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init-db.d/master.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/init-db.d/seed.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init-db.d/seed.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/DummyData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/DummyData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/ResetDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/ResetDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/exception/ProvisioException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/exception/ProvisioException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/contact.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/myaccount.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myaccount.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/formValidation.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/formValidation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +34,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -110,6 +118,7 @@
       <workItem from="1668977337149" duration="1949000" />
       <workItem from="1669215716515" duration="17631000" />
       <workItem from="1669251948475" duration="2686000" />
+      <workItem from="1669313351879" duration="5516000" />
     </task>
     <servers />
   </component>
@@ -137,6 +146,12 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/repo/UserRepository.java</url>
           <line>201</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/webapp/js/formValidation.js</url>
+          <line>11</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

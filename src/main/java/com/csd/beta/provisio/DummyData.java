@@ -65,9 +65,9 @@ public class DummyData extends HttpServlet {
 			s.addBatch("INSERT INTO provisio.reservations (id, userID, room_type, reserve_date, from_date, to_date, price, location, guests) values (1, 1, 1, '2022-11-07', '2022-12-01', '2022-12-08', 2099.93, 1, 2)");
 			s.addBatch("INSERT INTO provisio.reservations (id, userID, room_type, reserve_date, from_date, to_date, price, location, guests) values (2, 2, 2, '2022-10-07', '2022-11-01', '2022-11-08', 3499., 1, 2)");
 			s.addBatch("INSERT INTO provisio.reservations (id, userID, room_type, reserve_date, from_date, to_date, price, location, guests) values (3, 3, 3, '2022-11-07', '2023-01-01', '2023-01-08', 2799.93, 3, 4)");
-			s.addBatch("INSERT INTO provisio.emails (userID, date_sent, reservation_num, user_email, user_firstname, subject, message) values (1, '2022-11-07', 1, 'jason@test.com', 'Jason', 'Test', 'Test')");
-			s.addBatch("INSERT INTO provisio.emails (userID, date_sent, reservation_num, user_email, user_firstname, subject, message) values (2, '2022-12-07', 1, 'john@test.com', 'John', 'Test', 'Test')");
-			s.addBatch("INSERT INTO provisio.emails (userID, date_sent, reservation_num, user_email, user_firstname, subject, message) values (3, '2022-05-07', 1, 'mishaela@test.com', 'Mishaela', 'Test', 'Test')");
+			s.addBatch("INSERT INTO provisio.emails (id, date_sent, reservation_num, user_email, user_firstname, user_phone, subject, message) values (1, '2022-11-07', 1, 'jason@test.com', 'Jason', '1231231234', 'Test', 'Test')");
+			s.addBatch("INSERT INTO provisio.emails (id, date_sent, reservation_num, user_email, user_firstname, user_phone, subject, message) values (2, '2022-12-07', 1, 'john@test.com', 'John', '1231231234', 'Test', 'Test')");
+			s.addBatch("INSERT INTO provisio.emails (id, date_sent, reservation_num, user_email, user_firstname, user_phone, subject, message) values (3, '2022-05-07', 1, 'mishaela@test.com', 'Mishaela', '1231231234', 'Test', 'Test')");
 			s.executeBatch();
 			worked = true;
 		} catch (SQLException e) {

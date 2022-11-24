@@ -9,30 +9,34 @@
 		<div class="flex flex-col color-3 p-2 md:w-2/3 rounded-lg">
 			<h1 class="baskerville font-bold color-1-text text-2xl text-center">Send us a message!</h1>
 			<div class="border-b-2 color-1-border w-2/3 mx-auto"></div>
-			<form class="flex flex-col gap-2 p-4">
+			<form id="emailForm" class="flex flex-col gap-2 p-4">
 				<div class="flex flex-col">
 					<label for="name">Your Name</label>
-					<input class="rounded-md p-2 text-md" type="text" id="name" placeholder="Enter your name" value="${sessionScope.LoggedIn.firstname} ${sessionScope.LoggedIn.lastname}">
+					<input class="rounded-md p-2 text-md" type="text" id="name" name="name" placeholder="Enter your name" value="${sessionScope.LoggedIn.firstname}">
 				</div>
 				<div class="flex flex-col">
 					<label for="email">Your Email</label>
-					<input class="rounded-md p-2 text-md" type="email" id="email" placeholder="Enter your email" value="${sessionScope.LoggedIn.email}">
+					<input class="rounded-md p-2 text-md" type="email" id="email" name="email" placeholder="Enter your email" value="${sessionScope.LoggedIn.email}">
 				</div>
 				<div class="flex flex-col">
 					<label for="phone">Your Phone Number</label>
-					<input class="rounded-md p-2 text-md" type="phone" id="phone" placeholder="Enter your phone number" value="${sessionScope.LoggedIn.phone}">
+					<input class="rounded-md p-2 text-md" type="phone" id="phone" name="phone" placeholder="Enter your phone number" value="${sessionScope.LoggedIn.phone}">
 				</div>
 				<div class="flex flex-col">
 					<label for="resnum">Your Reservation Number</label>
-					<input class="rounded-md p-2 text-md" type="text" id="resnum" placeholder="Enter your reservation number" value="">
+					<input value="0" class="rounded-md p-2 text-md" type="text" id="resnum" name="resnum" placeholder="Enter your reservation number">
+				</div>
+				<div class="flex flex-col">
+					<label for="subject">Subject</label>
+					<input class="rounded-md p-2 text-md" type="text" id="subject" name="subject" placeholder="Enter your question/problem">
 				</div>
 				<div class="flex flex-col">
 					<label for="message">Your Message</label>
-					<textarea class="resize-none rounded-md p-2 text-md" rows="6" id="message" placeholder="Enter your message"></textarea>
+					<textarea class="resize-none rounded-md p-2 text-md" rows="6" id="message" name="message" placeholder="Enter your message"></textarea>
 				</div>
 				<div class="flex flex-row justify-center items-center content-center gap-4">
 					<button class="color-6 flex-grow font-bold text-sm py-1 px-4 rounded-full" type="reset">Reset Form</button>
-					<button class="color-2 flex-grow font-bold text-sm py-1 px-4 rounded-full" type="button">Send Email</button>
+					<button id="submitEmail" class="color-2 flex-grow font-bold text-sm py-1 px-4 rounded-full" type="button">Send Email</button>
 				</div>
 			</form>
 		</div>
@@ -80,5 +84,6 @@
 
 		window.initMap = initMap;
 	</script>
+		<script src="js/emailValidation.js"></script>
 	</t:CenteredSection>
 </t:Layout>

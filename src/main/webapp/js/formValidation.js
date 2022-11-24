@@ -20,6 +20,7 @@ form.addEventListener('keyup', function(e) {
 			validInputs[i] = false;
 		} else {
 			validInputs[i] = true;
+			formInputs[i].style.border = 'none';
 		}
 	}
 })
