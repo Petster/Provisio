@@ -221,6 +221,7 @@
 						<h2 class="text-lg baskerville color-5-text">Reservation Details</h2>
 						<div class="border-b-2 border-black"></div>
 						<div class="flex flex-col p-2 m-2 overflow-auto tinyscroll">
+							<p class="text-md font-bold">Reservation Number: `+reservationid+`</p>
 							<p class="text-md font-bold">`+guests+` Guests</p>
 							<p class="text-md font-bold">`+earned+` Loyalty Points Earned</p>
 							<p class="text-md font-bold">`+location+`</p>
