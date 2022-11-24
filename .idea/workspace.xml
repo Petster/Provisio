@@ -5,23 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9945abb7-e946-426f-b663-6aae951cf238" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/CenteredSection.tag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Head.tag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/NormalSection.tag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Layout.tag" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Layout.tag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/about.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/about.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Header.tag" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/Header.tag" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/contact.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/contact.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/forgot.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/forgot.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/lookup.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/lookup.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/myaccount.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myaccount.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/reserve.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reserve.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +108,8 @@
       <workItem from="1668538102543" duration="3168000" />
       <workItem from="1668928954300" duration="647000" />
       <workItem from="1668977337149" duration="1949000" />
-      <workItem from="1669215716515" duration="17563000" />
+      <workItem from="1669215716515" duration="17631000" />
+      <workItem from="1669251948475" duration="2686000" />
     </task>
     <servers />
   </component>

@@ -5,8 +5,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:Layout>
 	<t:CenteredSection>
-	<div class="flex flex-row w-full gap-4 p-4">
-		<div class="flex flex-col color-3 p-2 w-2/3 rounded-lg">
+	<div class="flex flex-col md:flex-row w-full gap-4 p-4">
+		<div class="flex flex-col color-3 p-2 md:w-2/3 rounded-lg">
 			<h1 class="baskerville font-bold color-1-text text-2xl text-center">Send us a message!</h1>
 			<div class="border-b-2 color-1-border w-2/3 mx-auto"></div>
 			<form class="flex flex-col gap-2 p-4">
@@ -36,7 +36,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="flex flex-col color-3 p-2 w-2/3 rounded-lg">
+		<div class="flex flex-col color-3 p-2 md:w-2/3 rounded-lg">
 			<h1 class="baskerville font-bold color-1-text text-2xl text-center">Connect with us!</h1>
 			<div class="border-b-2 color-1-border w-2/3 mx-auto"></div>
 			<div class="flex flex-row gap-4 content-center items-center justify-center">
@@ -55,7 +55,7 @@
 					<div class="flex flex-col w-1/3">
 						<h1 class="baskerville font-bold color-1-text text-md text-center">Business Hours</h1>
 						<div class="border-b-2 color-1-border w-2/3 mx-auto"></div>
-						<p>Mauris consequat sodales dui, a vestibulum ex lobortis non. Curabitur vel suscipit nisi, at hendrerit massa. Praesent id arcu est. Etiam egestas tempus odio.</p>
+						<p class="text-center">Mauris consequat sodales dui, a vestibulum ex lobortis non. Curabitur vel suscipit nisi, at hendrerit massa. Praesent id arcu est. Etiam egestas tempus odio.</p>
 					</div>
 				</div>
 			</div>

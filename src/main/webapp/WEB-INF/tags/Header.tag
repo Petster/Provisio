@@ -82,6 +82,12 @@
     </div>
     <div id="userDropdown" class="md:hidden absolute z-50 w-full color-2 hidden flex flex-col ">
         <c:if test="${sessionScope.LoggedIn != null}">
+            <c:if test="${sessionScope.LoggedIn.admin != false}">
+                <a href="admin.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
+                    <div><i class="fa-solid fa-cog fa-2x"></i></div>
+                    <div><p>Admin</p></div>
+                </a>
+            </c:if>
             <a href="myaccount.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
                 <div><i class="fa-solid fa-users fa-2x"></i></div>
                 <div><p>My Account</p></div>

@@ -9,8 +9,8 @@
 <t:Layout>
 	<t:CenteredSection>
 	<c:import url="/MyAccount" />
-	<div class="flex flex-row w-full gap-4 p-4">
-		<div id="roomsList" class="flex flex-col color-3 p-2 w-1/2 rounded-lg overflow-y-auto newsbox" style="min-height: 800px">
+	<div class="flex flex-col-reverse md:flex-row w-full gap-4 p-4">
+		<div id="roomsList" class="flex flex-col flex-grow color-3 p-2 md:w-1/2 rounded-lg overflow-y-auto newsbox" style="min-height: 800px">
 			<h1 class="text-start text-2xl font-bold  color-4-text baskerville">Reservations</h1>
 			<div class="border-b-2 color-4-border w-2/4"></div>
 			<div id="roomWrapper" class="flex flex-col gap-3 mt-2">
@@ -54,7 +54,7 @@
 				</c:forEach>
 			</div>
 		</div>
-		<div class="flex flex-col w-1/2 gap-4">
+		<div class="flex flex-col md:w-1/2 gap-4">
 			<div class="flex flex-col color-3 p-4 rounded-lg">
 				<h1 class="text-start text-2xl font-bold  color-4-text baskerville">Loyalty Rewards</h1>
 				<div class="border-b-2 color-4-border w-3/5"></div>
