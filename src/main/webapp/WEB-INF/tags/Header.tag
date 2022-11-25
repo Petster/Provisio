@@ -9,7 +9,9 @@
         <div class="flex flex-row gap-4">
             <a href="about.jsp">About Us</a>
             <a href="reserve.jsp">Reserve</a>
-            <a href="lookup.jsp">Reservation Lookup</a>
+            <c:if test="${sessionScope.LoggedIn == null}">
+                <a href="lookup.jsp">Reservation Lookup</a>
+            </c:if>
             <a href="contact.jsp">Contact Us</a>
         </div>
         <div class="flex flex-row gap-2">
@@ -71,10 +73,12 @@
             <div><i class="fa-solid fa-calendar fa-2x"></i></div>
             <div><p>Reserve</p></div>
         </a>
-        <a href="lookup.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
-            <div><i class="fa-solid fa-magnifying-glass fa-2x"></i></div>
-            <div><p>Reservation Lookup</p></div>
-        </a>
+        <c:if test="${sessionScope.LoggedIn == null}">
+            <a href="lookup.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
+                <div><i class="fa-solid fa-magnifying-glass fa-2x"></i></div>
+                <div><p>Reservation Lookup</p></div>
+            </a>
+        </c:if>
         <a href="contact.jsp" class="h-14 p-2 flex flex-row content-center items-center justify-between header-border color-3-hover cursor-pointer hover:text-zinc-700">
             <div><i class="fa-solid fa-phone fa-2x"></i></div>
             <div><p>Contact Us</p></div>
