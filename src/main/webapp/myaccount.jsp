@@ -3,6 +3,9 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${sessionScope.LoggedIn == null}">
+	<c:redirect url="/login.jsp?next=myaccount"/>
+</c:if>
 <c:if test="${sessionScope.LoggedIn.email == null}">
 	<c:redirect url="/index.jsp"/>
 </c:if>

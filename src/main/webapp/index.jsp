@@ -38,7 +38,7 @@
 							<p><c:out value="${i.publishDate}" /></p>
 						</div>
 						<div>
-							<img src="${i.image}" alt="Provisio Logo" class="h-64 w-full" />
+							<img src="${i.image}" alt="${i.title} Image" class="h-64 w-full" />
 						</div>
 						<div>
 							<p><c:out value="${i.description}" /></p>

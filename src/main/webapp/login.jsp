@@ -12,6 +12,7 @@
         <h1 class="text-2xl text-center color-4-text font-bold p-8">Welcome Back</h1>
         <div class="flex flex-col content-center items-center justify-center color-3 p-8 rounded-lg">
             <form id="loginForm" class="flex flex-col flex-grow w-5/6 gap-4">
+                <input type="hidden" class="hidden" value="" name="next" id="next" />
                 <div class="flex flex-col flex-grow">
                     <label for="username">User Email</label>
                     <input class="w-full rounded-md text-md p-2" name="username" type="text" id="username"
@@ -36,7 +37,16 @@
         </div>
     </div>
     <script>
+        let next;
+        $(document).ready(function() {
+            next = querystring("next");
+            if(next[0] !== '')  {
+                let nextIn = document.getElementById('next');
+                nextIn.value = next[0];
+            }
+        })
 		$('#submitLoginUser').click(function (e) {
+            console.log($('#loginForm').serialize())
 			e.preventDefault();
 			$.ajax({
 				type: 'post',
@@ -45,7 +55,11 @@
 			}).then((result) => {
 				console.log(result);
 				if (result.success) {
-					window.location.href = 'index.jsp';
+					if(next[0] !== '') {
+                        window.location.href = next[0] + `.jsp`;
+                    } else {
+                        window.location.href = 'index.jsp';
+                    }
 				} else {
 					swal({
 						title: "Error",
