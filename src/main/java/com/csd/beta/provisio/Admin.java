@@ -1,12 +1,8 @@
 package com.csd.beta.provisio;
 
-import com.csd.beta.provisio.entity.Location;
-import com.csd.beta.provisio.entity.News;
-import com.csd.beta.provisio.entity.Room;
-import com.csd.beta.provisio.entity.User;
-import com.csd.beta.provisio.repo.LocationRepository;
-import com.csd.beta.provisio.repo.NewsRepository;
-import com.csd.beta.provisio.repo.RoomRepository;
+import com.csd.beta.provisio.entity.*;
+import com.csd.beta.provisio.repo.*;
+import com.csd.beta.provisio.util.Logger;
 import com.google.gson.JsonObject;
 
 import javax.servlet.*;
@@ -17,12 +13,34 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "Admin", value = "/Admin")
 public class Admin extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+    private final RoomRepository roomRepository;
+    private final LocationRepository locationRepository;
+    private final UserRepository userRepository;
+    private final NewsRepository newsRepository;
+    private final ReservationRepository reservationRepository;
+    private final Logger logger;
+
+    public Admin() {
+        super();
+        roomRepository = new RoomRepository();
+        locationRepository = new LocationRepository();
+        reservationRepository = new ReservationRepository();
+        userRepository = new UserRepository();
+        newsRepository = new NewsRepository();
+        logger = new Logger(MyAccount.class.getSimpleName());
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        List<User> allUsers = userRepository.getAll();
+        List<Reservation> allReservations = reservationRepository.getAll();
+        request.setAttribute("allReservations", allReservations);
+        request.setAttribute("allUsers", allUsers);
     }
 
     @Override
@@ -33,6 +51,7 @@ public class Admin extends HttpServlet {
         response.setContentType("application/json");
         JsonObject myObj = new JsonObject();
         ArrayList<String> submitData = new ArrayList<String>();
+        User LoggedIn = (User)session.getAttribute("LoggedIn");
 
         switch(query) {
             case "cLocation":
@@ -40,10 +59,9 @@ public class Admin extends HttpServlet {
                 submitData.add(request.getParameter("locationTitle"));
                 submitData.add(request.getParameter("locationAddress"));
                 Location newLocation = new Location(submitData.get(1), submitData.get(0));
-                LocationRepository LR = new LocationRepository();
 
                 try {
-                    LR.insertOne(newLocation);
+                    locationRepository.insertOne(newLocation);
                     myObj.addProperty("success", true);
                     myObj.addProperty("msg", "Location Added");
 
@@ -59,7 +77,6 @@ public class Admin extends HttpServlet {
                 break;
             case "cNews":
                 //System.out.println("news");
-                User LoggedIn = (User)session.getAttribute("LoggedIn");
                 submitData.add(request.getParameter("newsTitle"));
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDateTime now = LocalDateTime.now();
@@ -69,10 +86,8 @@ public class Admin extends HttpServlet {
 
                 News newNews = new News(LoggedIn.getId(), submitData.get(0), submitData.get(1), submitData.get(2), submitData.get(3));
 
-                NewsRepository NR = new NewsRepository();
-
                 try {
-                    NR.insertOne(newNews);
+                    newsRepository.insertOne(newNews);
                     myObj.addProperty("success", true);
                     myObj.addProperty("msg", "News Article Added");
 
@@ -113,10 +128,8 @@ public class Admin extends HttpServlet {
 
                 Room newRoom = new Room(submitData.get(0), finalAmmen.get(0),  finalAmmen.get(1),  finalAmmen.get(2),  finalAmmen.get(3),  finalAmmen.get(4),  finalAmmen.get(5),  submitData.get(2),  submitData.get(1), roomPrice, Integer.parseInt(submitData.get(3)));
 
-                RoomRepository RR = new RoomRepository();
-
                 try {
-                    RR.insertOne(newRoom);
+                    roomRepository.insertOne(newRoom);
                     myObj.addProperty("success", true);
                     myObj.addProperty("msg", "Room Added");
 
@@ -126,6 +139,30 @@ public class Admin extends HttpServlet {
                     myObj.addProperty("success", false);
                     myObj.addProperty("msg", e.getMessage());
 
+                    out.println(myObj);
+                    out.close();
+                }
+                break;
+            case "dRes":
+                long delID = Long.parseLong(request.getParameter("delid"));
+                try {
+                    Reservation current = reservationRepository.getById(delID);
+                    Room currentRoom = roomRepository.getById(current.getRoomType());
+
+                    int newPoints = LoggedIn.getLoyaltyPoints() - currentRoom.getLoyaltyPoints();
+                    LoggedIn.setLoyaltyPoints(newPoints);
+                    userRepository.updateById(LoggedIn, LoggedIn.getId());
+
+                    reservationRepository.deleteById(delID);
+
+                    myObj.addProperty("success", true);
+                    myObj.addProperty("msg", "Reservation was cancelled");
+                    out.println(myObj);
+                    out.close();
+                } catch (Exception e) {
+                    logger.e("doPost", e);
+                    myObj.addProperty("success", false);
+                    myObj.addProperty("msg", e.getMessage());
                     out.println(myObj);
                     out.close();
                 }

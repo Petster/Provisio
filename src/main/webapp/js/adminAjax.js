@@ -109,3 +109,34 @@ $('#dummyData').click(function(e) {
         }
     })
 });
+
+let deleteRes = document.querySelectorAll('.deleteRes');
+
+deleteRes.forEach((el) => {
+    el.addEventListener('click', function() {
+        let delID = el.getAttribute('name').replace(/\D/g,'');
+        let finalData = "delid="+delID;
+        $.ajax({
+            type: 'post',
+            url: 'Admin?dRes',
+            data: finalData
+        }).then((result) => {
+            console.log(result);
+            if(result.success) {
+                swal({
+                    title: "Success",
+                    text: result.msg,
+                    icon: "success",
+                }).then(() => {
+                    window.location.reload();
+                });
+            } else {
+                swal({
+                    title: "Error",
+                    text: result.msg,
+                    icon: "error",
+                });
+            }
+        })
+    })
+})

@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9945abb7-e946-426f-b663-6aae951cf238" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/adminAjax.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/jquery.collapse.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/csd/beta/provisio/Admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/global.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/global.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/global.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/global.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/adminAjax.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/adminAjax.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/myaccount.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/myaccount.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/reserve.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/reserve.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +117,7 @@
       <workItem from="1669215716515" duration="17631000" />
       <workItem from="1669251948475" duration="2686000" />
       <workItem from="1669313351879" duration="6499000" />
-      <workItem from="1669332509921" duration="5080000" />
+      <workItem from="1669332509921" duration="7657000" />
     </task>
     <servers />
   </component>

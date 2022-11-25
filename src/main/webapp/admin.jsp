@@ -11,164 +11,249 @@
 </c:if>
 <t:Layout>
   <t:NormalSection>
-  <div class="p-2 flex-grow flex flex-col gap-4 accordion" id="accordionExample">
+    <c:import url="/Admin" />
+    <div class="p-2 flex-grow flex flex-col gap-4 accordion" id="accordionExample">
 
-    <div class="accordion-item" bis_skin_checked="1">
-      <h2 class="accordion-header" id="head1">
-        <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-          Database Tools
-        </button>
-      </h2>
-      <div id="collapse1" class="accordion-collapse collapse " aria-labelledby="head1"
-           data-bs-parent="#accordionExample" bis_skin_checked="1">
-        <div class="accordion-body" bis_skin_checked="1">
-          <div class="flex flex-row gap-4 p-4">
-            <button class="flex flex-grow color-4 text-white p-3 rounded-md" id="resetDatabase">Reset Database</button>
-            <button class="flex flex-grow color-4 text-white p-3 rounded-md" id="dummyData">Create Dummy Data</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item" bis_skin_checked="21">
-      <h2 class="accordion-header" id="head2">
-        <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-          News Article
-        </button>
-      </h2>
-      <div id="collapse2" class="accordion-collapse collapse " aria-labelledby="head2"
-           data-bs-parent="#accordionExample" bis_skin_checked="1">
-        <div class="accordion-body" bis_skin_checked="1">
-          <div class="flex flex-col flex-grow color-3 p-2 rounded-lg">
-            <div class="flex flex-col content-center items-center justify-center ">
-              <h1 class="text-xl">Create News Article</h1>
-              <form id="createNews" class="flex flex-col flex-grow w-5/6 gap-4">
-                <div class="flex flex-col">
-                  <label for="newsTitle">Title</label>
-                  <input type="text" id="newsTitle" name="newsTitle" />
-                </div>
-                <div class="flex flex-col">
-                  <label for="newsImg">Image Link</label>
-                  <input type="text" id="newsImg" name="newsImg" />
-                </div>
-                <div class="flex flex-col">
-                  <label for="newsDesc">Description</label>
-                  <input type="text" id="newsDesc" name="newsDesc" />
-                </div>
-                <div class="flex flex-col">
-                  <button id="newsCreate" name="newsCreate" type="button" class="color-4 rounded-lg text-white font-bold p-2">Create News</button>
-                </div>
-              </form>
+      <div class="accordion-item" bis_skin_checked="1">
+        <h2 class="accordion-header" id="head1">
+          <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+            Database Tools
+          </button>
+        </h2>
+        <div id="collapse1" class="accordion-collapse collapse " aria-labelledby="head1"
+             data-bs-parent="#accordionExample" bis_skin_checked="1">
+          <div class="accordion-body" bis_skin_checked="1">
+            <div class="flex flex-row gap-4 p-4">
+              <button class="flex flex-grow color-4 text-white p-3 rounded-md" id="resetDatabase">Reset Database</button>
+              <button class="flex flex-grow color-4 text-white p-3 rounded-md" id="dummyData">Create Dummy Data</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="accordion-item" bis_skin_checked="3">
-      <h2 class="accordion-header" id="head3">
-        <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-          Room Creation
-        </button>
-      </h2>
-      <div id="collapse3" class="accordion-collapse collapse " aria-labelledby="head3"
-           data-bs-parent="#accordionExample" bis_skin_checked="1">
-        <div class="accordion-body" bis_skin_checked="1">
-          <div class="flex flex-col flex-grow color-3 p-2 rounded-lg">
-            <div class="flex flex-col content-center items-center justify-center ">
-              <h1 class="text-xl">Create Room</h1>
-              <form id="createRoom" class="flex flex-col flex-grow w-5/6 gap-4">
-                <div class="flex flex-col">
-                  <label for="roomTitle">Title</label>
-                  <input type="text" id="roomTitle" name="roomTitle" />
-                </div>
-                <div class="flex flex-col">
-                  <label for="newsDesc">Ammenities</label>
-                  <div class="flex flex-row gap-4">
-                    <div class="flex flex-col">
-                      <label for="breakfast">Breakfast</label>
-                      <input type="checkbox" name="breakfast" id="breakfast" />
-                    </div>
-                    <div class="flex flex-col">
-                      <label for="wifi">Wi-Fi</label>
-                      <input type="checkbox" name="wifi" id="wifi" />
-                    </div>
-                    <div class="flex flex-col">
-                      <label for="fitness">Fitness</label>
-                      <input type="checkbox" name="fitness" id="fitness" />
-                    </div>
-                    <div class="flex flex-col">
-                      <label for="store">Store</label>
-                      <input type="checkbox" name="store" id="store" />
-                    </div>
-                    <div class="flex flex-col">
-                      <label for="nosmoke">No Smoking</label>
-                      <input type="checkbox" name="nosmoke" id="nosmoke" />
-                    </div>
-                    <div class="flex flex-col">
-                      <label for="mobile">Mobile</label>
-                      <input type="checkbox" name="mobile" id="mobile" />
+      <div class="accordion-item" bis_skin_checked="21">
+        <h2 class="accordion-header" id="head2">
+          <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+            News Article
+          </button>
+        </h2>
+        <div id="collapse2" class="accordion-collapse collapse " aria-labelledby="head2"
+             data-bs-parent="#accordionExample" bis_skin_checked="1">
+          <div class="accordion-body" bis_skin_checked="1">
+            <div class="flex flex-col flex-grow color-3 p-2 rounded-lg">
+              <div class="flex flex-col content-center items-center justify-center ">
+                <h1 class="text-xl">Create News Article</h1>
+                <form id="createNews" class="flex flex-col flex-grow w-5/6 gap-4">
+                  <div class="flex flex-col">
+                    <label for="newsTitle">Title</label>
+                    <input type="text" id="newsTitle" name="newsTitle" />
+                  </div>
+                  <div class="flex flex-col">
+                    <label for="newsImg">Image Link</label>
+                    <input type="text" id="newsImg" name="newsImg" />
+                  </div>
+                  <div class="flex flex-col">
+                    <label for="newsDesc">Description</label>
+                    <input type="text" id="newsDesc" name="newsDesc" />
+                  </div>
+                  <div class="flex flex-col">
+                    <button id="newsCreate" name="newsCreate" type="button" class="color-4 rounded-lg text-white font-bold p-2">Create News</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item" bis_skin_checked="3">
+        <h2 class="accordion-header" id="head3">
+          <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+            Room Creation
+          </button>
+        </h2>
+        <div id="collapse3" class="accordion-collapse collapse " aria-labelledby="head3"
+             data-bs-parent="#accordionExample" bis_skin_checked="1">
+          <div class="accordion-body" bis_skin_checked="1">
+            <div class="flex flex-col flex-grow color-3 p-2 rounded-lg">
+              <div class="flex flex-col content-center items-center justify-center ">
+                <h1 class="text-xl">Create Room</h1>
+                <form id="createRoom" class="flex flex-col flex-grow w-5/6 gap-4">
+                  <div class="flex flex-col">
+                    <label for="roomTitle">Title</label>
+                    <input type="text" id="roomTitle" name="roomTitle" />
+                  </div>
+                  <div class="flex flex-col">
+                    <label for="newsDesc">Ammenities</label>
+                    <div class="flex flex-row gap-4">
+                      <div class="flex flex-col">
+                        <label for="breakfast">Breakfast</label>
+                        <input type="checkbox" name="breakfast" id="breakfast" />
+                      </div>
+                      <div class="flex flex-col">
+                        <label for="wifi">Wi-Fi</label>
+                        <input type="checkbox" name="wifi" id="wifi" />
+                      </div>
+                      <div class="flex flex-col">
+                        <label for="fitness">Fitness</label>
+                        <input type="checkbox" name="fitness" id="fitness" />
+                      </div>
+                      <div class="flex flex-col">
+                        <label for="store">Store</label>
+                        <input type="checkbox" name="store" id="store" />
+                      </div>
+                      <div class="flex flex-col">
+                        <label for="nosmoke">No Smoking</label>
+                        <input type="checkbox" name="nosmoke" id="nosmoke" />
+                      </div>
+                      <div class="flex flex-col">
+                        <label for="mobile">Mobile</label>
+                        <input type="checkbox" name="mobile" id="mobile" />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="flex flex-col">
-                  <label for="roomPrice">Price</label>
-                  <input type="text" id="roomPrice" name="roomPrice" />
-                </div>
-                <div class="flex flex-col">
-                  <label for="roomLoyalty">Loyalty Point Value</label>
-                  <input type="text" id="roomLoyalty" name="roomLoyalty" />
-                </div>
-                <div class="flex flex-col">
-                  <label for="roomImg">Image (Class)</label>
-                  <input type="text" id="roomImg" name="roomImg" />
-                </div>
-                <div class="flex flex-col">
-                  <label for="roomDesc">Room Highlights</label>
-                  <textarea id="roomDesc" name="roomDesc"></textarea>
-                </div>
-                <div class="flex flex-col">
-                  <button id="roomCreate" name="roomCreate" type="button" class="color-4 rounded-lg text-white font-bold p-2">Create Room</button>
-                </div>
-              </form>
+                  <div class="flex flex-col">
+                    <label for="roomPrice">Price</label>
+                    <input type="text" id="roomPrice" name="roomPrice" />
+                  </div>
+                  <div class="flex flex-col">
+                    <label for="roomLoyalty">Loyalty Point Value</label>
+                    <input type="text" id="roomLoyalty" name="roomLoyalty" />
+                  </div>
+                  <div class="flex flex-col">
+                    <label for="roomImg">Image (Class)</label>
+                    <input type="text" id="roomImg" name="roomImg" />
+                  </div>
+                  <div class="flex flex-col">
+                    <label for="roomDesc">Room Highlights</label>
+                    <textarea id="roomDesc" name="roomDesc"></textarea>
+                  </div>
+                  <div class="flex flex-col">
+                    <button id="roomCreate" name="roomCreate" type="button" class="color-4 rounded-lg text-white font-bold p-2">Create Room</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="accordion-item" bis_skin_checked="4">
-      <h2 class="accordion-header" id="head4">
-        <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-          Location Creation
-        </button>
-      </h2>
-      <div id="collapse4" class="accordion-collapse collapse " aria-labelledby="head4"
-           data-bs-parent="#accordionExample" bis_skin_checked="1">
-        <div class="accordion-body" bis_skin_checked="1">
-          <div class="flex flex-col flex-grow color-3 p-2 rounded-lg">
-            <div class="flex flex-col content-center items-center justify-center ">
-              <h1 class="text-xl">Create Location</h1>
-              <form id="createLocation" class="flex flex-col flex-grow w-5/6 gap-4">
-                <div class="flex flex-col">
-                  <label for="locationTitle">Title</label>
-                  <input type="text" id="locationTitle" name="locationTitle" />
-                </div>
-                <div class="flex flex-col">
-                  <label for="locationAddress">Address</label>
-                  <input type="text" id="locationAddress" name="locationAddress" placeholder="Street, City, State" />
-                </div>
-                <div class="flex flex-col">
-                  <button id="locationCreate" name="locationCreate" type="button" class="color-4 rounded-lg text-white font-bold p-2">Create Location</button>
-                </div>
-              </form>
+      <div class="accordion-item" bis_skin_checked="4">
+        <h2 class="accordion-header" id="head4">
+          <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+            Location Creation
+          </button>
+        </h2>
+        <div id="collapse4" class="accordion-collapse collapse " aria-labelledby="head4"
+             data-bs-parent="#accordionExample" bis_skin_checked="1">
+          <div class="accordion-body" bis_skin_checked="1">
+            <div class="flex flex-col flex-grow color-3 p-2 rounded-lg">
+              <div class="flex flex-col content-center items-center justify-center ">
+                <h1 class="text-xl">Create Location</h1>
+                <form id="createLocation" class="flex flex-col flex-grow w-5/6 gap-4">
+                  <div class="flex flex-col">
+                    <label for="locationTitle">Title</label>
+                    <input type="text" id="locationTitle" name="locationTitle" />
+                  </div>
+                  <div class="flex flex-col">
+                    <label for="locationAddress">Address</label>
+                    <input type="text" id="locationAddress" name="locationAddress" placeholder="Street, City, State" />
+                  </div>
+                  <div class="flex flex-col">
+                    <button id="locationCreate" name="locationCreate" type="button" class="color-4 rounded-lg text-white font-bold p-2">Create Location</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-  </div>
+      <div class="accordion-item" bis_skin_checked="5">
+        <h2 class="accordion-header" id="head5">
+          <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+            List of Users
+          </button>
+        </h2>
+        <div id="collapse5" class="accordion-collapse collapse " aria-labelledby="head5"
+             data-bs-parent="#accordionExample" bis_skin_checked="1">
+          <div class="accordion-body" bis_skin_checked="1">
+            <div class="flex flex-col flex-grow color-3 p-2 rounded-lg">
+              <table>
+                <thead class="color-2">
+                <th class="border border-black">ID</th>
+                <th class="border border-black">First Name</th>
+                <th class="border border-black">Last Name</th>
+                <th class="border border-black">Email</th>
+                <th class="border border-black">Phone</th>
+                <th class="border border-black">Join Date</th>
+                <th class="border border-black">Loyalty Points</th>
+                </thead>
+                <tbody>
+                <c:forEach items="${allUsers}" var="i">
+                  <tr class="text-center">
+                    <td class="border border-black">${i.id}</td>
+                    <td class="border border-black">${i.firstname}</td>
+                    <td class="border border-black">${i.lastname}</td>
+                    <td class="border border-black">${i.email}</td>
+                    <td class="border border-black">${i.phone}</td>
+                    <td class="border border-black">${i.joinDate}</td>
+                    <td class="border border-black">${i.loyaltyPoints}</td>
+                  </tr>
+                </c:forEach>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item" bis_skin_checked="6">
+        <h2 class="accordion-header" id="head6">
+          <button class="accordion-button bg-green-800 text-white hover:text-black hover:bg-green-600 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+            List of Reservations
+          </button>
+        </h2>
+        <div id="collapse6" class="accordion-collapse collapse " aria-labelledby="head6"
+             data-bs-parent="#accordionExample" bis_skin_checked="1">
+          <div class="accordion-body" bis_skin_checked="1">
+            <div class="flex flex-col flex-grow color-3 p-2 rounded-lg">
+              <table>
+                <thead class="color-2">
+                <th class="border border-black">User ID</th>
+                <th class="border border-black">Room ID</th>
+                <th class="border border-black">Location ID</th>
+                <th class="border border-black">Guests</th>
+                <th class="border border-black">Reserve Date</th>
+                <th class="border border-black">From Date</th>
+                <th class="border border-black">To Date</th>
+                <th class="border border-black">Total Paid</th>
+                <th class="border border-black">Action</th>
+                </thead>
+                <tbody>
+                <c:forEach items="${allReservations}" var="k">
+                  <tr class="text-center">
+                    <td class="border border-black">${k.userId}</td>
+                    <td class="border border-black">${k.roomType}</td>
+                    <td class="border border-black">${k.location}</td>
+                    <td class="border border-black">${k.guests}</td>
+                    <td class="border border-black">${k.reserveDate}</td>
+                    <td class="border border-black">${k.fromDate}</td>
+                    <td class="border border-black">${k.toDate}</td>
+                    <td class="border border-black">${k.price}</td>
+                    <td class="border border-black">
+                      <button name="Delete${k.id}" type="button" class="deleteRes p-2 color-6 rounded-md">Cancel Reservation</button>
+                    </td>
+                  </tr>
+                </c:forEach>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="js/adminAjax.js"></script>
   </t:NormalSection>

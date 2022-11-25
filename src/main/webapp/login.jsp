@@ -55,7 +55,7 @@
 			}).then((result) => {
 				console.log(result);
 				if (result.success) {
-					if(next[0] !== '') {
+					if(next[0] !== undefined) {
                         window.location.href = next[0] + `.jsp`;
                     } else {
                         window.location.href = 'index.jsp';
