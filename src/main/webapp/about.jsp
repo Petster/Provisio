@@ -22,7 +22,7 @@
 						when you need to book a place to stay.</p>
 				</div>
 				<div class="flex justify-center items-center content-center">
-					<img src="./images/about1.jpg" alt="Double Bed" class="p-3" />
+					<img src="./images/about1.jpg" alt="Hotel 1" class="p-3" />
 				</div>
 			</div>
 
@@ -31,7 +31,7 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices neque ornare aenean euismod elementum nisi quis eleifend quam. Accumsan sit amet nulla facilisi mue id diam vel quam. Quisque sagittis purus sit amet volutpat consequat mauris nunc congue. Ac turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat. Pharetra vel turpis nunc eget. Sollicitudin aliquam ultrices sagittis orci a.</p>
 				</div>
 				<div class="flex justify-center items-center content-center">
-					<img src="./images/about2.jpg" alt="King Bed" class="p-3" />
+					<img src="./images/about2.jpg" alt="Hotel 2" class="p-3" />
 				</div>
 			</div>
 
@@ -40,8 +40,26 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices neque ornare aenean euismod elementum nisi quis eleifend quam. Accumsan sit amet nulla facilisi morbi tempus iaculis urna id. Lorem ipsum dolor sit amet consectetur adipiscing. Mi ipsum faucibus vitae aliqungue. Ac turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat. Pharetra vel turpis nunc eget. Sollicitudin aliquam ultrices sagittis orci a.</p>
 				</div>
 				<div class="flex justify-center items-center content-center">
-					<img src="./images/about3.jpeg" alt="Single Bed" class="p-3" />
+					<img src="./images/about3.jpeg" alt="Hotel 3" class="p-3" />
 				</div>
+			</div>
+			<div class="flex flex-row p-2 color-5 h-44 content-center items-center justify-center">
+				<div class="md:w-2/3 w-64">
+					<h1 class="text-3xl baskerville text-white md:ml-4 text-center md:text-start">Our Locations</h1>
+					<div class="border-b-4 border-white md:w-2/3 w-64"></div>
+				</div>
+				<div class="md:w-1/4"></div>
+			</div>
+			<div class="grid gap-4 grid-cols-3 p-2">
+				<c:forEach items="${allLocations}" var="i">
+					<div class="h-96 rounded-3xl color-3 flex flex-col">
+						<div class="h-2/5 locationdefault rounded-t-3xl"></div>
+						<div class="flex flex-col gap-2 p-2">
+							<h1 class="text-center text-2xl baskerville">${i.title}</h1>
+							<p class="text-center text-lg baskerville">${i.address}</p>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</t:NormalSection>

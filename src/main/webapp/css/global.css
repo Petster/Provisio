@@ -151,6 +151,13 @@
 	background-position: center;
 }
 
+.locationdefault {
+	background-image: url('../images/locationdefault.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
 .kingbed {
 	background-image: url('../images/kingbed.jpg');
 	background-repeat: no-repeat;
