@@ -43,16 +43,6 @@
 					<img src="./images/singlebed.jpg" alt="Single Bed" class="p-3" />
 				</div>
 			</div>
-			<div class="flex flex-row p-2 color-5 h-44 content-center items-center justify-center">
-				<div class="md:w-2/3 w-64">
-					<h1 class="text-3xl baskerville text-white md:ml-4 text-center md:text-start">Our Locations</h1>
-					<div class="border-b-4 border-white md:w-2/3 w-64"></div>
-				</div>
-				<div class="md:w-1/4"></div>
-			</div>
-			<div class="grid gap-4 grid-cols-3">
-				
-			</div>
 		</div>
 	</t:NormalSection>
 </t:Layout>
