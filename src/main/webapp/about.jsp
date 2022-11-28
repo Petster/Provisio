@@ -14,33 +14,33 @@
 				</div>
 				<div class="md:w-1/4"></div>
 			</div>
-			<div class="flex flex-col-reverse lg:flex-row w-full p-2">
-				<div class="flex justify-center items-center content-center lg:w-1/2 xl:w-auto">
+			<div class="flex flex-col-reverse lg:flex-row w-full p-2 justify-center">
+				<div class="flex justify-center items-center content-center lg:w-1/2">
 					<p>Here at Provisio, we strive to make sure that as a customer, you get the absolute best prices
 						we can offer so your traveling needs can always be met. Whether it be for vacations, business trips, or special events,
 						we do our utmost to make sure you get the best experience you can afford. We offer deals for locations across the globe, so that no matter where you need to go, you'll always be able to come to us
 						when you need to book a place to stay.</p>
 				</div>
-				<div class="flex flex-grow justify-center items-center content-center lg:w-1/2 xl:w-auto">
-					<img src="./images/doublebed.jpg" alt="Double Bed" class="p-3" />
+				<div class="flex justify-center items-center content-center">
+					<img src="./images/about1.jpg" alt="Double Bed" class="p-3" />
 				</div>
 			</div>
 
-			<div class="flex flex-col-reverse lg:flex-row-reverse w-full p-2">
-				<div class="flex justify-center items-center content-center lg:w-1/2 xl:w-auto">
+			<div class="flex flex-col-reverse lg:flex-row-reverse w-full p-2 justify-center">
+				<div class="flex justify-center items-center content-center lg:w-1/2">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices neque ornare aenean euismod elementum nisi quis eleifend quam. Accumsan sit amet nulla facilisi mue id diam vel quam. Quisque sagittis purus sit amet volutpat consequat mauris nunc congue. Ac turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat. Pharetra vel turpis nunc eget. Sollicitudin aliquam ultrices sagittis orci a.</p>
 				</div>
-				<div class="flex flex-grow justify-center items-center content-center lg:w-1/2 xl:w-auto">
-					<img src="./images/kingbed.jpg" alt="King Bed" class="p-3" />
+				<div class="flex justify-center items-center content-center">
+					<img src="./images/about2.jpg" alt="King Bed" class="p-3" />
 				</div>
 			</div>
 
-			<div class="flex flex-col-reverse lg:flex-row w-full p-2">
-				<div class="flex justify-center items-center content-center lg:w-1/2 xl:w-auto">
+			<div class="flex flex-col-reverse lg:flex-row w-full p-2 justify-center">
+				<div class="flex justify-center items-center content-center lg:w-1/2">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultrices neque ornare aenean euismod elementum nisi quis eleifend quam. Accumsan sit amet nulla facilisi morbi tempus iaculis urna id. Lorem ipsum dolor sit amet consectetur adipiscing. Mi ipsum faucibus vitae aliqungue. Ac turpis egestas maecenas pharetra convallis posuere morbi leo. Faucibus pulvinar elementum integer enim neque volutpat. Pharetra vel turpis nunc eget. Sollicitudin aliquam ultrices sagittis orci a.</p>
 				</div>
-				<div class="flex flex-grow justify-center items-center content-center lg:w-1/2 xl:w-auto">
-					<img src="./images/singlebed.jpg" alt="Single Bed" class="p-3" />
+				<div class="flex justify-center items-center content-center">
+					<img src="./images/about3.jpeg" alt="Single Bed" class="p-3" />
 				</div>
 			</div>
 		</div>
