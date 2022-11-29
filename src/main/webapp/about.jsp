@@ -4,10 +4,10 @@
 <%@page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:Layout>
-	<t:NormalSection>
+	<t:FullSection>
 		<c:import url="/About" />
 		<div class="flex-grow flex flex-col">
-			<div class="flex flex-row p-2 color-5 h-44 content-center items-center justify-center">
+			<div class="flex flex-row p-2 color-5 h-64 content-center items-center justify-center">
 				<div class="md:w-2/3 w-64">
 					<h1 class="text-3xl baskerville text-white md:ml-4 text-center md:text-start">About Us</h1>
 					<div class="border-b-4 border-white md:w-2/3 w-64"></div>
@@ -43,16 +43,16 @@
 					<img src="./images/about3.jpeg" alt="Hotel 3" class="p-3" />
 				</div>
 			</div>
-			<div class="flex flex-row p-2 color-5 h-44 content-center items-center justify-center">
+			<div class="flex flex-row p-2 color-5 h-64 content-center items-center justify-center">
 				<div class="md:w-2/3 w-64">
 					<h1 class="text-3xl baskerville text-white md:ml-4 text-center md:text-start">Our Locations</h1>
 					<div class="border-b-4 border-white md:w-2/3 w-64"></div>
 				</div>
 				<div class="md:w-1/4"></div>
 			</div>
-			<div class="grid gap-4 grid-cols-3 p-2">
+			<div class="grid gap-4 grid-cols-3 p-2 flex flex-grow justify-center md:w-4/5 md:mx-auto">
 				<c:forEach items="${allLocations}" var="i">
-					<div class="h-96 rounded-3xl color-3 flex flex-col">
+					<div class="h-96 w-72 rounded-3xl color-3 flex flex-col flex-grow mx-auto xl:w-full">
 						<div class="h-2/5 locationdefault rounded-t-3xl"></div>
 						<div class="flex flex-col gap-2 p-2">
 							<h1 class="text-center text-2xl baskerville">${i.title}</h1>
@@ -62,5 +62,5 @@
 				</c:forEach>
 			</div>
 		</div>
-	</t:NormalSection>
+	</t:FullSection>
 </t:Layout>
