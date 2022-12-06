@@ -50,7 +50,7 @@
 				</div>
 				<div class="md:w-1/4"></div>
 			</div>
-			<div class="grid gap-4 grid-cols-3 p-2 flex flex-grow justify-center md:w-4/5 md:mx-auto">
+			<div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-2 flex flex-grow justify-center md:w-4/5 md:mx-auto">
 				<c:forEach items="${allLocations}" var="i">
 					<div class="h-96 w-72 rounded-3xl color-3 flex flex-col flex-grow mx-auto xl:w-full">
 						<div class="h-2/5 locationdefault rounded-t-3xl"></div>
