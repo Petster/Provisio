@@ -52,8 +52,8 @@
 			</div>
 			<div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-2 flex flex-grow justify-center md:w-4/5 md:mx-auto">
 				<c:forEach items="${allLocations}" var="i">
-					<div class="h-96 w-72 rounded-3xl color-3 flex flex-col flex-grow mx-auto xl:w-full">
-						<div class="h-2/5 locationdefault rounded-t-3xl"></div>
+					<div class="h-96 w-full md:w-72 rounded-3xl color-3 flex flex-col flex-grow mx-auto xl:w-full">
+						<div class="locationdefault rounded-t-3xl"></div>
 						<div class="flex flex-col gap-2 p-2">
 							<h1 class="text-center text-2xl baskerville">${i.title}</h1>
 							<p class="text-center text-lg baskerville">${i.address}</p>

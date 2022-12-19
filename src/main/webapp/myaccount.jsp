@@ -13,10 +13,10 @@
 	<t:CenteredSection>
 	<c:import url="/MyAccount" />
 	<div class="flex flex-col-reverse md:flex-row w-full gap-4 p-4">
-		<div id="roomsList" class="flex flex-col flex-grow color-3 p-2 md:w-1/2 rounded-lg overflow-y-auto newsbox" style="min-height: 800px">
+		<div id="roomsList" class="flex flex-col flex-grow color-3 p-2 md:w-2/3 rounded-lg overflow-y-auto newsbox" style="min-height: 800px">
 			<h1 class="text-start text-2xl font-bold  color-4-text baskerville">Reservations</h1>
 			<div class="border-b-2 color-4-border w-2/4"></div>
-			<div id="roomWrapper" class="flex flex-col gap-3 mt-2">
+			<div id="roomWrapper" class="grid gap-4 grid-cols-1 xl:grid-cols-2 gap-3 mt-2">
 				<c:forEach items="${myReservations}" var="i" >
 					<c:forEach items="${allRooms}" var="k">
 						<c:forEach items="${allLocations}" var="n">
@@ -57,11 +57,11 @@
 				</c:forEach>
 			</div>
 		</div>
-		<div class="flex flex-col md:w-1/2 gap-4">
+		<div class="flex flex-col md:w-1/3 gap-4">
 			<div class="flex flex-col color-3 p-4 rounded-lg">
 				<h1 class="text-start text-2xl font-bold  color-4-text baskerville">Loyalty Rewards</h1>
 				<div class="border-b-2 color-4-border w-3/5"></div>
-				<div class="flex flex-row p-2 gap-3 justify-center items-center content-center sm:justify flex-wrap sm:flex-nowrap">
+				<div class="flex flex-col xl:flex-row p-2 gap-3 justify-center items-center content-center sm:justify flex-wrap sm:flex-nowrap">
 					<div class="flex flex-col">
 						<div class="pie" data-pie='{ "lineargradient": ["#667761","#667761"], "percent": <c:out value='${sessionScope.LoggedIn.loyaltyPoints}' />, "unit": " Points", "fontSize": "0.7rem", "colorSlice": "#DCEED1", "colorCircle": "#DCEED1", "stroke": 5, "rotation": 0 }'></div>
 					</div>
