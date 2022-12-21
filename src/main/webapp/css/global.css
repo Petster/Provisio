@@ -126,6 +126,10 @@
 	display: none;
 }
 
+.slideshow-height {
+	height: 500px;
+}
+
 #slideshowImage1 {
 	background-image: url('https://images.unsplash.com/photo-1587213811864-46e59f6873b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80');
 	background-repeat: no-repeat;

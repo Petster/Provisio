@@ -6,13 +6,13 @@
 <t:Layout>
 	<t:NormalSection>
 	<div class="flex-grow flex flex-col gap-4 pb-4">
-		<section class="splide" class="h-96" aria-label="Splide Basic HTML Example">
+		<section class="splide slideshow-height"  aria-label="Splide Basic HTML Example">
 		  <div class="splide__track">
 				<ul class="splide__list">
-					<li class="splide__slide" data-splide-interval="8000"><div id="slideshowImage1" class="h-96"></div></li>
-					<li class="splide__slide" data-splide-interval="8000"><div id="slideshowImage2" class="h-96"></div></li>
-					<li class="splide__slide" data-splide-interval="8000"><div id="slideshowImage3" class="h-96"></div></li>
-					<li class="splide__slide" data-splide-interval="8000"><div id="slideshowImage4" class="h-96"></div></li>
+					<li class="splide__slide" data-splide-interval="8000"><div id="slideshowImage1" class="slideshow-height"></div></li>
+					<li class="splide__slide" data-splide-interval="8000"><div id="slideshowImage2" class="slideshow-height"></div></li>
+					<li class="splide__slide" data-splide-interval="8000"><div id="slideshowImage3" class="slideshow-height"></div></li>
+					<li class="splide__slide" data-splide-interval="8000"><div id="slideshowImage4" class="slideshow-height"></div></li>
 				</ul>
 		  </div>
 		</section>
