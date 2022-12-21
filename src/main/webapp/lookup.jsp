@@ -40,7 +40,7 @@
 				</div>
 				<button id="resetLookup"
 						class="color-2 color-5-hover color-5-text color-2-text-hover py-2 px-20 rounded-md font-bold">
-					Reset
+					Lookup another reservation
 				</button>
 			</div>
 		</div>
